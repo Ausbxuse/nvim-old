@@ -5,22 +5,14 @@
 "   "autocmd VimEnter * PlugInstall
 "    autocmd VimEnter * PlugInstall | source $MYVIMRC
 "endif
-"
+
 call plug#begin('~/.config/nvim/autoload/plugged')
   Plug 'connorholyday/vim-snazzy'
   Plug 'godlygeek/tabular'
   Plug 'plasticboy/vim-markdown'
   Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install' }
-  Plug 'tpope/vim-speeddating'            " Change dates fast
   Plug 'glts/vim-radical' " Convert binary, hex, etc..
-  Plug 'tpope/vim-eunuch' " Files
-  Plug 'tpope/vim-repeat' " Repeat stuff
-  Plug 'tpope/vim-surround' " Surround
-  Plug 'tpope/vim-commentary' " Better Comments
-  Plug 'airblade/vim-rooter'
-  Plug 'tpope/vim-sleuth'
   Plug 'asvetliakov/vim-easymotion'
-  Plug 'unblevable/quick-scope'
   Plug 'norcalli/nvim-colorizer.lua'
   Plug 'junegunn/rainbow_parentheses.vim'
   Plug 'sheerun/vim-polyglot'
@@ -39,7 +31,7 @@ call plug#begin('~/.config/nvim/autoload/plugged')
   Plug 'junegunn/gv.vim'
   Plug 'voldikss/vim-floaterm'
   Plug 'mhinz/vim-startify'
-"  Plug 'liuchengxu/vista.vim'
+  Plug 'liuchengxu/vista.vim'
   Plug 'liuchengxu/vim-which-key'
   Plug 'junegunn/goyo.vim'
   Plug 'neomake/neomake'
@@ -47,6 +39,7 @@ call plug#begin('~/.config/nvim/autoload/plugged')
   Plug 'mattn/emmet-vim'
   Plug 'https://github.com/vimwiki/vimwiki.git'
   Plug 'kaicataldo/material.vim'
+  Plug 'preservim/nerdtree'
   "------------------------------------
   " Better Comments
   " Plug 'preservim/nerdcommenter'
@@ -55,7 +48,7 @@ call plug#begin('~/.config/nvim/autoload/plugged')
   " Plug 'Shougo/echodoc.vim'
   " Interactive code
 "    Plug 'ChristianChiarulli/codi.vim'
-"  Plug 'vim-python/python-syntax'
+  Plug 'vim-python/python-syntax'
   " Ranger
   " Plug 'francoiscabrol/ranger.vim'
   " Plug 'rbgrouleff/bclose.vim'

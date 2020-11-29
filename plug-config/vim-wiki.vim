@@ -16,7 +16,8 @@
 " Filetypes enabled for
 let g:vimwiki_filetypes = ['markdown']
 
-let g:vimwiki_list = [{'path': '~/.config/nvim/wiki',
+let g:vimwiki_list = [{'auto_diary_index': 1}]
+let g:vimwiki_list = [{'path': '~/shared/wiki',
                       \ 'syntax': 'markdown', 'ext': '.md'}]
 
 " let g:vimwiki_auto_header = 0
