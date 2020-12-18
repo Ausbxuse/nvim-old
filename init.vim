@@ -6,13 +6,6 @@
 
 " Plugins
 "{{{ Plugins
-" auto-install vim-plug
-"if empty(glob('~/.config/vim/autoload/plug.vim'))
-"    silent !curl -fLo ~/.config/nvim/plug.vim --create-dirs
-"      \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-"   "autocmd VimEnter * PlugInstall
-"    autocmd VimEnter * PlugInstall | source $MYVIMRC
-"endif
 if ! filereadable(system('echo -n "${XDG_CONFIG_HOME:-$HOME/.config}/nvim/autoload/plug.vim"'))
 	echo "Downloading junegunn/vim-plug to manage plugins..."
 	silent !mkdir -p ${XDG_CONFIG_HOME:-$HOME/.config}/nvim/autoload/
@@ -54,21 +47,9 @@ call plug#begin('~/.config/nvim/autoload/plugged')
   Plug 'https://github.com/vimwiki/vimwiki.git'
   Plug 'kaicataldo/material.vim'
   Plug 'preservim/nerdtree'
-  "------------------------------------
-  " Better Comments
-  " Plug 'preservim/nerdcommenter'
-  " Plug 'jbgutierrez/vim-better-comments'
-  " Echo doc
-  " Plug 'Shougo/echodoc.vim'
-  " Interactive code
-"    Plug 'ChristianChiarulli/codi.vim'
+ " Plug 'ChristianChiarulli/codi.vim'
   Plug 'vim-python/python-syntax'
-  " Ranger
-  " Plug 'francoiscabrol/ranger.vim'
-  " Plug 'rbgrouleff/bclose.vim'
-  " ranger
-  " Plug 'mhinz/vim-signify'
-  " Plug 'justinmk/vim-sneak'
+  Plug 'justinmk/vim-sneak'
 call plug#end()
 
 " Automatically install missing plugins on startup
