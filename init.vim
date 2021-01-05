@@ -15,7 +15,9 @@ endif
 
 call plug#begin('~/.config/nvim/autoload/plugged')
   Plug 'connorholyday/vim-snazzy'
+"  Plug 'vim-syntastic/syntastic'
   Plug 'godlygeek/tabular'
+"  Plug 'w0rp/ale'
   Plug 'plasticboy/vim-markdown'
   Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install' }
   Plug 'glts/vim-radical' " Convert binary, hex, etc..
@@ -26,28 +28,29 @@ call plug#begin('~/.config/nvim/autoload/plugged')
   Plug 'ryanoasis/vim-devicons'
   Plug 'jiangmiao/auto-pairs'
   Plug 'alvan/vim-closetag'
+  Plug 'preservim/tagbar'
   Plug 'neoclide/coc.nvim', {'branch': 'release'}
   Plug 'vim-airline/vim-airline'
-  Plug 'vim-airline/vim-airline-themes'
+"  Plug 'vim-airline/vim-airline-themes'
   Plug 'kevinhwang91/rnvimr', {'do': 'make sync'}
   Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
   Plug 'junegunn/fzf.vim'
-  Plug 'airblade/vim-gitgutter'
-  Plug 'junegunn/gv.vim'
   Plug 'voldikss/vim-floaterm'
   Plug 'mhinz/vim-startify'
   Plug 'liuchengxu/vista.vim'
   Plug 'liuchengxu/vim-which-key'
   Plug 'junegunn/goyo.vim'
+  Plug 'airblade/vim-gitgutter'
   Plug 'neomake/neomake'
+  Plug 'francoiscabrol/ranger.vim'
   Plug 'honza/vim-snippets'
   Plug 'mattn/emmet-vim'
   Plug 'https://github.com/vimwiki/vimwiki.git'
-  Plug 'kaicataldo/material.vim'
   Plug 'preservim/nerdtree'
- " Plug 'ChristianChiarulli/codi.vim'
+  Plug 'metakirby5/codi.vim'
   Plug 'vim-python/python-syntax'
   Plug 'justinmk/vim-sneak'
+  Plug 'patstockwell/vim-monokai-tasty'
 call plug#end()
 
 " Automatically install missing plugins on startup
@@ -62,6 +65,7 @@ lua require 'colorizer'.setup()
 " Settings
 "{{{ Settings
 set nocindent
+set scrolloff=5
 set iskeyword+=-                      	" treat dash separated words as a word text object"
 set formatoptions-=cro                  " Stop newline continution of comments
 syntax enable                           " Enables syntax highlighing
@@ -160,10 +164,10 @@ endfunc
 "autocmd filetype cpp nnoremap <leader>r :w <bar> te g++ -Wall % && ./a.out<CR>i
 "autocmd filetype python nnoeemap <silent><leader>r :w <bar> :exec 'te python3' shellescape(@%, 1)<CR>i
 nnoremap <C-n> :NERDTreeToggle<CR>
-nnoremap J 5j
-nnoremap K 5k
 nmap <silent><Esc> :nohl<CR>
 nnoremap <F7> :setlocal spell! spell?<CR>
+nnoremap <leader>n :r! date<CR>i*<Esc>$a*<CR><Esc>
+
 "}}}
 
 " Markdown Settings
@@ -250,6 +254,13 @@ let g:airline#extensions#tabline#enabled = 1
 " Plugin Config
 "{{{ Plug Config
 
+"" ale
+""{{{
+"let g:ale_linters = {'python': ['pylint']}
+"let g:ale_fixers = {'*': [], 'python': ['black']}
+"let g:ale_fix_on_save = 1
+""}}}
+
 " rnvimr
 "{{{2 rnvimr
 " Make Ranger replace netrw and be the file explorer
@@ -305,7 +316,7 @@ let g:fzf_tags_command = 'ctags -R'
 " Border color
 let g:fzf_layout = {'up':'~90%', 'window': { 'width': 0.8, 'height': 0.8,'yoffset':0.5,'xoffset': 0.5, 'highlight': 'Todo', 'border': 'sharp' } }
 
-let $FZF_DEFAULT_OPTS = '--layout=reverse --inline-info'
+let $FZF_DEFAULT_OPTS = '--inline-info'
 let $FZF_DEFAULT_COMMAND="rg --files --hidden --glob '!.git/**'"
 "-g '!{node_modules,.git}'
 
@@ -338,14 +349,14 @@ command! -bang -nargs=? -complete=dir Files
  " Make Ripgrep ONLY search file contents and not filenames
 command! -bang -nargs=* Rg
   \ call fzf#vim#grep(
-  \   'rg --column --line-number --hidden --smart-case --no-heading --color=always '.shellescape(<q-args>), 1,
+  \   'rg --line-number --hidden --smart-case --no-heading --color=always '.shellescape(<q-args>), 1,
   \   <bang>0 ? fzf#vim#with_preview({'options': '--delimiter : --nth 4..'}, 'up:60%')
   \           : fzf#vim#with_preview({'options': '--delimiter : --nth 4.. -e'}, 'right:50%', '?'),
   \   <bang>0)
 
 " Ripgrep advanced
 function! RipgrepFzf(query, fullscreen)
-  let command_fmt = 'rg --column --line-number --no-heading --color=always --smart-case %s || true'
+  let command_fmt = 'rg --line-number --no-heading --color=always --smart-case %s || true'
   let initial_command = printf(command_fmt, shellescape(a:query))
   let reload_command = printf(command_fmt, '{q}')
   let spec = {'options': ['--phony', '--query', a:query, '--bind', 'change:reload:'.reload_command]}
@@ -496,29 +507,29 @@ let g:sneak#prompt = '🔎 '
 
 " coc
 "{{{2 coc
-"  let g:coc_global_extensions = [
-"    \ 'coc-snippets',
-"    \ 'coc-actions',
-"    \ 'coc-lists',
-"    \ 'coc-emmet',
-"    \ 'coc-pairs',
-"    \ 'coc-tsserver',
-"    \ 'coc-floaterm',
-"    \ 'coc-html',
-"    \ 'coc-css',
-"    \ 'coc-emoji',
-"    \ 'coc-cssmodules',
-"    \ 'coc-yaml',
-"    \ 'coc-python',
-"    \ 'coc-explorer',
-"    \ 'coc-svg',
-"    \ 'coc-prettier',
-"    \ 'coc-vimlsp',
-"    \ 'coc-xml',
-"    \ 'coc-yank',
-"    \ 'coc-json',
-"    \ 'coc-marketplace',
-"    \ ]
+  let g:coc_global_extensions = [
+    \ 'coc-snippets',
+    \ 'coc-actions',
+    \ 'coc-lists',
+    \ 'coc-emmet',
+    \ 'coc-pairs',
+    \ 'coc-tsserver',
+    \ 'coc-floaterm',
+    \ 'coc-html',
+    \ 'coc-css',
+    \ 'coc-emoji',
+    \ 'coc-cssmodules',
+    \ 'coc-yaml',
+    \ 'coc-python',
+    \ 'coc-explorer',
+    \ 'coc-svg',
+    \ 'coc-prettier',
+    \ 'coc-vimlsp',
+    \ 'coc-xml',
+    \ 'coc-yank',
+    \ 'coc-json',
+    \ 'coc-marketplace',
+    \ ]
 
 " Use tab for trigger completion with characters ahead and navigate.
 inoremap <silent><expr> <TAB>
@@ -550,7 +561,7 @@ nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
 
 " Use K to show documentation in preview window.
-" nnoremap <silent> K :call <SID>show_documentation()<CR>
+nnoremap <silent> <leader>k :call <SID>show_documentation()<CR>
 
 function! s:show_documentation()
   if (index(['vim','help'], &filetype) >= 0)
@@ -711,12 +722,7 @@ function! StartifyEntryFormat()
     endfunction
 
 let g:startify_bookmarks = [
-            \ { 'c': '~/.config/i3/config' },
             \ { 'i': '~/.config/nvim/init.vim' },
-            \ { 'z': '~/.zshrc' },
-            \ '~/Blog',
-            \ '~/Code',
-            \ '~/Pics',
             \ ]
 
 let g:startify_enable_special = 0
