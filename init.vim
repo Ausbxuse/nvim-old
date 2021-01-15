@@ -687,8 +687,8 @@ imap <C-j> <Plug>(coc-snippets-expand-jump)
 " nmap <silent> <leader>z :Goyo<CR>
 "}}}2
 
-" start-screen
-"{{{2 start-screen
+" startify
+"{{{2 startify
 
 let g:startify_custom_header = [
         \ '      ___              __                       ',
@@ -723,6 +723,7 @@ function! StartifyEntryFormat()
 
 let g:startify_bookmarks = [
             \ { 'i': '~/.config/nvim/init.vim' },
+            \ { 't': '~/Documents/private/todo.md' },
             \ ]
 
 let g:startify_enable_special = 0
