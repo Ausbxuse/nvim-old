@@ -107,6 +107,7 @@ set ic
 set nospell
 autocmd Filetype python set tabstop=4
 au BufRead init.vim set foldmethod=marker
+autocmd Filetype lua set foldmethod=marker
 " let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 " set mmp=1300
 " set autochdir                           " Your working directory will always be the same as your working directory
@@ -423,7 +424,7 @@ let g:qs_max_chars=150
 let g:vimwiki_filetypes = ['markdown']
 
 let g:vimwiki_list = [{'auto_diary_index': 1}]
-let g:vimwiki_list = [{'path': '~/docs/wiki',
+let g:vimwiki_list = [{'path': '~/Documents/wiki',
                       \ 'syntax': 'markdown', 'ext': '.md'}]
 
 " let g:vimwiki_auto_header = 0

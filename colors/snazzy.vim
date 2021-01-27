@@ -25,7 +25,7 @@ if !exists("g:SnazzyTransparent")
 endif
 
 " Core
-let  red      =  '#ff9700'
+let  red      =  '#ff2740'
 let  green    =  '#a4e400'
 let  yellow   =  '#f3f99d'
 let  blue     =  '#57c7ff'
@@ -40,9 +40,9 @@ let  ui_3     =  '#e2e4e5'
 let  ui_4     =  '#a1a6a8'
 let  ui_5     =  '#848688'
 let  ui_6     =  '#5e6c70'
-let  ui_7     =  '#536991'
-let  ui_8     =  '#606580'
-let  ui_9     =  '#3a3d4d'
+let  ui_7     =  '#57c7ff'
+let  ui_8     =  '#606580' "comment color
+let  ui_9     =  '#3a3d4d' "under line of current line color
 let  ui_11    =  '#282a36'
 let  ui_12    =  '#192224'
 
