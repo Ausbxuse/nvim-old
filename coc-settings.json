@@ -29,6 +29,12 @@
     "css",
     "markdown",
     "javascript",
+    "python",
+    "rust",
+    "c",
+    "cpp",
+    //"lua",
+    //"java",
     "graphql",
     "html",
     "yaml",
@@ -74,7 +80,8 @@
       "filetypes": ["sh"],
       "ignoredRootPaths": ["~"]
     }
-  }
+  },
+  "clangd.path": "/home/peter/.config/coc/extensions/coc-clangd-data/install/11.0.0/clangd_11.0.0/bin/clangd"
 
   // TODO b:coc_suggest_disable=1 GOYO
   // TODO add to paths.vim g:coc_node_path

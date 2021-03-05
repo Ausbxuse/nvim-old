@@ -15,12 +15,22 @@ endif
 
 call plug#begin('~/.config/nvim/autoload/plugged')
   Plug 'connorholyday/vim-snazzy'
+  Plug 'romgrk/doom-one.vim'
+  Plug 'chuling/equinusocio-material.vim'
 "  Plug 'vim-syntastic/syntastic'
   Plug 'godlygeek/tabular'
+  Plug 'glepnir/galaxyline.nvim' , {'branch': 'main'}
+  Plug 'romgrk/barbar.nvim'
+  Plug 'wfxr/minimap.vim', {'do': ':!cargo install --locked code-minimap'}
+  Plug 'kyazdani42/nvim-web-devicons'
 "  Plug 'w0rp/ale'
   Plug 'plasticboy/vim-markdown'
+  Plug 'Yggdroot/indentLine'
+"  Plug 'glepnir/indent-guides.nvim'
+  Plug 'lukas-reineke/indent-blankline.nvim'
   Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install' }
-  Plug 'glts/vim-radical' " Convert binary, hex, etc..
+  "Plug 'glts/vim-radical' " Convert binary, hex, etc..
+  Plug 'andrejlevkovitch/vim-lua-format'
   Plug 'asvetliakov/vim-easymotion'
   Plug 'norcalli/nvim-colorizer.lua'
   Plug 'junegunn/rainbow_parentheses.vim'
@@ -30,14 +40,16 @@ call plug#begin('~/.config/nvim/autoload/plugged')
   Plug 'alvan/vim-closetag'
   Plug 'preservim/tagbar'
   Plug 'neoclide/coc.nvim', {'branch': 'release'}
-  Plug 'vim-airline/vim-airline'
+" Plug 'vim-airline/vim-airline'
 "  Plug 'vim-airline/vim-airline-themes'
-  Plug 'kevinhwang91/rnvimr', {'do': 'make sync'}
+  "Plug 'kevinhwang91/rnvimr', {'do': 'make sync'}
   Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
   Plug 'junegunn/fzf.vim'
   Plug 'voldikss/vim-floaterm'
   Plug 'mhinz/vim-startify'
   Plug 'liuchengxu/vista.vim'
+  Plug 'liuchengxu/clap.vim'
+  Plug 'liuchengxu/vim-clap', { 'do': ':Clap install-binary!' }
   Plug 'liuchengxu/vim-which-key'
   Plug 'junegunn/goyo.vim'
   Plug 'airblade/vim-gitgutter'
@@ -50,7 +62,7 @@ call plug#begin('~/.config/nvim/autoload/plugged')
   Plug 'metakirby5/codi.vim'
   Plug 'vim-python/python-syntax'
   Plug 'justinmk/vim-sneak'
-  Plug 'patstockwell/vim-monokai-tasty'
+  "Plug 'patstockwell/vim-monokai-tasty'
 call plug#end()
 
 " Automatically install missing plugins on startup
@@ -64,6 +76,7 @@ lua require 'colorizer'.setup()
 
 " Settings
 "{{{ Settings
+set ssop=sesdir
 set nocindent
 set scrolloff=5
 set iskeyword+=-                      	" treat dash separated words as a word text object"
@@ -81,8 +94,8 @@ set splitbelow                          " Horizontal splits will automatically e
 set splitright                          " Vertical splits will automatically be to the right
 set t_Co=256                            " Support 256 colors
 set conceallevel=0                      " So that I can see `` in markdown files
-set tabstop=4                           " Insert 4 spaces for a tab
-set shiftwidth=4                        " Change the number of space characters inserted for indentation
+set tabstop=2                           " Insert 2 spaces for a tab
+set shiftwidth=2                        " Change the number of space characters inserted for indentation
 set smarttab                            " Makes tabbing smarter will realize you have 2 vs 4
 set expandtab                           " Converts tabs to spaces
 set smartindent                         " Makes indenting smart
@@ -105,9 +118,13 @@ set guifont=Hack\ Nerd\ Font
 set relativenumber
 set ic
 set nospell
+"set list listchars=tab:>\ ,trail:-,eol:↵             "indicate blank space and return
 autocmd Filetype python set tabstop=4
 au BufRead init.vim set foldmethod=marker
 autocmd Filetype lua set foldmethod=marker
+autocmd TermOpen * startinsert
+
+
 " let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 " set mmp=1300
 " set autochdir                           " Your working directory will always be the same as your working directory
@@ -131,6 +148,7 @@ autocmd BufReadPost *
 " Mappings
 "{{{ Mappings
 let mapleader=" "
+tnoremap <Esc> <C-\><C-n>
 nnoremap <Space> <Nop>
 " Better window navigation
 nnoremap <S-h> <C-w>h
@@ -144,7 +162,7 @@ xnoremap K :move '<-2<CR>gv-gv
 xnoremap J :move '>+1<CR>gv-gv
 
 " Compile and run C++/Python programs
-map <leader>r :call Compile()<CR>i
+map <leader>r :call Compile()<CR>
 func! Compile()
   exec "w"
   if &filetype == "cpp"
@@ -165,6 +183,9 @@ endfunc
 "autocmd filetype cpp nnoremap <leader>r :w <bar> te g++ -Wall % && ./a.out<CR>i
 "autocmd filetype python nnoeemap <silent><leader>r :w <bar> :exec 'te python3' shellescape(@%, 1)<CR>i
 nnoremap <C-n> :NERDTreeToggle<CR>
+" autocmd VimEnter * NERDTree | wincmd p
+" autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() |
+    \ quit | endif
 nmap <silent><Esc> :nohl<CR>
 nnoremap <F7> :setlocal spell! spell?<CR>
 nnoremap <leader>n :r! date<CR>i*<Esc>$a*<CR><Esc>
@@ -191,7 +212,7 @@ autocmd Filetype markdown,rmd inoremap ;1 #<Space><Enter><++><Esc>kA
 autocmd Filetype markdown,rmd inoremap ;2 ##<Space><Enter><++><Esc>kA
 autocmd Filetype markdown,rmd inoremap ;3 ###<Space><Enter><++><Esc>kA
 autocmd Filetype markdown,rmd inoremap ;4 ####<Space><Enter><++><Esc>kA
-autocmd Filetype markdown,rmd inoremap ;l --------<Enter>
+autocmd Filetype markdown,rmd inoremap ;j \|--------
 " Keymappings in normal mode
 autocmd Filetype markdown,rmd nnoremap ;s y$d$i ~~<Esc>pa~~<Esc>0
 autocmd Filetype markdown,rmd nnoremap \s 0f~xxf~xx0
@@ -204,7 +225,7 @@ function! s:spell_check_current()
   normal z=
   setlocal nospell
 endfunction
-nnoremap <leader>s :call <SID>spell_check_current()
+nnoremap <leader>s :call <SID>spell_check_current()<CR>
 "highlight clear SpellRare 
 "highlight clear SpellBad 
 "highlight clear SpellCap 
@@ -229,25 +250,19 @@ hi Comment cterm=italic
 let ayucolor="mirage"
 let g:SnazzyTransparent=1
 colorscheme snazzy
+"colorscheme doom-one
 hi LineNr ctermbg=NONE guibg=NONE
 set hlsearch
 hi Search guibg=Yellow
 hi Search guifg=Black
 
-" IndentLine {{
-let g:indentLine_char = ''
-let g:indentLine_first_char = ''
-let g:indentLine_showFirstIndentLevel = 1
-let g:indentLine_setColors = 0
-" }}
-
-let g:airline_powerline_fonts=1
-let g:airline#extensions#tabline#fnamemod = ':.'
-let g:airline#extensions#tabline#fnamecollapse = 0
-"let g:airline_theme='powerlineish'
-"let g:airline_theme = 'palenight'
-let g:airline_theme = 'base16_snazzy'
-let g:airline#extensions#tabline#enabled = 1
+"let g:airline_powerline_fonts=1
+"let g:airline#extensions#tabline#fnamemod = ':.'
+"let g:airline#extensions#tabline#fnamecollapse = 0
+""let g:airline_theme='powerlineish'
+""let g:airline_theme = 'palenight'
+"let g:airline_theme = 'base16_snazzy'
+"let g:airline#extensions#tabline#enabled = 1
 
 
 "}}} 
@@ -255,12 +270,47 @@ let g:airline#extensions#tabline#enabled = 1
 " Plugin Config
 "{{{ Plug Config
 
-"" ale
+" Plugin: Galaxyline -------------------------- {{{
+
+" }}}
+
+" Plugin: Galaxyline -------------------------- {{{
+
+function! ConfigStatusLine()
+  lua require('plugins.status-line')
+endfunction
+
+augroup status_line_init
+  autocmd!
+  autocmd VimEnter * call ConfigStatusLine()
+augroup END
+
+" }}}
+" ale
 ""{{{
 "let g:ale_linters = {'python': ['pylint']}
 "let g:ale_fixers = {'*': [], 'python': ['black']}
 "let g:ale_fix_on_save = 1
 ""}}}
+
+"" lua formatter
+"{{{
+autocmd FileType lua nnoremap <buffer> <c-k> :call LuaFormat()<cr>
+autocmd BufWrite *.lua call LuaFormat()
+"}}}
+
+"" indentline
+"{{{
+let g:indentLine_first_char = ''
+let g:indentLine_showFirstIndentLevel = 1
+let g:indentLine_setColors = 0
+"let g:indentLine_bgcolor_term = 220
+let g:indentLine_char = '▏'
+"let g:indentLine_char_list = ['▏', '¦', '┆', '┊']
+let g:indentLine_setColors = 2
+"let g:indentLine_conceallevel = 1
+let g:indentLine_enabled = 0
+"}}}
 
 " rnvimr
 "{{{2 rnvimr
@@ -530,6 +580,9 @@ let g:sneak#prompt = '🔎 '
     \ 'coc-yank',
     \ 'coc-json',
     \ 'coc-marketplace',
+    \ 'coc-java',
+    \ 'coc-rust-analyzer',
+    \ 'coc-lua',
     \ ]
 
 " Use tab for trigger completion with characters ahead and navigate.
@@ -691,13 +744,25 @@ imap <C-j> <Plug>(coc-snippets-expand-jump)
 " startify
 "{{{2 startify
 
-let g:startify_custom_header = [
-        \ '      ___              __                       ',
-        \ '     /   | __  _______/ /_  _  ____  __________ ',
-        \ '    / /| |/ / / / ___/ __ \| |/_/ / / / ___/ _ \',
-        \ '   / ___ / /_/ (__  ) /_/ />  </ /_/ (__  )  __/',
-        \ '  /_/  |_\__,_/____/_.___/_/|_|\__,_/____/\___/ ',
-        \]
+"let g:startify_custom_header = [
+"        \ '      ___              __                       ',
+"        \ '     /   | __  _______/ /_  _  ____  __________ ',
+"        \ '    / /| |/ / / / ___/ __ \| |/_/ / / / ___/ _ \',
+"        \ '   / ___ / /_/ (__  ) /_/ />  </ /_/ (__  )  __/',
+"        \ '  /_/  |_\__,_/____/_.___/_/|_|\__,_/____/\___/ ',
+"        \]
+
+let g:startify_custom_header=[
+      \'   _           _                      _ ',
+      \'           ▕                      ',
+      \'▕ ███       ▕│█     ___   ___        ',
+      \'▕││███     ▕│███▕│         ██   ██ ',
+      \'▕││  ███   ▕│███▕│▕│ ▁ ▕│    ▕│██     ',
+      \'▕││  ▕│███ ▕│███▕│▕│   ▕│    ▕│██  ◢◣  ◢ ',
+      \'▕││  ▕│  ███│███▕│  ▁▁  ▁   ██   ▜█ ██ ',
+      \'   ▕│    ████      ‾‾    ‾        ',
+      \'   ▕│                             ',
+      \'      ‾                               ‾ ']
 
 let g:startify_session_dir = '~/.config/nvim/session'
 
@@ -724,6 +789,7 @@ function! StartifyEntryFormat()
 
 let g:startify_bookmarks = [
             \ { 'i': '~/.config/nvim/init.vim' },
+            \ { 'a': '~/.config/awesome/rc.lua' },
             \ { 't': '~/Documents/private/todo.md' },
             \ ]
 
@@ -807,3 +873,5 @@ let g:EasyMotion_smartcase = 1
 "}}}2
 
 "}}}1
+
+let g:minimap_auto_start = 0

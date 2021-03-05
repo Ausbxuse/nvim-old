@@ -3,6 +3,42 @@
 " Author: Connor Holyday
 " ===============================================================
 
+function! s:_ (name, ...)
+  let fg = ''
+  let bg = ''
+  let attr = ''
+
+  if type(a:1) == 3
+    let fg   = get(a:1, 0, '')
+    let bg   = get(a:1, 1, '')
+    let attr = get(a:1, 2, '')
+  else
+    let fg   = get(a:000, 0, '')
+    let bg   = get(a:000, 1, '')
+    let attr = get(a:000, 2, '')
+  end
+
+  let has_props = v:false
+
+  let cmd = 'hi! ' . a:name
+  if !empty(fg) && fg != 'none'
+    let cmd .= ' guifg=' . fg
+    let has_props = v:true
+  end
+  if !empty(bg) && bg != 'none'
+    let cmd .= ' guibg=' . bg
+    let has_props = v:true
+  end
+  if !empty(attr) && attr != 'none'
+    let cmd .= ' gui=' . attr
+    let has_props = v:true
+  end
+  execute 'hi! clear ' a:name
+  if has_props
+    execute cmd
+  end
+endfunc
+
 " Setup
 set background=dark
 if version > 580
@@ -24,9 +60,57 @@ if !exists("g:SnazzyTransparent")
     let g:SnazzyTransparent = 0
 endif
 
+let s:base0      = '#1B2229'
+let s:base1      = '#1c1f24'
+let s:base2      = '#202328'
+let s:base3      = '#23272e'
+let s:base4      = '#3f444a'
+let s:base5      = '#5B6268'
+let s:base6      = '#73797e'
+let s:base7      = '#9ca0a4'
+let s:base8      = '#b1b1b1'
+let s:base9      = '#E6E6E6'
+
+let s:grey       = s:base4
+let s:red        = '#ff2740'
+let s:orange     = '#fd971f'
+let s:green      = '#a6e22e'
+let s:teal       = '#4db5bd'
+let s:yellow     = '#f4bf75'
+let s:blue       = '#66d9ef'
+let s:dark_blue  = '#2257A0'
+let s:magenta    = '#c678dd'
+let s:violet     = '#a9a1e1'
+let s:cyan       = '#a1efe4'
+let s:dark_cyan  = '#5699AF'
+let s:white      = '#efefef'
+
+let s:green_alt  = '#799033'
+
+let s:bg             = '#282c34'
+let s:bg_alt         = '#21242b'
+let s:bg_highlight   = '#2E323C'
+let s:bg_popup       = '#3E4556'
+let s:bg_widget      = s:bg
+let s:bg_statusline  = s:bg_popup
+let s:bg_visual      = color#Lighten(s:base4, 0.3)
+let s:bg_selection   = s:dark_blue
+let s:bg_highlighted = '#4A4A45'
+
+let s:fg           = '#bbc2cf'
+let s:fg_alt       = '#5B6268'
+let s:fg_widget    = s:fg
+let s:fg_conceal   = s:base4
+let s:fg_subtle    = s:base7
+let s:fg_highlight = color#Lighten(s:fg, 0.2)
+let s:fg_linenr    = s:base4
+
+
+let s:highlight       = s:blue
+let s:highlight_color = s:base0
 " Core
 let  red      =  '#ff2740'
-let  green    =  '#a4e400'
+let  green    =  '#aae95b'
 let  yellow   =  '#f3f99d'
 let  blue     =  '#57c7ff'
 let  magenta  =  '#fc1a70'
@@ -46,22 +130,54 @@ let  ui_9     =  '#3a3d4d' "under line of current line color
 let  ui_11    =  '#282a36'
 let  ui_12    =  '#192224'
 
-let g:terminal_color_0 = '#282a36'
-let g:terminal_color_1 = '#ff9700'
-let g:terminal_color_2 = '#a4e400'
-let g:terminal_color_3 = '#f3f99d'
-let g:terminal_color_4 = '#57c7ff'
-let g:terminal_color_5 = '#fc1a70'
-let g:terminal_color_6 = '#62d8f1'
-let g:terminal_color_7 = '#f1f1f0'
-let g:terminal_color_8 = '#43454F'
-let g:terminal_color_9 = '#ff9700'
-let g:terminal_color_10 = '#a4e400'
-let g:terminal_color_11 = '#f3f99d'
-let g:terminal_color_12 = '#57c7ff'
+let g:terminal_color_0 = '#121212'
+let g:terminal_color_1 = '#ff000f'
+let g:terminal_color_2 = '#aae95b'
+let g:terminal_color_3 = '#ffb900'
+let g:terminal_color_4 = '#61aeee'
+let g:terminal_color_5 = '#ff6ac1'
+let g:terminal_color_6 = '#00d7ea'
+let g:terminal_color_7 = '#ffffff'
+let g:terminal_color_8 = '#444444'
+let g:terminal_color_9 = '#ff2740'
+let g:terminal_color_10 = '#abe15b'
+let g:terminal_color_11 = '#ffd242'
+let g:terminal_color_12 = '#61afef'
 let g:terminal_color_13 = '#fc1a70'
-let g:terminal_color_14 = '#62d8f1'
-let g:terminal_color_15 = '#eff0eb'
+let g:terminal_color_14 = '#67fff0'
+let g:terminal_color_15 = '#ffffff'
+
+let s:bg_current = s:bg
+let s:bg_visible = s:bg
+let s:bg_other   = s:base1
+let s:diff_info_fg  = s:blue
+let s:diff_info_bg0 = color#Mix('#D8EEFD', s:bg, 0.6)
+
+call s:_('TabLine',             s:base7, s:bg_alt,  'bold')
+call s:_('TabLineSel',          s:blue,  s:bg_current, 'bold')
+call s:_('TabLineFill',         'none',  s:bg_other,   'bold')
+call s:_('BufferCurrent',       s:base9,          s:bg_current,  'none')
+call s:_('BufferCurrentIndex',  s:base6,          s:bg_current,  'none')
+call s:_('BufferCurrentMod',    s:yellow,         s:bg_current,  'none')
+call s:_('BufferCurrentSign',   s:blue,           s:bg_current,  'none')
+call s:_('BufferCurrentTarget', s:red,            s:bg_current,  'bold')
+
+call s:_('BufferVisible',       s:base7,          s:bg_visible,  'none')
+call s:_('BufferVisibleIndex',  s:base9,          s:bg_visible,  'none')
+call s:_('BufferVisibleMod',    s:yellow,         s:bg_visible,  'none')
+call s:_('BufferVisibleSign',   s:base4,          s:bg_visible,  'none')
+call s:_('BufferVisibleTarget', s:red,            s:bg_visible,  'bold')
+
+call s:_('BufferInactive',       s:base6,          s:bg_other,    'none')
+call s:_('BufferInactiveIndex',  s:base6,          s:bg_other,    'none')
+call s:_('BufferInactiveMod',    s:yellow,         s:bg_other,    'none')
+call s:_('BufferInactiveSign',   s:base4,          s:bg_other,    'none')
+call s:_('BufferInactiveTarget', s:red,            s:bg_other,    'bold')
+
+call s:_('BufferTabpages',       s:blue,           s:bg_statusline, 'bold')
+call s:_('BufferTabpageFill',    s:base4,          s:bg_other,    'bold')
+
+call s:_('BufferPart',        s:diff_info_fg,   s:diff_info_bg0, 'bold')
 
 "hi CTagsMember -- no settings --
 "hi CTagsGlobalConstant -- no settings --
