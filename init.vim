@@ -15,13 +15,16 @@ endif
 
 call plug#begin('~/.config/nvim/autoload/plugged')
   Plug 'connorholyday/vim-snazzy'
+  Plug 'sainnhe/sonokai'
   Plug 'romgrk/doom-one.vim'
   Plug 'chuling/equinusocio-material.vim'
+  " Plug 'camspiers/animate.vim'
+  " Plug 'camspiers/lens.vim'
 "  Plug 'vim-syntastic/syntastic'
   Plug 'godlygeek/tabular'
   Plug 'glepnir/galaxyline.nvim' , {'branch': 'main'}
   Plug 'romgrk/barbar.nvim'
-  Plug 'wfxr/minimap.vim', {'do': ':!cargo install --locked code-minimap'}
+  "Plug 'wfxr/minimap.vim', {'do': ':!cargo install --locked code-minimap'}
   Plug 'kyazdani42/nvim-web-devicons'
 "  Plug 'w0rp/ale'
   Plug 'plasticboy/vim-markdown'
@@ -48,8 +51,8 @@ call plug#begin('~/.config/nvim/autoload/plugged')
   Plug 'voldikss/vim-floaterm'
   Plug 'mhinz/vim-startify'
   Plug 'liuchengxu/vista.vim'
-  Plug 'liuchengxu/clap.vim'
-  Plug 'liuchengxu/vim-clap', { 'do': ':Clap install-binary!' }
+  "Plug 'liuchengxu/clap.vim'
+  "Plug 'liuchengxu/vim-clap', { 'do': ':Clap install-binary!' }
   Plug 'liuchengxu/vim-which-key'
   Plug 'junegunn/goyo.vim'
   Plug 'airblade/vim-gitgutter'
@@ -163,16 +166,21 @@ xnoremap J :move '>+1<CR>gv-gv
 
 " Compile and run C++/Python programs
 map <leader>r :call Compile()<CR>
+
 func! Compile()
   exec "w"
   if &filetype == "cpp"
-    exec 'te g++ -Wall % && ./a.out'
+    exec 'sp | res -10 | te g++ -Wall % && ./a.out'
   elseif &filetype == 'c'
-    exec 'te g++ -Wall % && ./a.out'
+    exec 'sp | res -10 | te gcc -Wall % && ./a.out'
   elseif &filetype == 'python'
-    exec 'te python3 %'
+    exec 'sp | res -10 | te python3 %'
+  elseif &filetype == 'rust'
+    exec 'sp | res -10 | te cargo run'
+  elseif &filetype == 'lua'
+    exec 'sp | res -10 | te lua %'
   elseif &filetype == 'java'
-    exec 'te javac % && java %<'
+    exec 'sp | res -10 | te javac % && java %<'
 "  elseif &filetype == 'vimwiki'
 "    exec "MarkdownPreview"
 "  else
@@ -249,6 +257,7 @@ hi Comment cterm=italic
 
 let ayucolor="mirage"
 let g:SnazzyTransparent=1
+
 colorscheme snazzy
 "colorscheme doom-one
 hi LineNr ctermbg=NONE guibg=NONE
@@ -296,7 +305,7 @@ augroup END
 "" lua formatter
 "{{{
 autocmd FileType lua nnoremap <buffer> <c-k> :call LuaFormat()<cr>
-autocmd BufWrite *.lua call LuaFormat()
+"autocmd BufWrite *.lua call LuaFormat()
 "}}}
 
 "" indentline
