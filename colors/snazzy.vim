@@ -1,8 +1,3 @@
-" ===============================================================
-" Snazzy
-" Author: Connor Holyday
-" ===============================================================
-
 function! s:_ (name, ...)
   let fg = ''
   let bg = ''
@@ -79,7 +74,8 @@ let s:teal       = '#4db5bd'
 let s:yellow     = '#f4bf75'
 let s:blue       = '#66d9ef'
 let s:dark_blue  = '#2257A0'
-let s:magenta    = '#c678dd'
+"let s:magenta    = '#c678dd'
+let s:magenta    = '#fc1a70'
 let s:violet     = '#a9a1e1'
 let s:cyan       = '#a1efe4'
 let s:dark_cyan  = '#5699AF'
