@@ -20,12 +20,11 @@ call plug#begin('~/.config/nvim/autoload/plugged')
   Plug 'neovim/nvim-lspconfig'
   Plug 'hrsh7th/nvim-compe'
   Plug 'connorholyday/vim-snazzy'
-  Plug 'romgrk/doom-one.vim'
+  " Plug 'romgrk/doom-one.vim'
   "Plug 'sainnhe/sonokai'
   "Plug 'chuling/equinusocio-material.vim' "????
   " Plug 'camspiers/animate.vim'
   " Plug 'camspiers/lens.vim'
-"  Plug 'vim-syntastic/syntastic'
   "Plug 'godlygeek/tabular'
   Plug 'glepnir/galaxyline.nvim' , {'branch': 'main'}
   Plug 'romgrk/barbar.nvim'
@@ -36,37 +35,33 @@ call plug#begin('~/.config/nvim/autoload/plugged')
 "  Plug 'glepnir/indent-guides.nvim'
   Plug 'lukas-reineke/indent-blankline.nvim'
   Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install' }
-  "Plug 'glts/vim-radical' " Convert binary, hex, etc..
   Plug 'andrejlevkovitch/vim-lua-format'
-  Plug 'asvetliakov/vim-easymotion'
   Plug 'norcalli/nvim-colorizer.lua'
   Plug 'junegunn/rainbow_parentheses.vim'
   Plug 'sheerun/vim-polyglot'
-  Plug 'ryanoasis/vim-devicons'
+  "Plug 'ryanoasis/vim-devicons'
   Plug 'jiangmiao/auto-pairs'
-  Plug 'alvan/vim-closetag'
-  Plug 'preservim/tagbar'
+  "Plug 'preservim/tagbar'
   "Plug 'neoclide/coc.nvim', {'branch': 'release'}
-" Plug 'vim-airline/vim-airline'
-"  Plug 'vim-airline/vim-airline-themes'
   "Plug 'kevinhwang91/rnvimr', {'do': 'make sync'}
   Plug 'voldikss/vim-floaterm'
-  Plug 'mhinz/vim-startify'
+  "Plug 'mhinz/vim-startify'
   "Plug 'liuchengxu/vista.vim'
   "Plug 'liuchengxu/clap.vim'
   "Plug 'liuchengxu/vim-clap', { 'do': ':Clap install-binary!' }
   Plug 'liuchengxu/vim-which-key'
-  Plug 'junegunn/goyo.vim'
   Plug 'airblade/vim-gitgutter'
-  Plug 'neomake/neomake'
-  Plug 'francoiscabrol/ranger.vim'
+  Plug 'hrsh7th/vim-vsnip'
+  Plug 'hrsh7th/vim-vsnip-integ'
   Plug 'honza/vim-snippets'
-  Plug 'mattn/emmet-vim'
   Plug 'https://github.com/vimwiki/vimwiki.git'
   Plug 'preservim/nerdtree'
   Plug 'metakirby5/codi.vim'
-  Plug 'vim-python/python-syntax'
-  Plug 'justinmk/vim-sneak'
+  Plug 'asvetliakov/vim-easymotion'
+  Plug 'glepnir/dashboard-nvim'
+
+  Plug 'rafamadriz/friendly-snippets'
+  "Plug 'nvim-lua/completion-nvim'
   "Plug 'patstockwell/vim-monokai-tasty'
 call plug#end()
 
@@ -373,16 +368,6 @@ let g:codi#aliases = {
                    \ }
 "}}}2
 
-" quickscope
-"{{{2 quickscope
-" Trigger a highlight in the appropriate direction when pressing these keys:
-let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
-
-highlight QuickScopePrimary guifg='#00C7DF' gui=underline ctermfg=155 cterm=underline
-highlight QuickScopeSecondary guifg='#eF5F70' gui=underline ctermfg=81 cterm=underline
-let g:qs_max_chars=150
-"}}}2
-
 " vim-wiki
 "{{{2 vim-wiki
 " VimWiki
@@ -447,43 +432,6 @@ let g:vimwiki_diary_months = {
       \ 7: 'July', 8: 'August', 9: 'September',
       \ 10: 'October', 11: 'November', 12: 'December'
       \ }
-"}}}2
-
-" sneak
-"{{{2 sneak
-let g:sneak#label = 1
-
-" case insensitive sneak
-let g:sneak#use_ic_scs = 1
-
-" imediately move tot the next instance of search, if you move the cursor sneak is back to default behavior
-let g:sneak#s_next = 1
-
-" remap so I can use , and ; with f and t
-map gS <Plug>Sneak_,
-map gs <Plug>Sneak_;
-
-" Change the colors
-highlight Sneak guifg=black guibg=#00C7DF ctermfg=black ctermbg=cyan
-highlight SneakScope guifg=red guibg=yellow ctermfg=red ctermbg=yellow
-
-" Cool prompt
-let g:sneak#prompt = '🔎 '
-
-" I like quickscope better for this since it keeps me in the scope of a single line
-" map f <Plug>Sneak_f
-" map F <Plug>Sneak_F
-" map t <Plug>Sneak_t
-" map T <Plug>Sneak_T
-
-
-" Useful info
-
-" s<Enter>                 | Repeat the last Sneak.
-" S<Enter>                 | Repeat the last Sneak, in reverse direction.
-
-" silent! call repeat#set("\<Plug>Sneak_s", v:count)
-" silent! call repeat#set("\<Plug>Sneak_S", v:count)
 "}}}2
 
 "" coc
@@ -666,11 +614,6 @@ let g:sneak#prompt = '🔎 '
 "imap <C-j> <Plug>(coc-snippets-expand-jump)
 ""}}}2
 
-" goyo
-"{{{2 goyo
-" nmap <silent> <leader>z :Goyo<CR>
-"}}}2
-
 " startify
 "{{{2 startify
 
@@ -813,22 +756,61 @@ nnoremap <silent> K <cmd>lua vim.lsp.buf.hover()<CR>
 nnoremap <silent> <C-k> <cmd>lua vim.lsp.buf.signature_help()<CR>
 nnoremap <silent> <C-n> <cmd>lua vim.lsp.diagnostic.goto_prev()<CR>
 nnoremap <silent> <C-p> <cmd>lua vim.lsp.diagnostic.goto_next()<CR>
-autocmd BufWritePre *.py lua vim.lsp.buf.formatting_sync(nil, 100)
+autocmd BufWritePre *.py,*.lua lua vim.lsp.buf.formatting_sync(nil, 100)
 "}}}
 
 "
-"{{{ lsp-config
+"{{{ dashboard
+let g:dashboard_default_executive = 'telescope'
 
+let g:dashboard_custom_header=[
+      \'   _           _                      _ ',
+      \'           ▕                      ',
+      \'▕ ███       ▕│█     ___   ___        ',
+      \'▕││███     ▕│███▕│         ██   ██ ',
+      \'▕││  ███   ▕│███▕│▕│ ▁ ▕│    ▕│██     ',
+      \'▕││  ▕│███ ▕│███▕│▕│   ▕│    ▕│██  ◢◣  ◢ ',
+      \'▕││  ▕│  ███│███▕│  ▁▁  ▁   ██   ▜█ ██ ',
+      \'   ▕│    ████      ‾‾    ‾        ',
+      \'   ▕│                             ',
+      \'      ‾                               ‾ ']
+
+let g:dashboard_session_directory = '~/.cache/nvim/session'
+let g:dashboard_custom_shortcut={
+\ 'last_session'       : 'SPC s l',
+\ 'find_history'       : 'CR',
+\ 'find_file'          : 'SPC f f',
+\ 'new_file'           : 'SPC c n',
+\ 'change_colorscheme' : 'SPC t c',
+\ 'find_word'          : 'SPC f a',
+\ 'book_marks'         : 'SPC f b',
+\ }
 "}}}
 
+"{{{ auto completion
+set completeopt=menuone,noselect
+inoremap <silent><expr> <C-Space> compe#complete()
+inoremap <silent><expr> <CR>      compe#confirm('<CR>')
+inoremap <silent><expr> <C-e>     compe#close('<C-e>')
+inoremap <silent><expr> <C-f>     compe#scroll({ 'delta': +4 })
+inoremap <silent><expr> <C-d>     compe#scroll({ 'delta': -4 })
+"}}}
 "}}}1
 
 let g:minimap_auto_start = 0
 
+luafile ~/.config/nvim/lua/plugins/compe.lua
 lua << EOF
-require'lspconfig'.pyright.setup{}
 
-require'lspconfig'.bashls.setup{}
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities.textDocument.completion.completionItem.snippetSupport = true
+require'lspconfig'.pyright.setup{
+  capabilities = capabilities
+}
+
+require'lspconfig'.bashls.setup{
+  capabilities = capabilities
+}
 
 
 
@@ -864,7 +846,6 @@ require("telescope").setup {
 
 EOF
 
-luafile ~/.config/nvim/lua/plugins/compe.lua
 luafile ~/.config/nvim/lua/plugins/lua-language-server.lua
 
 
@@ -875,7 +856,7 @@ sign define LspDiagnosticsSignHint text=  texthl=LspDiagnosticsSignHint lineh
 highlight LspDiagnosticsDefaultHint guifg='#6eaeea'
 
 "autocmd BufEnter * lua require'completion'.on_attach()
-"lua require'lspconfig'.sumneko_lua.setup{on_attach=require'completion'.on_attach}
+"lua require'lspconfig'.pyright.setup{on_attach=require'completion'.on_attach}
 
 " Find files using Telescope command-line sugar.
 nnoremap <leader>ff <cmd>Telescope find_files<cr>

@@ -89,7 +89,7 @@ let s:bg_highlight   = '#2E323C'
 let s:bg_popup       = '#3E4556'
 let s:bg_widget      = s:bg
 let s:bg_statusline  = s:bg_popup
-let s:bg_visual      = color#Lighten(s:base4, 0.3)
+" let s:bg_visual      = color#Lighten(s:base4, 0.3)
 let s:bg_selection   = s:dark_blue
 let s:bg_highlighted = '#4A4A45'
 
@@ -98,7 +98,7 @@ let s:fg_alt       = '#5B6268'
 let s:fg_widget    = s:fg
 let s:fg_conceal   = s:base4
 let s:fg_subtle    = s:base7
-let s:fg_highlight = color#Lighten(s:fg, 0.2)
+" let s:fg_highlight = color#Lighten(s:fg, 0.2)
 let s:fg_linenr    = s:base4
 
 
@@ -147,7 +147,7 @@ let s:bg_current = s:bg
 let s:bg_visible = s:bg
 let s:bg_other   = s:base1
 let s:diff_info_fg  = s:blue
-let s:diff_info_bg0 = color#Mix('#D8EEFD', s:bg, 0.6)
+" let s:diff_info_bg0 = color#Mix('#D8EEFD', s:bg, 0.6)
 
 call s:_('TabLine',             s:base7, s:bg_alt,  'bold')
 call s:_('TabLineSel',          s:blue,  s:bg_current, 'bold')
@@ -173,7 +173,7 @@ call s:_('BufferInactiveTarget', s:red,            s:bg_other,    'bold')
 call s:_('BufferTabpages',       s:blue,           s:bg_statusline, 'bold')
 call s:_('BufferTabpageFill',    s:base4,          s:bg_other,    'bold')
 
-call s:_('BufferPart',        s:diff_info_fg,   s:diff_info_bg0, 'bold')
+call s:_('BufferPart',        s:base4,   s:bg_other, 'bold')
 
 "hi CTagsMember -- no settings --
 "hi CTagsGlobalConstant -- no settings --
