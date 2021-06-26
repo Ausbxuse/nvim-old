@@ -19,7 +19,6 @@ call plug#begin('~/.config/nvim/autoload/plugged')
   Plug 'nvim-telescope/telescope.nvim'
   Plug 'neovim/nvim-lspconfig'
   Plug 'hrsh7th/nvim-compe'
-  Plug 'connorholyday/vim-snazzy'
   " Plug 'romgrk/doom-one.vim'
   "Plug 'sainnhe/sonokai'
   "Plug 'chuling/equinusocio-material.vim' "????
