@@ -30,9 +30,6 @@ call plug#begin('~/.config/nvim/autoload/plugged')
   "Plug 'wfxr/minimap.vim', {'do': ':!cargo install --locked code-minimap'}
   Plug 'kyazdani42/nvim-web-devicons'
   Plug 'plasticboy/vim-markdown'
-  Plug 'Yggdroot/indentLine'
-"  Plug 'glepnir/indent-guides.nvim'
-  Plug 'lukas-reineke/indent-blankline.nvim'
   Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install' }
   Plug 'andrejlevkovitch/vim-lua-format'
   Plug 'norcalli/nvim-colorizer.lua'
@@ -303,20 +300,6 @@ augroup END
 "{{{
 autocmd FileType lua nnoremap <buffer> <c-k> :call LuaFormat()<cr>
 "autocmd BufWrite *.lua call LuaFormat()
-"}}}
-
-"" indentline
-"{{{
-let g:indentLine_first_char = '▏'
-let g:indentLine_showFirstIndentLevel = 1
-let g:indentLine_setColors = 0
-"let g:indentLine_bgcolor_term = 220
-let g:indentLine_char = '▏'
-"let g:indentLine_char_list = ['▏', '¦', '┆', '┊']
-let g:indentLine_setColors = 2
-"let g:indentLine_conceallevel = 1
-let g:indentLine_enabled = 0
-"let g:indent_blankline_char = '▏'
 "}}}
 
 " rnvimr
@@ -704,4 +687,3 @@ nnoremap <leader>fh <cmd>lua require('telescope.builtin').help_tags()<cr>
 
 "}}}
 "}}}1
-
