@@ -48,12 +48,9 @@ if has('termguicolors')
     set termguicolors
 endif
 
-let g:colors_name = "snazzy"
+let g:colors_name = "snappy"
 
-" User Options
-if !exists("g:SnazzyTransparent")
-    let g:SnazzyTransparent = 0
-endif
+let g:SnazzyTransparent = 1
 
 let s:base0      = '#1B2229'
 let s:base1      = '#1c1f24'
@@ -106,11 +103,14 @@ let s:highlight       = s:blue
 let s:highlight_color = s:base0
 " Core
 let  red      =  '#ff2740'
+let  orange   =  '#fd971f'
 let  green    =  '#aae95b'
 let  yellow   =  '#f3f99d'
 let  blue     =  '#57c7ff'
 let  magenta  =  '#fc1a70'
 let  cyan     =  '#62d8f1'
+let  purple   =  '#c678dd'
+let  pink     =  '#e379d8'
 
 " Grayscale
 let  ui_0     =  '#F9F9F9'

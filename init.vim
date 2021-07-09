@@ -56,7 +56,7 @@ call plug#begin('~/.config/nvim/autoload/plugged')
   Plug 'glepnir/dashboard-nvim'
   Plug 'rafamadriz/friendly-snippets'
   "Plug 'nvim-lua/completion-nvim'
-  "Plug 'patstockwell/vim-monokai-tasty'
+  Plug 'patstockwell/vim-monokai-tasty'
 call plug#end()
 
 " Automatically install missing plugins on startup
@@ -247,13 +247,12 @@ let g:material_terminal_italics=1
 
 set termguicolors
 syntax on
-hi Comment cterm=italic
+"hi Comment cterm=italic
 
-let ayucolor="mirage"
-let g:SnazzyTransparent=1
+"let ayucolor="mirage"
 
-colorscheme snazzy
-"colorscheme doom-one
+colorscheme snappy
+"colorscheme vim-monokai-tasty
 hi LineNr ctermbg=NONE guibg=NONE
 set hlsearch
 hi Search guibg=Yellow
