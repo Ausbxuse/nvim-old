@@ -8,37 +8,49 @@ table.insert(runtime_path, "lua/?/init.lua")
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities.textDocument.completion.completionItem.snippetSupport = true
--- capabilities.textDocument.completion.completionItem.resolveSupport = {
---   properties = {
---     'documentation',
---     'detail',
---     'additionalTextEdits',
---   }
--- }
+capabilities.textDocument.completion.completionItem.resolveSupport = {
+  properties = {
+    'documentation',
+    'detail',
+    'additionalTextEdits',
+  }
+}
+
+local on_attach = function(client, bufnr)
+  require'lsp_signature'.on_attach()
+  vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
+end
 
 require'lspconfig'.sumneko_lua.setup {
+  on_attach = on_attach,
   capabilities = capabilities,
   cmd = {sumneko_binary, "-E", sumneko_root_path .. "/main.lua"};
   settings = {
     Lua = {
       runtime = {
         -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
-        version = 'LuaJIT',
+        version = 'Lua 5.3',
         -- Setup your lua path
-        path = runtime_path,
+        path = {
+          runtime_path,
+        }
       },
       diagnostics = {
         -- Get the language server to recognize the `vim` global
-        globals = {'vim'},
+        globals = {'vim', 'client', 'mouse', 'tag'},
       },
       workspace = {
         -- Make the server aware of Neovim runtime files
-        library = vim.api.nvim_get_runtime_file("", true),
+        library = {
+          -- vim.api.nvim_get_runtime_file("", true),
+          ['/usr/share/lua/5.3'] = true,
+          ['/usr/share/awesome/lib'] = true,
+        }
       },
       -- Do not send telemetry data containing a randomized but unique identifier
-      telemetry = {
-        enable = false,
-      },
+      -- telemetry = {
+      --   enable = false,
+      -- },
     },
   },
   -- root_dir = function(fname)

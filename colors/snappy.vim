@@ -83,10 +83,10 @@ let s:green_alt  = '#799033'
 let s:bg             = '#282c34'
 let s:bg_alt         = '#21242b'
 let s:bg_highlight   = '#2E323C'
-let s:bg_popup       = '#3E4556'
+let s:bg_popup       = color#Lighten('#3E4556', 0.3)
 let s:bg_widget      = s:bg
 let s:bg_statusline  = s:bg_popup
-" let s:bg_visual      = color#Lighten(s:base4, 0.3)
+let s:bg_visual      = color#Lighten(s:base4, 0.3)
 let s:bg_selection   = s:dark_blue
 let s:bg_highlighted = '#4A4A45'
 
@@ -95,7 +95,7 @@ let s:fg_alt       = '#5B6268'
 let s:fg_widget    = s:fg
 let s:fg_conceal   = s:base4
 let s:fg_subtle    = s:base7
-" let s:fg_highlight = color#Lighten(s:fg, 0.2)
+let s:fg_highlight = color#Lighten(s:fg, 0.2)
 let s:fg_linenr    = s:base4
 
 
@@ -122,7 +122,7 @@ let  ui_5     =  '#848688'
 let  ui_6     =  '#5e6c70'
 let  ui_7     =  '#57c7ff'
 let  ui_8     =  '#606580' "comment color
-let  ui_9     =  '#3a3d4d' "under line of current line color
+let  ui_9     =  '#3a3d4d' "underline of current line color
 let  ui_11    =  '#282a36'
 let  ui_12    =  '#192224'
 
@@ -147,7 +147,7 @@ let s:bg_current = s:bg
 let s:bg_visible = s:bg
 let s:bg_other   = s:base1
 let s:diff_info_fg  = s:blue
-" let s:diff_info_bg0 = color#Mix('#D8EEFD', s:bg, 0.6)
+let s:diff_info_bg0 = color#Mix('#D8EEFD', s:bg, 0.6)
 
 call s:_('TabLine',             s:base7, s:bg_alt,  'bold')
 call s:_('TabLineSel',          s:blue,  s:bg_current, 'bold')
@@ -178,7 +178,6 @@ call s:_('BufferPart',        s:base4,   s:bg_other, 'bold')
 "hi CTagsMember -- no settings --
 "hi CTagsGlobalConstant -- no settings --
 "hi Ignore -- no settings --
-:exe  'highlight  Normal          guifg='.ui_1.'      guibg='.ui_11.'   guisp='.ui_11.'   gui=NONE       ctermfg=White   ctermbg=Black   cterm=NONE'
 "hi CTagsImport -- no settings --
 "hi CTagsGlobalVariable -- no settings --
 "hi EnumerationValue -- no settings --
@@ -188,84 +187,114 @@ call s:_('BufferPart',        s:base4,   s:bg_other, 'bold')
 "hi DefinedName -- no settings --
 "hi LocalVariable -- no settings --
 "hi clear -- no settings --
-:exe  'highlight  IncSearch       guifg='.ui_11.'    guibg='.yellow.'  guisp='.yellow.'  gui=NONE       ctermfg=237   ctermbg=229   cterm=NONE'
-:exe  'highlight  WildMenu        guifg=NONE         guibg='.ui_4.'    guisp='.ui_4.'    gui=NONE       ctermfg=NONE  ctermbg=248   cterm=NONE'
-:exe  'highlight  SignColumn      guifg='.ui_12.'    guibg='.ui_7.'    guisp='.ui_7.'    gui=NONE       ctermfg=235   ctermbg=60    cterm=NONE'
-:exe  'highlight  SpecialComment  guifg='.yellow.'   guibg=NONE        guisp=NONE        gui=NONE       ctermfg=229   ctermbg=NONE  cterm=NONE'
-:exe  'highlight  Typedef         guifg='.ui_7.'     guibg=NONE        guisp=NONE        gui=bold       ctermfg=60    ctermbg=NONE  cterm=bold'
-:exe  'highlight  Title           guifg='.yellow.'   guibg=NONE        guisp=NONE        gui=bold       ctermfg=229   ctermbg=NONE  cterm=bold'
-:exe  'highlight  Folded          guifg='.ui_12.'    guibg='.ui_4.'    guisp='.ui_4.'    gui=italic     ctermfg=235   ctermbg=248   cterm=NONE'
-:exe  'highlight  PreCondit       guifg='.yellow.'   guibg=NONE        guisp=NONE        gui=NONE       ctermfg=229   ctermbg=NONE  cterm=NONE'
-:exe  'highlight  Include         guifg='.yellow.'   guibg=NONE        guisp=NONE        gui=NONE       ctermfg=229   ctermbg=NONE  cterm=NONE'
-:exe  'highlight  Float           guifg='.ui_4.'     guibg=NONE        guisp=NONE        gui=NONE       ctermfg=248   ctermbg=NONE  cterm=NONE'
-:exe  'highlight  StatusLineNC    guifg='.ui_4.'     guibg='.ui_9.'    guisp='.ui_9.'    gui=bold       ctermfg=255   ctermbg=239   cterm=bold'
-:exe  'highlight  NonText         guifg='.ui_6.'     guibg=NONE        guisp=NONE        gui=italic     ctermfg=66    ctermbg=NONE  cterm=NONE'
-:exe  'highlight  DiffText        guifg='.red.'      guibg='.ui_9.'    guisp='.ui_9.'    gui=NONE       ctermfg=203   ctermbg=239   cterm=NONE'
-:exe  'highlight  ErrorMsg        guifg='.red.'      guibg='.ui_11.'   guisp='.ui_11.'   gui=NONE       ctermfg=203   ctermbg=237   cterm=NONE'
-:exe  'highlight  Debug           guifg='.yellow.'   guibg=NONE        guisp=NONE        gui=NONE       ctermfg=229   ctermbg=NONE  cterm=NONE'
-:exe  'highlight  PMenuSbar       guifg=NONE         guibg='.ui_5.'    guisp='.ui_5.'    gui=NONE       ctermfg=NONE  ctermbg=102   cterm=NONE'
-:exe  'highlight  Identifier      guifg='.cyan.'     guibg=NONE        guisp=NONE        gui=NONE       ctermfg=117   ctermbg=NONE  cterm=NONE'
-:exe  'highlight  SpecialChar     guifg='.yellow.'   guibg=NONE        guisp=NONE        gui=NONE       ctermfg=229   ctermbg=NONE  cterm=NONE'
-:exe  'highlight  Conditional     guifg='.yellow.'   guibg=NONE        guisp=NONE        gui=bold       ctermfg=229   ctermbg=NONE  cterm=bold'
-:exe  'highlight  StorageClass    guifg='.blue.'     guibg=NONE        guisp=NONE        gui=bold       ctermfg=60    ctermbg=NONE  cterm=bold'
-:exe  'highlight  Todo            guifg='.yellow.'   guibg=NONE        guisp=NONE        gui=italic     ctermfg=229   ctermbg=NONE  cterm=NONE'
-:exe  'highlight  Special         guifg='.yellow.'   guibg=NONE        guisp=NONE        gui=NONE       ctermfg=229   ctermbg=NONE  cterm=NONE'
-:exe  'highlight  LineNr          guifg='.ui_8.'     guibg=NONE        guisp=NONE        gui=NONE       ctermfg=60    ctermbg=NONE  cterm=NONE'
-:exe  'highlight  StatusLine      guifg='.ui_2.'     guibg='.ui_9.'    guisp='.ui_9.'    gui=bold       ctermfg=255   ctermbg=239   cterm=bold'
-:exe  'highlight  Label           guifg='.yellow.'   guibg=NONE        guisp=NONE        gui=bold       ctermfg=229   ctermbg=NONE  cterm=bold'
-:exe  'highlight  PMenuSel        guifg='.green.'    guibg='.ui_9.'    guisp='.ui_9.'    gui=NONE       ctermfg=84    ctermbg=239   cterm=NONE'
-:exe  'highlight  Search          guifg='.ui_11.'    guibg='.yellow.'  guisp='.yellow.'  gui=NONE       ctermfg=237   ctermbg=229   cterm=NONE'
-:exe  'highlight  Delimiter       guifg='.yellow.'   guibg=NONE        guisp=NONE        gui=NONE       ctermfg=229   ctermbg=NONE  cterm=NONE'
-:exe  'highlight  Statement       guifg='.magenta.'  guibg=NONE        guisp=NONE        gui=bold       ctermfg=205   ctermbg=NONE  cterm=bold'
-:exe  'highlight  SpellRare       guifg='.ui_1.'      guibg='.ui_12.'   guisp='.ui_12.'   gui=underline  ctermfg=189   ctermbg=235   cterm=underline'
-:exe  'highlight  Comment         guifg='.ui_8.'     guibg=NONE        guisp=NONE        gui=italic     ctermfg=60    ctermbg=NONE  cterm=NONE'
-:exe  'highlight  Character       guifg='.ui_3.'     guibg=NONE        guisp=NONE        gui=NONE       ctermfg=254   ctermbg=NONE  cterm=NONE'
-:exe  'highlight  TabLineSel      guifg='.ui_2.'     guibg='.ui_11.'   guisp='.ui_11.'   gui=bold       ctermfg=255   ctermbg=237   cterm=bold'
-:exe  'highlight  Number          guifg='.yellow.'   guibg=NONE        guisp=NONE        gui=NONE       ctermfg=229   ctermbg=NONE  cterm=NONE'
-:exe  'highlight  Boolean         guifg='.ui_3.'     guibg=NONE        guisp=NONE        gui=NONE       ctermfg=254   ctermbg=NONE  cterm=NONE'
-:exe  'highlight  Operator        guifg='.magenta.'  guibg=NONE        guisp=NONE        gui=bold       ctermfg=205   ctermbg=NONE  cterm=bold'
-:exe  'highlight  CursorLine      guifg=NONE         guibg='.ui_9.'   guisp='.ui_9.'   gui=NONE       ctermfg=NONE  ctermbg=236   cterm=NONE'
-:exe  'highlight  ColorColumn     guifg=NONE         guibg='.ui_9.'   guisp='.ui_9.'   gui=NONE       ctermfg=NONE  ctermbg=236   cterm=NONE'
-:exe  'highlight  CursorLineNR    guifg='.yellow.'   guibg=NONE        guisp=NONE        gui=NONE       ctermfg=NONE  ctermbg=236   cterm=NONE'
-:exe  'highlight  TabLineFill     guifg='.ui_12.'    guibg='.ui_9.'    guisp='.ui_9.'    gui=bold       ctermfg=235   ctermbg=239   cterm=bold'
-:exe  'highlight  WarningMsg      guifg='.red.'      guibg='.ui_11.'   guisp='.ui_11.'   gui=NONE       ctermfg=203   ctermbg=237   cterm=NONE'
-:exe  'highlight  VisualNOS       guifg='.ui_12.'    guibg='.ui_1.'     guisp='.ui_1.'     gui=underline  ctermfg=235   ctermbg=189   cterm=underline'
-:exe  'highlight  DiffDelete      guifg='.magenta.'  guibg='.ui_9.'    guisp='.ui_9.'    gui=NONE       ctermfg=205   ctermbg=239   cterm=NONE'
-:exe  'highlight  ModeMsg         guifg='.ui_0.'     guibg='.ui_12.'   guisp='.ui_12.'   gui=bold       ctermfg=15    ctermbg=235   cterm=bold'
-:exe  'highlight  CursorColumn    guifg='.ui_3.'     guibg='.ui_9.'   guisp='.ui_9.'   gui=NONE       ctermfg=254   ctermbg=236   cterm=NONE'
-:exe  'highlight  Define          guifg='.yellow.'   guibg=NONE        guisp=NONE        gui=NONE       ctermfg=229   ctermbg=NONE  cterm=NONE'
-:exe  'highlight  Function        guifg='.blue.'     guibg=NONE        guisp=NONE        gui=bold       ctermfg=81    ctermbg=NONE  cterm=bold'
-:exe  'highlight  FoldColumn      guifg='.ui_12.'    guibg='.ui_4.'    guisp='.ui_4.'    gui=italic     ctermfg=235   ctermbg=248   cterm=NONE'
-:exe  'highlight  PreProc         guifg='.cyan.'      guibg=NONE        guisp=NONE        gui=NONE       ctermfg=203   ctermbg=NONE  cterm=NONE'
-:exe  'highlight  Visual          guifg='.ui_12.'    guibg='.ui_1.'     guisp='.ui_1.'     gui=NONE       ctermfg=235   ctermbg=189   cterm=NONE'
-:exe  'highlight  MoreMsg         guifg='.yellow.'   guibg=NONE        guisp=NONE        gui=bold       ctermfg=229   ctermbg=NONE  cterm=bold'
-:exe  'highlight  SpellCap        guifg='.ui_1.'      guibg='.ui_12.'   guisp='.ui_12.'   gui=underline  ctermfg=189   ctermbg=235   cterm=underline'
-:exe  'highlight  VertSplit       guifg='.ui_8.'     guibg='.ui_11.'   guisp='.ui_11.'   gui=bold       ctermfg=60    ctermbg=237   cterm=bold'
-:exe  'highlight  Exception       guifg='.red.'      guibg=NONE        guisp=NONE        gui=bold       ctermfg=203   ctermbg=NONE  cterm=bold'
-:exe  'highlight  Keyword         guifg='.magenta.'  guibg=NONE        guisp=NONE        gui=bold       ctermfg=205   ctermbg=NONE  cterm=bold'
-:exe  'highlight  Type            guifg='.cyan.'     guibg=NONE        guisp=NONE        gui=bold       ctermfg=117   ctermbg=NONE  cterm=bold'
-:exe  'highlight  DiffChange      guifg='.ui_3.'     guibg='.ui_9.'    guisp='.ui_9.'    gui=NONE       ctermfg=254   ctermbg=239   cterm=NONE'
-:exe  'highlight  Cursor          guifg='.ui_12.'    guibg='.ui_0.'    guisp='.ui_0.'    gui=NONE       ctermfg=235   ctermbg=15    cterm=NONE'
-:exe  'highlight  SpellLocal      guifg='.ui_1.'      guibg='.ui_12.'   guisp='.ui_12.'   gui=underline  ctermfg=189   ctermbg=235   cterm=underline'
-:exe  'highlight  Error           guifg='.red.'      guibg='.ui_11.'   guisp='.ui_11.'   gui=NONE       ctermfg=203   ctermbg=237   cterm=NONE'
-:exe  'highlight  PMenu           guifg='.ui_2.'     guibg='.ui_9.'    guisp='.ui_9.'    gui=NONE       ctermfg=255   ctermbg=239   cterm=NONE'
-:exe  'highlight  SpecialKey      guifg='.ui_6.'     guibg=NONE        guisp=NONE        gui=italic     ctermfg=66    ctermbg=NONE  cterm=NONE'
-:exe  'highlight  Constant        guifg='.green.'    guibg=NONE        guisp=NONE        gui=NONE       ctermfg=84    ctermbg=NONE  cterm=NONE'
-:exe  'highlight  Tag             guifg='.yellow.'   guibg=NONE        guisp=NONE        gui=NONE       ctermfg=229   ctermbg=NONE  cterm=NONE'
-:exe  'highlight  String          guifg='.yellow.'   guibg=NONE        guisp=NONE        gui=NONE       ctermfg=229   ctermbg=NONE  cterm=NONE'
-:exe  'highlight  PMenuThumb      guifg=NONE         guibg='.ui_4.'    guisp='.ui_4.'    gui=NONE       ctermfg=NONE  ctermbg=248   cterm=NONE'
-:exe  'highlight  MatchParen      guifg='.yellow.'   guibg='.ui_4.'        guisp=NONE        gui=bold       ctermfg=229   ctermbg=NONE  cterm=bold'
-:exe  'highlight  Repeat          guifg='.green.'    guibg=NONE        guisp=NONE        gui=bold       ctermfg=84    ctermbg=NONE  cterm=bold'
-:exe  'highlight  SpellBad        guifg='.ui_1.'      guibg='.ui_12.'   guisp='.ui_12.'   gui=underline  ctermfg=189   ctermbg=235   cterm=underline'
-:exe  'highlight  CTagsClass      guifg='.ui_3.'     guibg=NONE        guisp=NONE        gui=NONE       ctermfg=254   ctermbg=NONE  cterm=NONE'
-:exe  'highlight  Directory       guifg='.ui_8.'     guibg=NONE        guisp=NONE        gui=bold       ctermfg=60    ctermbg=NONE  cterm=bold'
-:exe  'highlight  Structure       guifg='.ui_7.'     guibg=NONE        guisp=NONE        gui=bold       ctermfg=60    ctermbg=NONE  cterm=bold'
-:exe  'highlight  Macro           guifg='.yellow.'   guibg=NONE        guisp=NONE        gui=NONE       ctermfg=229   ctermbg=NONE  cterm=NONE'
-:exe  'highlight  Underlined      guifg='.ui_1.'      guibg='.ui_12.'   guisp='.ui_12.'   gui=underline  ctermfg=189   ctermbg=235   cterm=underline'
-:exe  'highlight  DiffAdd         guifg='.green.'    guibg='.ui_9.'    guisp='.ui_9.'    gui=NONE       ctermfg=84    ctermbg=239   cterm=NONE'
-:exe  'highlight  TabLine         guifg='.ui_2.'     guibg='.ui_9.'    guisp='.ui_9.'    gui=bold       ctermfg=255   ctermbg=239   cterm=bold'
-:exe  'highlight  cursorim        guifg='.ui_12.'    guibg='.ui_7.'    guisp='.ui_7.'    gui=NONE       ctermfg=235   ctermbg=60    cterm=NONE'
 
+call s:_('NormalPopup',       s:fg_highlight, s:bg_popup)
+call s:_('NormalPopover',     s:fg_highlight, s:bg_popup)
+call s:_('NormalPopupPrompt', s:fg_highlight,        color#Darken(s:bg_popup, 0.3), 'bold')
+call s:_('NormalPopupSubtle', s:base6,        s:bg_popup)
+call s:_('Normal', ui_1, ui_11)
+call s:_('SignColumn          ',ui_11 , )
+call s:_('TSPunctSpecial          ',orange ,''         )
+call s:_('TSConstructor',orange ,''         )
+call s:_('TSBoolean',green ,''         )
+call s:_('TSPunctBracket          ',orange ,''         )
+call s:_('cssImportant        ',red ,''     )
+call s:_('cssIdentifier        ',red ,''     )
+call s:_('cssIncludeKeyword        ',green ,''     )
+call s:_('cssAttr        ',magenta ,''     )
+call s:_('cssColor        ',yellow ,''     )
+call s:_('cssClassNameDot        ',cyan ,''     )
+call s:_('cssClassName        ',cyan ,''     )
+call s:_('cssAttrComma        ',ui_0 ,''     )
+call s:_('cssProp        ',ui_0 ,''     )
+call s:_('javaScriptBoolean        ',cyan ,''     )
+call s:_('phpStructure        ',cyan ,''     )
+call s:_('markdownLinkText        ',cyan ,''     )
+call s:_('Directory        ',cyan ,''     )
+call s:_('GitGutterChangeDelete        ',red ,''     )
+call s:_('GitGutterDelete        ',red ,''     )
+call s:_('GitGutterChange        ',yellow ,''     )
+call s:_('GitGutterAdd        ',green ,''     )
+call s:_('SignColumn          ',ui_11 , )
+call s:_('SignColumn          ',ui_11 , )
+call s:_('SignColumn          ',ui_11 , )
+call s:_('cursorim        ',ui_12 ,ui_7 )
+call s:_('TabLine         ',ui_2 ,ui_9 )
+call s:_('DiffAdd         ',green ,ui_9 )
+call s:_('Underlined      ',ui_1 ,ui_12 )
+call s:_('Macro           ',yellow ,''         )
+call s:_('Structure       ',ui_7 ,''         )
+call s:_('Directory       ',ui_8 ,''         )
+call s:_('CTagsClass      ',ui_3 ,''         )
+call s:_('SpellBad        ',ui_1 ,ui_12 )
+call s:_('Repeat          ',green ,''         )
+call s:_('MatchParen      ',yellow ,ui_4 )
+call s:_('PMenuThumb      ',''          ,ui_4 )
+call s:_('String          ',yellow ,''         )
+call s:_('Tag             ',yellow ,''         )
+call s:_('Constant        ',green ,''         )
+call s:_('SpecialKey      ',ui_6 ,''         )
+call s:_('PMenu           ',ui_2 ,ui_9 )
+call s:_('Error           ',red ,ui_11 )
+call s:_('SpellLocal      ',ui_1 ,ui_12 )
+call s:_('Cursor          ',ui_12 ,ui_0 )
+call s:_('DiffChange      ',ui_3 ,ui_9 )
+call s:_('Type            ',cyan ,''         )
+call s:_('Keyword         ',magenta ,'', 'bold'         )
+call s:_('Exception       ',red ,''         )
+call s:_('VertSplit       ',ui_8 ,ui_11 )
+call s:_('SpellCap        ',ui_1 ,ui_12 )
+call s:_('MoreMsg         ',yellow ,''         )
+call s:_('Visual          ',ui_12 ,ui_1 )
+call s:_('PreProc         ',red ,''         )
+call s:_('FoldColumn      ',ui_12 ,ui_4 )
+call s:_('Function        ',blue ,'', 'bold'         )
+call s:_('Define          ',yellow ,''         )
+call s:_('CursorColumn    ',ui_3 ,ui_9 )
+call s:_('ModeMsg         ',ui_0 ,ui_12 )
+call s:_('DiffDelete      ',magenta ,ui_9 )
+call s:_('VisualNOS       ',ui_12 ,ui_1 )
+call s:_('WarningMsg      ',red ,ui_11 )
+call s:_('TabLineFill     ',ui_12 ,ui_9 )
+call s:_('CursorLineNR    ',yellow ,''         )
+call s:_('ColorColumn     ',''          ,ui_9 )
+call s:_('CursorLine      ',''          ,ui_9 )
+call s:_('Operator        ',magenta ,''         )
+call s:_('Boolean         ',ui_3 ,''         )
+call s:_('Number          ',yellow ,''         )
+call s:_('TabLineSel      ',ui_2 ,ui_11 )
+call s:_('Character       ',ui_3 ,''         )
+call s:_('Comment         ',ui_8 ,''         )
+call s:_('SpellRare       ',ui_1 ,ui_12 )
+call s:_('Statement       ',magenta ,''         )
+call s:_('Delimiter       ',yellow ,''         )
+call s:_('Search          ',ui_11 ,yellow )
+call s:_('PMenuSel        ',green ,ui_9 )
+call s:_('Label           ',yellow ,''         )
+call s:_('StatusLine      ',ui_2 ,ui_9 )
+call s:_('LineNr          ',ui_8 ,''         )
+call s:_('Special         ',yellow ,''         )
+call s:_('Todo            ',yellow ,''         )
+call s:_('StorageClass    ',blue ,''         )
+call s:_('Conditional     ',yellow ,''         )
+call s:_('SpecialChar     ',yellow ,''         )
+call s:_('Identifier      ',cyan ,''         )
+call s:_('PMenuSbar       ',''          ,ui_5 )
+call s:_('Debug           ',yellow ,''         )
+call s:_('ErrorMsg        ',red ,ui_11 )
+call s:_('DiffText        ',red ,ui_9 )
+call s:_('NonText         ',ui_6 ,''         )
+call s:_('StatusLineNC    ',ui_4 ,ui_9 )
+call s:_('Float           ',ui_4 ,''         )
+call s:_('Include         ',yellow ,''         )
+call s:_('PreCondit       ',yellow ,''         )
+call s:_('Folded          ',ui_12 ,ui_4 )
+call s:_('Title           ',yellow ,''         )
+call s:_('Typedef         ',ui_7 ,''         )
+call s:_('SpecialComment  ',yellow ,''         )
+call s:_('SignColumn      ',ui_12 ,ui_7 )
+call s:_('WildMenu        ',''          ,ui_4 )
+call s:_('IncSearch       ',ui_11 ,yellow )
 " Sign Column
 :exe  'highlight  SignColumn          guibg='.ui_11.''
 :exe  'highlight  DiffAdd             guifg='.green.'       guibg='.ui_11.''
@@ -274,42 +303,15 @@ call s:_('BufferPart',        s:base4,   s:bg_other, 'bold')
 :exe  'highlight  SignifyLineDelete   guibg='.ui_11.''
 :exe  'highlight  SignifyLineChange   guibg='.ui_11.''
 
-" GitGutter
-:exe  'highlight  GitGutterAdd        guifg='.green.'    guibg=NONE    guisp=NONE        gui=NONE       ctermfg=235   ctermbg=60    cterm=NONE'
-:exe  'highlight  GitGutterChange        guifg='.yellow.'    guibg=NONE    guisp=NONE        gui=NONE       ctermfg=235   ctermbg=60    cterm=NONE'
-:exe  'highlight  GitGutterDelete        guifg='.red.'    guibg=NONE    guisp=NONE        gui=NONE       ctermfg=235   ctermbg=60    cterm=NONE'
-:exe  'highlight  GitGutterChangeDelete        guifg='.red.'    guibg=NONE    guisp=NONE        gui=NONE       ctermfg=235   ctermbg=60    cterm=NONE'
 
-" NERDTree
-:exe  'highlight  Directory        guifg='.cyan.'    guibg=NONE    guisp=NONE    gui=NONE       ctermfg=235   ctermbg=60    cterm=NONE'
-
-" Markdown
-:exe  'highlight  markdownLinkText        guifg='.cyan.'    guibg=NONE    guisp=NONE    gui=NONE       ctermfg=235   ctermbg=60    cterm=NONE'
-
-" PHP
-:exe  'highlight  phpStructure        guifg='.cyan.'    guibg=NONE    guisp=NONE    gui=NONE       ctermfg=235   ctermbg=60    cterm=NONE'
-
-" JavaScript
-:exe  'highlight  javaScriptBoolean        guifg='.cyan.'    guibg=NONE    guisp=NONE    gui=NONE       ctermfg=235   ctermbg=60    cterm=NONE'
-
-" CSS
-:exe  'highlight  cssProp        guifg='.ui_0.'    guibg=NONE    guisp=NONE    gui=NONE       ctermfg=235   ctermbg=60    cterm=NONE'
-:exe  'highlight  cssAttrComma        guifg='.ui_0.'    guibg=NONE    guisp=NONE    gui=NONE       ctermfg=235   ctermbg=60    cterm=NONE'
-:exe  'highlight  cssClassName        guifg='.cyan.'    guibg=NONE    guisp=NONE    gui=NONE       ctermfg=235   ctermbg=60    cterm=NONE'
-:exe  'highlight  cssClassNameDot        guifg='.cyan.'    guibg=NONE    guisp=NONE    gui=NONE       ctermfg=235   ctermbg=60    cterm=NONE'
-:exe  'highlight  cssColor        guifg='.yellow.'    guibg=NONE    guisp=NONE    gui=NONE       ctermfg=235   ctermbg=60    cterm=NONE'
-:exe  'highlight  cssAttr        guifg='.magenta.'    guibg=NONE    guisp=NONE    gui=NONE       ctermfg=235   ctermbg=60    cterm=NONE'
-:exe  'highlight  cssIncludeKeyword        guifg='.green.'    guibg=NONE    guisp=NONE    gui=NONE       ctermfg=235   ctermbg=60    cterm=NONE'
-:exe  'highlight  cssIdentifier        guifg='.red.'    guibg=NONE    guisp=NONE    gui=NONE       ctermfg=235   ctermbg=60    cterm=NONE'
-:exe  'highlight  cssImportant        guifg='.red.'    guibg=NONE    guisp=NONE    gui=NONE       ctermfg=235   ctermbg=60    cterm=NONE'
+call s:_('Visual',         '', s:bg_visual)
+call s:_('VisualBold',     '', s:bg_visual, 'bold')
 
 " Transparent Background
-if g:SnazzyTransparent == 1
-    highlight  Normal              guibg=NONE   ctermbg=NONE
-    highlight  SignColumn          guibg=NONE   ctermbg=NONE
-    highlight  DiffAdd             guibg=NONE   ctermbg=NONE
-    highlight  DiffDelete          guibg=NONE   ctermbg=NONE
-    highlight  DiffChange          guibg=NONE   ctermbg=NONE
-    highlight  SignifyLineDelete   guibg=NONE   ctermbg=NONE
-    highlight  SignifyLineChange   guibg=NONE   ctermbg=NONE
-endif
+highlight  SignColumn          guibg=NONE   ctermbg=NONE
+highlight  Normal              guibg=NONE   ctermbg=NONE
+highlight  DiffAdd             guibg=NONE   ctermbg=NONE
+highlight  DiffDelete          guibg=NONE   ctermbg=NONE
+highlight  DiffChange          guibg=NONE   ctermbg=NONE
+highlight  SignifyLineDelete   guibg=NONE   ctermbg=NONE
+highlight  SignifyLineChange   guibg=NONE   ctermbg=NONE

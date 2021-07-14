@@ -14,13 +14,19 @@
 "endif
 
 call plug#begin('~/.config/nvim/autoload/plugged')
+"  Plug 'alvan/vim-closetag'
+  Plug 'akinsho/nvim-toggleterm.lua'
+  Plug 'lewis6991/gitsigns.nvim'
+  Plug 'ray-x/lsp_signature.nvim'
   Plug 'nvim-lua/popup.nvim'
+  Plug 'nvim-treesitter/nvim-treesitter'
   Plug 'nvim-lua/plenary.nvim'
   Plug 'nvim-telescope/telescope.nvim'
+  Plug 'lukas-reineke/indent-blankline.nvim'
   Plug 'neovim/nvim-lspconfig'
   Plug 'hrsh7th/nvim-compe'
-  " Plug 'romgrk/doom-one.vim'
-  "Plug 'sainnhe/sonokai'
+"  Plug 'romgrk/doom-one.vim'
+"  Plug 'sainnhe/sonokai'
   "Plug 'chuling/equinusocio-material.vim' "????
   " Plug 'camspiers/animate.vim'
   " Plug 'camspiers/lens.vim'
@@ -33,8 +39,7 @@ call plug#begin('~/.config/nvim/autoload/plugged')
   Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install' }
   Plug 'andrejlevkovitch/vim-lua-format'
   Plug 'norcalli/nvim-colorizer.lua'
-  Plug 'junegunn/rainbow_parentheses.vim'
-  Plug 'sheerun/vim-polyglot'
+"  Plug 'sheerun/vim-polyglot'
   "Plug 'ryanoasis/vim-devicons'
   Plug 'jiangmiao/auto-pairs'
   "Plug 'preservim/tagbar'
@@ -45,7 +50,7 @@ call plug#begin('~/.config/nvim/autoload/plugged')
   "Plug 'liuchengxu/clap.vim'
   "Plug 'liuchengxu/vim-clap', { 'do': ':Clap install-binary!' }
   Plug 'liuchengxu/vim-which-key'
-  Plug 'airblade/vim-gitgutter'
+"  Plug 'airblade/vim-gitgutter'
   Plug 'hrsh7th/vim-vsnip'
   Plug 'hrsh7th/vim-vsnip-integ'
   Plug 'honza/vim-snippets'
@@ -55,8 +60,11 @@ call plug#begin('~/.config/nvim/autoload/plugged')
   Plug 'asvetliakov/vim-easymotion'
   Plug 'glepnir/dashboard-nvim'
   Plug 'rafamadriz/friendly-snippets'
+  "Plug 'p00f/nvim-ts-rainbow'
   "Plug 'nvim-lua/completion-nvim'
-  Plug 'patstockwell/vim-monokai-tasty'
+  Plug 'turbio/bracey.vim'
+  Plug 'mattn/emmet-vim'
+  "Plug 'patstockwell/vim-monokai-tasty'
 call plug#end()
 
 " Automatically install missing plugins on startup
@@ -115,6 +123,40 @@ set ic
 set nospell
 "set list listchars=tab:>\ ,trail:-,eol:↵             "indicate blank space and return
 autocmd Filetype python set tabstop=4
+autocmd Filetype html set tabstop=4
+autocmd Filetype html set shiftwidth=4
+autocmd Filetype lua set tabstop=4
+
+" This function does the following:
+" <>|<>  with <cr> to get
+" <>
+"    |
+" <>
+function! Expander()
+  let line   = getline(".")
+  let col    = col(".")
+  let first  = line[col-2]
+  let second = line[col-1]
+  let third  = line[col]
+
+  if first ==# ">"
+    if second ==# "<" && third ==# "/"
+      return "\<CR>\<C-o>==\<C-o>O"
+
+    else
+      return "\<CR>"
+
+    endif
+
+  else
+    return "\<CR>"
+
+  endif
+
+endfunction
+
+"autocmd FileType html inoremap <expr> <CR> Expander()
+
 au BufRead init.vim set foldmethod=marker
 autocmd Filetype lua set foldmethod=marker
 autocmd TermOpen * startinsert
@@ -140,7 +182,7 @@ autocmd BufReadPost *
   \ | endif
 "}}}
 
-" Mappings
+" Key Mappings
 "{{{ Mappings
 let mapleader=" "
 tnoremap <Esc> <C-\><C-n>
@@ -155,6 +197,8 @@ nnoremap <S-l> <C-w>l
 " shift + j to move down
 xnoremap K :move '<-2<CR>gv-gv
 xnoremap J :move '>+1<CR>gv-gv
+nnoremap j gj
+nnoremap k gk
 
 " Compile and run C++/Python programs
 map <leader>r :call Compile()<CR>
@@ -175,6 +219,8 @@ func! Compile()
     exec 'sp | res -10 | te ./%'
   elseif &filetype == 'java'
     exec 'sp | res -10 | te javac % && java %<'
+  elseif &filetype == 'html'
+    exec 'Bracey'
 "  elseif &filetype == 'vimwiki'
 "    exec "MarkdownPreview"
 "  else
@@ -271,7 +317,14 @@ hi Search guifg=Black
 
 " Plugin Config
 "{{{ Plug Config
+"{{{
+"let g:indent_blankline_char_list = ['|', '¦', '┆', '┊']
 
+let g:indent_blankline_char = '▏'
+let g:indent_blankline_debug = v:true
+let g:indent_blankline_filetype_exclude = ['help', 'dashboard']
+"let g:indent_blankline_char_highlight_list = ['#ff2740', '#fd971f', '#ffd242', '#a6e22e', '#66d9ef', #61aeee', '#c678dd']
+"}}}
 " Plugin: Galaxyline -------------------------- {{{
 
 " }}}
@@ -328,15 +381,6 @@ let g:rnvimr_ranger_cmd = 'ranger --cmd="set column_ratios 1,1"'
 
 let g:rnvimr_presets = [
             \ {'width': 0.800, 'height': 0.800}]
-"}}}2
-
-" rainbow
-"{{{2 rainbow
-let g:rainbow#max_level = 16
-let g:rainbow#pairs = [['(', ')'], ['[', ']'], ['{', '}']]
-
-autocmd FileType * RainbowParentheses
-
 "}}}2
 
 " codi
@@ -612,11 +656,40 @@ inoremap <silent><expr> <C-d>     compe#scroll({ 'delta': -4 })
 let g:minimap_auto_start = 0
 
 luafile ~/.config/nvim/lua/plugins/compe.lua
+
 lua << EOF
+require'lspconfig'.rome.setup{}
+require'lspconfig'.cssls.setup{}
+require('gitsigns').setup()
+require'nvim-treesitter.configs'.setup {
+  rainbow = {
+    enable = true,
+    extended_mode = true, -- Highlight also non-parentheses delimiters, boolean or table: lang -> boolean
+    max_file_lines = 1000, -- Do not enable for files with more than 1000 lines, int
+    colors = {
+      "#ff2740",
+      "#fd971f",
+      "#ffd242",
+      "#a6e22e",
+      "#66d9ef",
+      "#61aeee",
+      "#c678dd"
+    },
+  },
+  ensure_installed = "maintained", -- one of "all", "maintained" (parsers with maintainers), or a list of languages
+  --ignore_install = { "javascript" }, -- List of parsers to ignore installing
+  highlight = {
+    enable = true,              -- false will disable the whole extension
+    disable = { "html" },  -- list of language that will be disabled
+  },
+}
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities.textDocument.completion.completionItem.snippetSupport = true
 require'lspconfig'.pyright.setup{
+  capabilities = capabilities
+}
+require'lspconfig'.html.setup {
   capabilities = capabilities
 }
 
@@ -685,4 +758,5 @@ nnoremap <leader>fh <cmd>lua require('telescope.builtin').help_tags()<cr>
 
 
 "}}}
+
 "}}}1
