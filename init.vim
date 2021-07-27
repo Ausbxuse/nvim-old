@@ -14,7 +14,7 @@
 "endif
 
 call plug#begin('~/.config/nvim/autoload/plugged')
-"  Plug 'alvan/vim-closetag'
+  Plug 'alvan/vim-closetag'
   Plug 'akinsho/nvim-toggleterm.lua'
   Plug 'lewis6991/gitsigns.nvim'
   Plug 'ray-x/lsp_signature.nvim'
@@ -64,6 +64,7 @@ call plug#begin('~/.config/nvim/autoload/plugged')
   "Plug 'nvim-lua/completion-nvim'
   Plug 'turbio/bracey.vim'
   Plug 'mattn/emmet-vim'
+  Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
   "Plug 'patstockwell/vim-monokai-tasty'
 call plug#end()
 
@@ -122,11 +123,14 @@ set relativenumber
 set ic
 set nospell
 "set list listchars=tab:>\ ,trail:-,eol:↵             "indicate blank space and return
-autocmd Filetype python set tabstop=4
-autocmd Filetype html set tabstop=4
-autocmd Filetype html set shiftwidth=4
-autocmd Filetype lua set tabstop=4
+autocmd Filetype python setlocal tabstop=4
+autocmd Filetype html setlocal tabstop=4
+autocmd Filetype html setlocal shiftwidth=4
+autocmd Filetype lua setlocal tabstop=4
+" when running at every change you may want to disable quickfix
+"let g:prettier#quickfix_enabled = 0
 
+"autocmd TextChanged,InsertLeave *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue,*.svelte,*.yaml,*.html PrettierAsync
 " This function does the following:
 " <>|<>  with <cr> to get
 " <>
@@ -155,7 +159,7 @@ function! Expander()
 
 endfunction
 
-"autocmd FileType html inoremap <expr> <CR> Expander()
+autocmd FileType html inoremap <expr> <CR> Expander()
 
 au BufRead init.vim set foldmethod=marker
 autocmd Filetype lua set foldmethod=marker
@@ -187,6 +191,8 @@ autocmd BufReadPost *
 let mapleader=" "
 tnoremap <Esc> <C-\><C-n>
 nnoremap <Space> <Nop>
+map <C-s> :w<CR>
+imap <C-s> <Esc>:w<CR>a
 " Better window navigation
 nnoremap <S-h> <C-w>h
 nnoremap <S-j> <C-w>j
@@ -233,13 +239,23 @@ endfunc
 nnoremap <C-n> :NERDTreeToggle<CR>
 " autocmd VimEnter * NERDTree | wincmd p
 " autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() |
-    \ quit | endif
+"autocmd VimEnter *.html silent !browser-sync start --server --files *.html css/*.css js/*.js &
+autocmd VimEnter *.html silent !live-server &
+"autocmd VimLeave *.html,*.css silent !killwebsync
+autocmd VimLeave *.html,*.css silent !killall node &
 nmap <silent><Esc> :nohl<CR>
 nnoremap <F7> :setlocal spell! spell?<CR>
 nnoremap <leader>n :r! date<CR>i*<Esc>$a*<CR><Esc>
 
 "}}}
 
+" emmet-vim 
+"{{{
+  let g:user_emmet_mode='n'
+  let g:user_emmet_install_global = 0
+  autocmd FileType html,css EmmetInstall
+  let g:user_emmet_leader_key=','
+"}}}
 " Markdown Settings
 "{{{ Markdown Settings
 " Keymappings in insert mode
@@ -322,7 +338,7 @@ hi Search guifg=Black
 
 let g:indent_blankline_char = '▏'
 let g:indent_blankline_debug = v:true
-let g:indent_blankline_filetype_exclude = ['help', 'dashboard']
+let g:indent_blankline_filetype_exclude = ['help', 'dashboard', 'man', 'manual', 'manpage']
 "let g:indent_blankline_char_highlight_list = ['#ff2740', '#fd971f', '#ffd242', '#a6e22e', '#66d9ef', #61aeee', '#c678dd']
 "}}}
 " Plugin: Galaxyline -------------------------- {{{
@@ -598,12 +614,13 @@ nnoremap <silent> gd <cmd>lua vim.lsp.buf.definition()<CR>
 nnoremap <silent> gD <cmd>lua vim.lsp.buf.declaration()<CR>
 nnoremap <silent> gr <cmd>lua vim.lsp.buf.references()<CR>
 nnoremap <silent> gi <cmd>lua vim.lsp.buf.implementation()<CR>
-nnoremap <silent> K <cmd>lua vim.lsp.buf.hover()<CR>
-nnoremap <silent> <C-k> <cmd>lua vim.lsp.buf.signature_help()<CR>
+nnoremap <silent> <C-k> <cmd>lua vim.lsp.buf.hover()<CR>
+"nnoremap <silent> <C-k> <cmd>lua vim.lsp.buf.signature_help()<CR>
 nnoremap <silent> <C-n> <cmd>lua vim.lsp.diagnostic.goto_prev()<CR>
 nnoremap <silent> <C-p> <cmd>lua vim.lsp.diagnostic.goto_next()<CR>
 autocmd BufWritePre *.py lua vim.lsp.buf.formatting_sync(nil, 100)
 autocmd BufWritePre *.lua lua vim.lsp.buf.formatting_sync(nil, 100)
+autocmd BufWritePre *.html lua vim.lsp.buf.formatting_sync(nil, 100)
 "}}}
 
 "
@@ -658,8 +675,6 @@ let g:minimap_auto_start = 0
 luafile ~/.config/nvim/lua/plugins/compe.lua
 
 lua << EOF
-require'lspconfig'.rome.setup{}
-require'lspconfig'.cssls.setup{}
 require('gitsigns').setup()
 require'nvim-treesitter.configs'.setup {
   rainbow = {
@@ -686,10 +701,19 @@ require'nvim-treesitter.configs'.setup {
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities.textDocument.completion.completionItem.snippetSupport = true
+
+local on_attach = function(client, bufnr)
+  require'lsp_signature'.on_attach()
+  vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
+end
+
 require'lspconfig'.pyright.setup{
   capabilities = capabilities
 }
 require'lspconfig'.html.setup {
+  capabilities = capabilities
+}
+require'lspconfig'.cssls.setup{
   capabilities = capabilities
 }
 
@@ -698,6 +722,13 @@ require'lspconfig'.bashls.setup{
 }
 
 
+-- require'lspconfig'.rome.setup{
+--   capabilities = capabilities
+-- }
+require'lspconfig'.tsserver.setup{
+  capabilities = capabilities,
+  on_attach = on_attach
+}
 
 require 'colorizer'.setup()
 require("telescope").setup {
