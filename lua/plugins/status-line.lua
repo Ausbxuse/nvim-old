@@ -220,13 +220,13 @@ local condition = require('galaxyline.condition')
 local gls = gl.section
 gl.short_line_list = {'NvimTree','vista','dbui'}
 
+-- gls.left[1] = {
+--   RainbowRed = {
+--     provider = function() return ' ' end,
+--     highlight = {colors.blue,colors.bg}
+--   },
+-- }
 gls.left[1] = {
-  RainbowRed = {
-    provider = function() return '▊ ' end,
-    highlight = {colors.blue,colors.bg}
-  },
-}
-gls.left[2] = {
   ViMode = {
     provider = function()
       -- auto change color according the vim mode
@@ -239,19 +239,14 @@ gls.left[2] = {
                           rm = colors.cyan, ['r?'] = colors.cyan,
                           ['!']  = colors.red,t = colors.red}
       vim.api.nvim_command('hi GalaxyViMode guifg='..mode_color[vim.fn.mode()])
-      return '  '
+      return '▊  '
     end,
     highlight = {colors.red,colors.bg,'bold'},
+    separator = ' ',
+    separator_highlight = {'NONE',colors.bg},
   },
 }
-gls.left[3] = {
-  FileSize = {
-    provider = 'FileSize',
-    condition = condition.buffer_not_empty,
-    highlight = {colors.fg,colors.bg}
-  }
-}
-gls.left[4] ={
+gls.left[2] ={
   FileIcon = {
     provider = 'FileIcon',
     condition = condition.buffer_not_empty,
@@ -259,7 +254,7 @@ gls.left[4] ={
   },
 }
 
-gls.left[5] = {
+gls.left[3] = {
   FileName = {
     provider = {'FileName'},
     condition = condition.buffer_not_empty,
@@ -267,23 +262,34 @@ gls.left[5] = {
   }
 }
 
-gls.left[6] = {
-  LineInfo = {
-    provider = 'LineColumn',
-    separator = ' ',
-    separator_highlight = {'NONE',colors.bg},
-    highlight = {colors.fg,colors.bg},
-  },
-}
-
-gls.left[7] = {
-  PerCent = {
-    provider = 'LinePercent',
-    separator = ' ',
-    separator_highlight = {'NONE',colors.bg},
-    highlight = {colors.fg,colors.bg,'bold'},
+gls.left[4] = {
+  FileSize = {
+    provider = 'FileSize',
+    condition = condition.buffer_not_empty,
+    highlight = {colors.grey,colors.bg}
   }
 }
+
+gls.left[5] = {
+  BufferNumber = {
+    provider = 'BufferNumber',
+    condition = condition.buffer_not_empty,
+    icon = ' B',
+    separator = ' ',
+    separator_highlight = {'NONE',colors.bg},
+    highlight = {colors.red,colors.bg,'bold'},
+  }
+}
+
+-- gls.left[6] = {
+--   LineInfo = {
+--     provider = 'LineColumn',
+--     separator = ' ',
+--     separator_highlight = {'NONE',colors.bg},
+--     highlight = {colors.fg,colors.bg},
+--   },
+-- }
+
 
 gls.left[8] = {
   DiagnosticError = {
@@ -316,6 +322,21 @@ gls.left[11] = {
   }
 }
 
+gls.mid[1] = {
+  ShowLspClient = {
+    provider = 'GetLspClient',
+    condition = function ()
+      local tbl = {['dashboard'] = true,['']=true}
+      if tbl[vim.bo.filetype] then
+        return false
+      end
+      return true
+    end,
+    icon = ' LSP:',
+    highlight = {colors.cyan,'#3a3d4d','bold'}
+  }
+}
+
 gls.right[1] = {
   GitIcon = {
     provider = function() return '  ' end,
@@ -340,6 +361,8 @@ gls.right[3] = {
     condition = condition.hide_in_width,
     icon = '  ',
     highlight = {colors.green,colors.bg},
+    separator = ' ',
+    separator_highlight = {'NONE',colors.bg},
   }
 }
 gls.right[4] = {
@@ -360,9 +383,68 @@ gls.right[5] = {
 }
 
 gls.right[6] = {
-  RainbowBlue = {
-    provider = function() return ' ▊' end,
-    highlight = {colors.blue,colors.bg}
+  FileEncode = {
+    provider = 'FileEncode',
+    separator = ' ',
+    separator_highlight = {'NONE',colors.bg},
+    highlight = {colors.green,colors.bg,'bold'}
+  }
+}
+
+gls.right[7] = {
+  FileFormat = {
+    provider = 'FileFormat',
+    separator = ' ',
+    separator_highlight = {'NONE',colors.bg},
+    highlight = {colors.green,colors.bg,'bold'}
+  }
+}
+
+gls.right[8] = {
+  PerCent = {
+    provider = 'LinePercent',
+    separator = ' ',
+    separator_highlight = {'NONE',colors.bg},
+--    separator = ' ',
+--    separator_highlight = {'NONE',colors.bg},
+    highlight = {colors.fg,colors.bg,'bold'},
+  }
+}
+-- gls.right[6] = {
+--   RainbowBlue = {
+--     provider = function() return ' ▊' end,
+--     highlight = {colors.blue,colors.bg}
+--   },
+-- }
+gls.right[9] = {
+  ViMode = {
+    provider = function()
+      -- auto change color according the vim mode
+      local mode_color = {
+        n = colors.blue,
+        i = colors.green,
+        v=colors.violet,
+        [''] = colors.violet,
+        V=colors.violet,
+        c = colors.magenta,
+        no = colors.red,
+        s = colors.orange,
+        S=colors.orange,
+        [''] = colors.orange,
+        ic = colors.yellow,
+        R = colors.red,
+        Rv = colors.violet,
+        cv = colors.red,
+        ce=colors.red,
+        r = colors.cyan,
+        rm = colors.cyan,
+        ['r?'] = colors.cyan,
+        ['!']  = colors.red,
+        t = colors.red}
+        vim.api.nvim_command('hi GalaxyViMode guifg='..mode_color[vim.fn.mode()])
+      return ' ▊'
+    end,
+    highlight = {colors.red,colors.bg,'bold'},
   },
 }
 

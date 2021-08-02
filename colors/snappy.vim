@@ -62,21 +62,32 @@ let s:base6      = '#73797e'
 let s:base7      = '#9ca0a4'
 let s:base8      = '#b1b1b1'
 let s:base9      = '#E6E6E6'
+" Grayscale
+let  ui_0     =  '#F9F9F9'
+let  ui_1     =  '#f9f9ff'
+let  ui_2     =  '#eff0eb'
+let  ui_3     =  '#e2e4e5'
+let  ui_4     =  '#a1a6a8'
+let  ui_5     =  '#848688'
+let  ui_6     =  '#5e6c70'
+let  ui_8     =  '#606580' "comment color
+let  ui_9     =  '#3a3d4d' "underline of current line color
+let  ui_11    =  '#282a36'
+let  ui_12    =  '#192224'
 
 let s:grey       = s:base4
 let s:red        = '#ff2740'
 let s:orange     = '#fd971f'
 let s:green      = '#a6e22e'
-let s:teal       = '#4db5bd'
-let s:yellow     = '#f4bf75'
-let s:blue       = '#66d9ef'
-let s:dark_blue  = '#2257A0'
-"let s:magenta    = '#c678dd'
+let s:yellow     = '#f3f99d'
+let s:blue       = '#57c7ff'
+let s:cyan       = '#62d8f1'
 let s:magenta    = '#fc1a70'
-let s:violet     = '#a9a1e1'
-let s:cyan       = '#a1efe4'
-let s:dark_cyan  = '#5699AF'
+let s:violet     = '#ae81ff'
+let s:pink     =  '#e379d8'
 let s:white      = '#efefef'
+
+let s:dark_blue  = '#2257A0'
 
 let s:green_alt  = '#799033'
 
@@ -90,7 +101,7 @@ let s:bg_visual      = color#Lighten(s:base4, 0.3)
 let s:bg_selection   = s:dark_blue
 let s:bg_highlighted = '#4A4A45'
 
-let s:fg           = '#bbc2cf'
+let s:fg           = '#f9f9ff'
 let s:fg_alt       = '#5B6268'
 let s:fg_widget    = s:fg
 let s:fg_conceal   = s:base4
@@ -101,66 +112,42 @@ let s:fg_linenr    = s:base4
 
 let s:highlight       = s:blue
 let s:highlight_color = s:base0
-" Core
-let  red      =  '#ff2740'
-let  orange   =  '#fd971f'
-let  green    =  '#aae95b'
-let  yellow   =  '#f3f99d'
-let  blue     =  '#57c7ff'
-let  magenta  =  '#fc1a70'
-let  cyan     =  '#62d8f1'
-let  purple   =  '#c678dd'
-let  pink     =  '#e379d8'
 
-" Grayscale
-let  ui_0     =  '#F9F9F9'
-let  ui_1     =  '#f9f9ff'
-let  ui_2     =  '#eff0eb'
-let  ui_3     =  '#e2e4e5'
-let  ui_4     =  '#a1a6a8'
-let  ui_5     =  '#848688'
-let  ui_6     =  '#5e6c70'
-let  ui_7     =  '#57c7ff'
-let  ui_8     =  '#606580' "comment color
-let  ui_9     =  '#3a3d4d' "underline of current line color
-let  ui_11    =  '#282a36'
-let  ui_12    =  '#192224'
-
-let g:terminal_color_0 = '#121212'
-let g:terminal_color_1 = '#ff000f'
-let g:terminal_color_2 = '#aae95b'
-let g:terminal_color_3 = '#ffb900'
-let g:terminal_color_4 = '#61aeee'
-let g:terminal_color_5 = '#ff6ac1'
-let g:terminal_color_6 = '#00d7ea'
-let g:terminal_color_7 = '#ffffff'
-let g:terminal_color_8 = '#444444'
-let g:terminal_color_9 = '#ff2740'
-let g:terminal_color_10 = '#abe15b'
-let g:terminal_color_11 = '#ffd242'
-let g:terminal_color_12 = '#61afef'
-let g:terminal_color_13 = '#fc1a70'
-let g:terminal_color_14 = '#67fff0'
-let g:terminal_color_15 = '#ffffff'
 
 let s:bg_current = s:bg
 let s:bg_visible = s:bg
 let s:bg_other   = s:base1
 let s:diff_info_fg  = s:blue
 let s:diff_info_bg0 = color#Mix('#D8EEFD', s:bg, 0.6)
+" Text levels                                                                {{{
+
+let s:text_colors = {
+\ 'Normal':  s:fg,
+\ 'Info':    s:blue,
+\ 'Success': s:green,
+\ 'Warning': s:yellow,
+\ 'Debug':   s:yellow,
+\ 'Error':   s:red,
+\ 'Special': s:violet,
+\ 'Muted':   s:base7,
+\}
+for key in keys(s:text_colors)
+  call s:_('Text' . key,          s:text_colors[key], '', '')
+  call s:_('Text' . key . 'Bold', s:text_colors[key], '', 'bold')
+endfor
 
 call s:_('TabLine',             s:base7, s:bg_alt,  'bold')
 call s:_('TabLineSel',          s:blue,  s:bg_current, 'bold')
 call s:_('TabLineFill',         'none',  s:bg_other,   'bold')
 call s:_('BufferCurrent',       s:base9,          s:bg_current,  'none')
 call s:_('BufferCurrentIndex',  s:base6,          s:bg_current,  'none')
-call s:_('BufferCurrentMod',    s:yellow,         s:bg_current,  'none')
+call s:_('BufferCurrentMod',    s:orange,         s:bg_current,  'none')
 call s:_('BufferCurrentSign',   s:blue,           s:bg_current,  'none')
 call s:_('BufferCurrentTarget', s:red,            s:bg_current,  'bold')
 
 call s:_('BufferVisible',       s:base7,          s:bg_visible,  'none')
 call s:_('BufferVisibleIndex',  s:base9,          s:bg_visible,  'none')
-call s:_('BufferVisibleMod',    s:yellow,         s:bg_visible,  'none')
+call s:_('BufferVisibleMod',    s:orange,         s:bg_visible,  'none')
 call s:_('BufferVisibleSign',   s:base4,          s:bg_visible,  'none')
 call s:_('BufferVisibleTarget', s:red,            s:bg_visible,  'bold')
 
@@ -188,130 +175,250 @@ call s:_('BufferPart',        s:base4,   s:bg_other, 'bold')
 "hi LocalVariable -- no settings --
 "hi clear -- no settings --
 
-call s:_('NormalPopup',       s:fg_highlight, s:bg_popup)
-call s:_('NormalPopover',     s:fg_highlight, s:bg_popup)
-call s:_('NormalPopupPrompt', s:fg_highlight,        color#Darken(s:bg_popup, 0.3), 'bold')
-call s:_('NormalPopupSubtle', s:base6,        s:bg_popup)
-call s:_('Normal', ui_1, ui_11)
-call s:_('SignColumn          ',ui_11 , )
-call s:_('TSPunctSpecial          ',orange ,''         )
-call s:_('TSConditional          ',magenta ,'bold'         )
-call s:_('TSConstructor',blue ,'','bold'         )
-call s:_('TSFuncMacro',blue ,'','bold'         )
-call s:_('TSFuncBuiltin',blue ,'','bold'         )
-call s:_('TSKeywordFunction',blue ,'','bold'         )
-call s:_('TSParameter',orange ,'','italic'         )
-call s:_('TSBoolean',green ,''         )
-call s:_('TSInclude',magenta ,'bold'         )
-call s:_('TSPunctBracket          ',ui_0 ,''         )
-call s:_('cssImportant        ',red ,''     )
-call s:_('cssIdentifier        ',red ,''     )
-call s:_('cssIncludeKeyword        ',green ,''     )
-call s:_('cssAttr        ',magenta ,''     )
-call s:_('cssColor        ',yellow ,''     )
-call s:_('cssClassNameDot        ',cyan ,''     )
-call s:_('cssClassName        ',cyan ,''     )
-call s:_('cssAttrComma        ',ui_0 ,''     )
-call s:_('cssProp        ',ui_0 ,''     )
-call s:_('javaScriptBoolean        ',cyan ,''     )
-call s:_('phpStructure        ',cyan ,''     )
-call s:_('markdownLinkText        ',cyan ,''     )
-call s:_('Directory        ',cyan ,''     )
-call s:_('GitGutterChangeDelete        ',red ,''     )
-call s:_('GitGutterDelete        ',red ,''     )
-call s:_('GitGutterChange        ',yellow ,''     )
-call s:_('GitGutterAdd        ',green ,''     )
-call s:_('SignColumn          ',ui_11 , )
-call s:_('SignColumn          ',ui_11 , )
-call s:_('SignColumn          ',ui_11 , )
-call s:_('cursorim        ',ui_12 ,ui_7 )
-call s:_('TabLine         ',ui_2 ,ui_9 )
-call s:_('DiffAdd         ',green ,ui_9 )
-call s:_('Underlined      ',ui_1 ,ui_12 )
-call s:_('Macro           ',yellow ,''         )
-call s:_('Structure       ',ui_7 ,''         )
-call s:_('Directory       ',ui_8 ,''         )
-call s:_('CTagsClass      ',ui_3 ,''         )
-call s:_('SpellBad        ',ui_1 ,ui_12 )
-call s:_('Repeat          ',green ,''         )
-call s:_('MatchParen      ',yellow ,ui_4 )
-call s:_('PMenuThumb      ',''          ,ui_4 )
-call s:_('String          ',yellow ,''         )
-call s:_('Tag             ',yellow ,''         )
-call s:_('Constant        ',green ,''         )
-call s:_('SpecialKey      ',ui_6 ,''         )
-call s:_('PMenu           ',ui_2 ,ui_9 )
-call s:_('Error           ',red ,ui_11 )
-call s:_('SpellLocal      ',ui_1 ,ui_12 )
-call s:_('Cursor          ',ui_12 ,ui_0 )
-call s:_('DiffChange      ',ui_3 ,ui_9 )
-call s:_('Type            ',cyan ,''         )
-call s:_('Keyword         ',magenta ,'', 'bold'         )
-call s:_('Exception       ',red ,''         )
-call s:_('VertSplit       ',ui_8 ,ui_11 )
-call s:_('SpellCap        ',ui_1 ,ui_12 )
-call s:_('MoreMsg         ',yellow ,''         )
-call s:_('Visual          ',ui_12 ,ui_1 )
-call s:_('PreProc         ',red ,''         )
-call s:_('FoldColumn      ',ui_12 ,ui_4 )
-call s:_('Function        ',blue ,'', 'bold'         )
-call s:_('Define          ',yellow ,''         )
-call s:_('CursorColumn    ',ui_3 ,ui_9 )
-call s:_('ModeMsg         ',ui_0 ,ui_12 )
-call s:_('DiffDelete      ',magenta ,ui_9 )
-call s:_('VisualNOS       ',ui_12 ,ui_1 )
-call s:_('WarningMsg      ',red ,ui_11 )
-call s:_('TabLineFill     ',ui_12 ,ui_9 )
-call s:_('CursorLineNR    ',yellow ,''         )
-call s:_('ColorColumn     ',''          ,ui_9 )
-call s:_('CursorLine      ',''          ,ui_9 )
-call s:_('Operator        ',magenta ,''         )
-call s:_('Boolean         ',ui_3 ,''         )
-call s:_('Number          ',purple ,''         )
-call s:_('TabLineSel      ',ui_2 ,ui_11 )
-call s:_('Character       ',ui_3 ,''         )
-call s:_('Comment         ',ui_8 ,''         )
-call s:_('SpellRare       ',ui_1 ,ui_12 )
-call s:_('Statement       ',magenta ,''         )
-call s:_('Delimiter       ',yellow ,''         )
-call s:_('Search          ',ui_11 ,yellow )
-call s:_('PMenuSel        ',green ,ui_9 )
-call s:_('Label           ',yellow ,''         )
-call s:_('StatusLine      ',ui_2 ,ui_9 )
-call s:_('LineNr          ',ui_8 ,''         )
-call s:_('Special         ',yellow ,''         )
-call s:_('Todo            ',yellow ,''         )
-call s:_('StorageClass    ',blue ,''         )
-call s:_('Conditional     ',yellow ,''         )
-call s:_('SpecialChar     ',yellow ,''         )
-call s:_('Identifier      ',cyan ,''         )
-call s:_('PMenuSbar       ',''          ,ui_5 )
-call s:_('Debug           ',yellow ,''         )
-call s:_('ErrorMsg        ',red ,ui_11 )
-call s:_('DiffText        ',red ,ui_9 )
-call s:_('NonText         ',ui_6 ,''         )
-call s:_('StatusLineNC    ',ui_4 ,ui_9 )
-call s:_('Float           ',ui_4 ,''         )
-call s:_('Include         ',yellow ,''         )
-call s:_('PreCondit       ',yellow ,''         )
-call s:_('Folded          ',ui_12 ,ui_4 )
-call s:_('Title           ',yellow ,''         )
-call s:_('Typedef         ',ui_7 ,''         )
-call s:_('SpecialComment  ',yellow ,''         )
-call s:_('SignColumn      ',ui_12 ,ui_7 )
-call s:_('WildMenu        ',''          ,ui_4 )
-call s:_('IncSearch       ',ui_11 ,yellow )
-" Sign Column
-:exe  'highlight  SignColumn          guibg='.ui_11.''
-:exe  'highlight  DiffAdd             guifg='.green.'       guibg='.ui_11.''
-:exe  'highlight  DiffDelete          guifg='.red.'         guibg='.ui_11.''
-:exe  'highlight  DiffChange          guifg='.yellow.'      guibg='.ui_11.''
-:exe  'highlight  SignifyLineDelete   guibg='.ui_11.''
-:exe  'highlight  SignifyLineChange   guibg='.ui_11.''
+call s:_('NormalPopup',                 s:fg_highlight,           s:bg_popup)
+call s:_('NormalPopover',               s:fg_highlight,           s:bg_popup)
+call s:_('NormalPopupPrompt',           s:fg_highlight,           color#Darken(s:bg_popup,0.3), 'bold')
+call s:_('NormalPopupSubtle',           s:base6,                  s:bg_popup)
+call s:_('Normal',                      ui_1,                     ui_11)
+call s:_('SignColumn',                  ui_11,)
+call s:_('TSPunctSpecial',              s:orange,                 '')
+call s:_('TSConditional',               s:magenta,                '',                           'bold')
+call s:_('TSConstructor',               s:blue,                   '',                           'bold')
+call s:_('TSFuncMacro',                 s:blue,                   '',                           'bold')
+call s:_('TSFuncBuiltin',               s:blue,                   '',                           'bold')
+call s:_('TSKeywordFunction',           s:blue,                   '',                           'bold')
+call s:_('TSParameter',                 s:orange,                 '',                           'italic')
+call s:_('TSBoolean',                   s:green,                  '')
+call s:_('TSInclude',                   s:magenta,                'bold')
+call s:_('TSEnvironment',               s:magenta,                'bold')
+call s:_('TSAttribute',                 s:cyan,                   'bold')
+call s:_('TSPunctBracket',              ui_0,                     '')
+
+call s:_('NormalPopup',                 s:fg_highlight,           s:bg_popup)
+call s:_('NormalPopover',               s:fg_highlight,           s:bg_popup)
+call s:_('Visual',                      '',                       s:bg_visual)
+call s:_('VisualBold',                  '',                       s:bg_visual,                  'bold')
+
+call s:_('cssImportant',                s:red,                    '')
+call s:_('cssUnitDecorators',           s:magenta,                '')
+call s:_('cssIdentifier',               s:green,                  '')
+call s:_('cssIncludeKeyword',           s:green,                  '')
+call s:_('cssAttr',                     s:magenta,                '')
+call s:_('cssColor',                    s:magenta,                '')
+call s:_('cssClassNameDot',             s:green,                  '')
+call s:_('cssClassName',                s:green,                  '')
+call s:_('cssAttrComma',                s:cyan,                   '',                           'bold')
+call s:_('cssProp',                     s:cyan,                   '',                           'italic')
+call s:_('cssAtKeyword',                s:magenta,                '',                           'bold')
+call s:_('cssAtRule',                   s:magenta,                '',                           'bold')
+call s:_('cssAtLogical',                s:magenta,                '',                           'bold')
+call s:_('cssContentForPagedMediaProp', s:cyan,                   '',                           'bold')
+call s:_('cssVendor',                   s:cyan,                   '',                           'bold')
+call s:_('cssMediaType',                s:cyan,                   '',                           'bold')
+
+call s:_('javaScriptBoolean',           s:cyan,                   '')
+call s:_('phpStructure',                s:cyan,                   '')
+call s:_('markdownLinkText',            s:cyan,                   '')
+call s:_('Directory',                   s:cyan,                   '')
+call s:_('GitGutterChangeDelete',       s:red,                    '')
+call s:_('GitGutterDelete',             s:red,                    '')
+call s:_('GitGutterChange',             s:yellow,                 '')
+call s:_('GitGutterAdd',                s:green,                  '')
+call s:_('SignColumn',                  ui_11)
+call s:_('SignColumn',                  ui_11)
+call s:_('SignColumn',                  ui_11)
+call s:_('cursorim',                    ui_12,                    s:blue)
+call s:_('TabLine',                     ui_2,                     ui_9)
+call s:_('DiffAdd',                     s:green,                  ui_9)
+call s:_('Underlined',                  ui_1,                     ui_12)
+call s:_('Macro',                       s:yellow,                 '')
+call s:_('Structure',                   s:blue,                     '')
+call s:_('Directory',                   ui_8,                     '')
+call s:_('CTagsClass',                  ui_3,                     '')
+call s:_('SpellBad',                    ui_1,                     ui_12)
+call s:_('Repeat',                      s:green,                  '')
+call s:_('MatchParen',                  s:yellow,                 ui_4)
+call s:_('PMenuThumb',                  '',                       ui_4)
+call s:_('String',                      s:yellow,                 '')
+call s:_('Tag',                         s:yellow,                 '')
+call s:_('Constant',                    s:green,                  '')
+call s:_('SpecialKey',                  ui_6,                     '')
+call s:_('PMenu',                       ui_2,                     ui_9)
+call s:_('Error',                       s:red,                    ui_11)
+call s:_('SpellLocal',                  ui_1,                     ui_12)
+call s:_('Cursor',                      ui_12,                    ui_0)
+call s:_('DiffChange',                  ui_3,                     ui_9)
+call s:_('Type',                        s:cyan,                   '',        'bold')
+call s:_('Keyword',                     s:magenta,                '',        'bold')
+call s:_('Exception',                   s:red,                    '')
+call s:_('VertSplit',                   ui_8,                     '')
+call s:_('SpellCap',                    ui_1,                     ui_12)
+call s:_('MoreMsg',                     s:yellow,                 '')
+call s:_('Visual',                      ui_12,                    ui_1)
+call s:_('PreProc',                     s:red,                    '')
+call s:_('FoldColumn',                  ui_12,                    ui_4)
+call s:_('Function',                    s:blue,                   '',       'bold')
+call s:_('Define',                      s:yellow,                 '')
+call s:_('CursorColumn',                ui_3,                     ui_9)
+call s:_('ModeMsg',                     ui_0,                     ui_12)
+call s:_('DiffDelete',                  s:magenta,                ui_9)
+call s:_('VisualNOS',                   ui_12,                    ui_1)
+call s:_('WarningMsg',                  s:red,                    ui_11)
+call s:_('TabLineFill',                 ui_12,                    ui_9)
+call s:_('CursorLineNR',                s:yellow,                 '')
+call s:_('ColorColumn',                 '',                       ui_9)
+call s:_('CursorLine',                  '',                       ui_9)
+call s:_('Operator',                    s:magenta,                '')
+call s:_('Boolean',                     ui_3,                     '')
+call s:_('Number',                      s:violet,                   '')
+call s:_('TabLineSel',                  ui_2,                     ui_11)                 
+call s:_('Character',                   ui_3,                     '')
+call s:_('Comment',                     ui_8,                     '',            'italic')
+call s:_('SpellRare',                   ui_1,                     ui_12)
+call s:_('Statement',                   s:magenta,                '')
+call s:_('Delimiter',                   s:yellow,                 '')
+call s:_('Search',                      ui_11,                    s:yellow)
+
+call s:_('PMenuSel',                    s:green,                  ui_9)
+call s:_('Label',                       s:yellow,                 '')
+call s:_('StatusLine',                  ui_2,                     ui_9)
+call s:_('LineNr',                      ui_8,                     '')
+call s:_('Special',                     s:yellow,                 '')
+call s:_('Todo',                        s:yellow,                 '')
+call s:_('StorageClass',                s:blue,                   '')
+call s:_('Conditional',                 s:yellow,                 '')
+call s:_('SpecialChar',                 s:yellow,                 '')
+call s:_('Identifier',                  s:cyan,                   '')
+call s:_('PMenuSbar',                   '',                       ui_5)
+call s:_('Debug',                       s:yellow,                 '')
+call s:_('ErrorMsg',                    s:red,                    ui_11)
+call s:_('DiffText',                    s:red,                    ui_9)
+call s:_('NonText',                     ui_6,                     '')
+call s:_('StatusLineNC',                ui_4,                     ui_9)
+call s:_('Float',                       ui_4,                     '')
+call s:_('Include',                     s:yellow,                 '')
+call s:_('PreCondit',                   s:yellow,                 '')
+call s:_('Folded',                      ui_12,                    ui_4)
+call s:_('Title',                       s:yellow,                 '')
+call s:_('Typedef',                     s:blue,                     '')
+call s:_('SpecialComment',              s:yellow,                 '')
+call s:_('SignColumn',                  ui_12,                    s:blue)
+call s:_('WildMenu',                    '',                       ui_4)
+call s:_('IncSearch',                   ui_11,                    s:yellow)
+"Sig nColumn
+call s:_('Visual',                      '',                       s:bg_visual)
+call s:_('VisualBold',                  '',                       s:bg_visual,  'bold')
+
+call s:_('Pmenu',                       s:fg,                     s:bg_popup)
+call s:_('PmenuSel',                    s:highlight_color,        s:highlight)
+call s:_('PmenuSelBold',                s:highlight_color,        s:highlight,  'bold')
+call s:_('PmenuSbar',                   '',                       s:bg_alt)
+call s:_('PmenuThumb',                  '#666660',                '#666660')
+call s:_('Section',                     s:magenta,                '',           'bold')
+
+" to give menu transparency
+if exists('&pumblend')
+  set pumblend=20
+end
+" Additionnal/Common groups                                         {{{1
+
+call s:_('DbgCurrent',           '#DEEBFE', '#345FA8', '')
+call s:_('DbgBreakPt',           '',        '#4F0037', '')
+
+" Jumping around {{{
+
+call s:_('JumpTarget', s:red, '', 'bold')
+
+hi!  link EasyMotionTargetDefault JumpTarget
+hi!  link Sneak                   JumpTarget
+hi!  link SneakPluginTarget       JumpTarget
+hi!  link SneakStreakTarget       JumpTarget
+hi!  link SneakStreakMask         EasyMotionShadeDefault
+
+" }}}
+
+" Languages/Others                                                    {{{1
+
+" Help                                                                      {{{2
+
+hi! link helpURL           URL
+
+" PHP                                                                       {{{2
+
+hi! link phpFunctions Function
+hi! link phpSuperglobal Identifier
+hi! link phpQuoteSingle StringDelimiter
+hi! link phpQuoteDouble StringDelimiter
+hi! link phpBoolean Constant
+hi! link phpNull Constant
+hi! link phpArrayPair Operator
+hi! link phpOperator Normal
+hi! link phpRelation Normal
+hi! link phpVarSelector Identifier
+
+" Python                                                                    {{{2
+
+hi! link pythonOperator Operator
+
+" Ruby                                                                      {{{2
+
+hi! link rubyRegexpDelimiter       RegexpDelimiter
+hi! link rubyRegexp                Regexp
+hi! link rubyRegexpSpecial         RegexpSpecial
+hi! link rubyPredefinedIdentifier  PredefinedIdentifier
+
+hi! link rubyClass              Class
+hi! link rubyIdentifier         Identifier
+hi! link rubyInstanceVariable   InstanceVariable
+hi! link rubySymbol             Symbol
+hi! link rubyControl            Control
+
+hi! link rubySharpBang Comment
+hi! link rubyConstant  Type
+hi! link rubyFunction  Function
+
+hi! link rubyGlobalVariable rubyInstanceVariable
+hi! link rubyModule         rubyClass
+
+hi! link rubyString                 String
+hi! link rubyStringDelimiter        StringDelimiter
+hi! link rubyInterpolationDelimiter Identifier
 
 
-call s:_('Visual',         '', s:bg_visual)
-call s:_('VisualBold',     '', s:bg_visual, 'bold')
+" Erlang                                                                    {{{2
+
+hi! link erlangAtom rubySymbol
+hi! link erlangBIF rubyPredefinedIdentifier
+hi! link erlangFunction rubyPredefinedIdentifier
+hi! link erlangDirective Statement
+hi! link erlangNode Identifier
+
+" CoffeeScript                                                              {{{2
+
+hi! link coffeeRegExp rubyRegexp
+
+" Lua & Moonscript'                                                         {{{2
+
+hi! link luaOperator Conditional
+
+hi! link moonObject     Type
+hi! link moonSpecialOp  StringDelimiter
+hi! link moonSpecialVar Identifier
+hi! link moonObjAssign  StorageClass
+hi! link moonObjAssign  StorageClass
+hi! link moonConstant   Global
+
+" Objective-C/Cocoa                                                         {{{2
+
+hi! link objcClass Type
+hi! link cocoaClass objcClass
+hi! link objcSubclass objcClass
+hi! link objcSuperclass objcClass
+hi! link objcDirective rubyClass
+hi! link cocoaFunction Function
+hi! link objcMethodName Identifier
+hi! link objcMethodArg Normal
+hi! link objcMessageName Identifier
 
 " Transparent Background
 highlight  SignColumn          guibg=NONE   ctermbg=NONE

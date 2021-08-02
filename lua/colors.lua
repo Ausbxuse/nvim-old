@@ -12,6 +12,7 @@ colors = {
   magenta = '#fc1a70',
   blue = '#51afef';
   red = '#ec5f67';
+  grey = '#9ca0a4';
 }
 
 return colors
