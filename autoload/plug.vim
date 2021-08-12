@@ -996,7 +996,8 @@ function! s:chsh(swap)
   endif
   return prev
 endfunction
- function! s:bang(cmd, ...)
+
+function! s:bang(cmd, ...)
   let batchfile = ''
   try
     let [sh, shellcmdflag, shrd] = s:chsh(a:0)
@@ -1126,7 +1127,7 @@ function! s:retry()
     return
   endif
   echo
-  call s:update_imp(s:update.pull, s:update.force,
+  call s:update_impl(s:update.pull, s:update.force,
         \ extend(copy(s:update.errors), [s:update.threads]))
 endfunction
 
@@ -1995,7 +1996,7 @@ function! s:update_ruby()
     if /mswin|mingw|bccwin/ =~ RUBY_PLATFORM
       pids.each { |pid| Process.kill 'INT', pid.to_i rescue nil }
     else
-      unless `which pgrep 2> /dev/null`.empty?l
+      unless `which pgrep 2> /dev/null`.empty?
         children = pids
         until children.empty?
           children = children.map { |pid|
@@ -2126,7 +2127,7 @@ function! s:update_ruby()
     mtx.synchronize do
       running = false
       threads.each { |t| t.raise Interrupt } unless vim7
-   end
+    end
     threads.each { |t| t.join rescue nil }
     main.kill
   }
@@ -2797,4 +2798,4 @@ if exists('g:plugs')
 endif
 
 let &cpo = s:cpo_save
-unlet s:cpo_save 
+unlet s:cpo_save

@@ -35,6 +35,7 @@ function! s:_ (name, ...)
 endfunc
 
 " Setup
+
 set background=dark
 if version > 580
 	hi clear
@@ -43,9 +44,10 @@ if version > 580
 	endif
 endif
 
+
 set t_Co=256
 if has('termguicolors')
-    set termguicolors
+  set termguicolors
 endif
 
 let g:colors_name = "snappy"
@@ -94,10 +96,11 @@ let s:green_alt  = '#799033'
 let s:bg             = '#282c34'
 let s:bg_alt         = '#21242b'
 let s:bg_highlight   = '#2E323C'
-let s:bg_popup       = color#Lighten('#3E4556', 0.3)
+"let s:bg_popup       = color#Lighten('#3E4556', 0.3)
+let s:bg_popup       = ui_9
 let s:bg_widget      = s:bg
 let s:bg_statusline  = s:bg_popup
-let s:bg_visual      = color#Lighten(s:base4, 0.3)
+let s:bg_visual      = s:base4
 let s:bg_selection   = s:dark_blue
 let s:bg_highlighted = '#4A4A45'
 
@@ -106,7 +109,7 @@ let s:fg_alt       = '#5B6268'
 let s:fg_widget    = s:fg
 let s:fg_conceal   = s:base4
 let s:fg_subtle    = s:base7
-let s:fg_highlight = color#Lighten(s:fg, 0.2)
+let s:fg_highlight = s:fg
 let s:fg_linenr    = s:base4
 
 
@@ -118,7 +121,11 @@ let s:bg_current = s:bg
 let s:bg_visible = s:bg
 let s:bg_other   = s:base1
 let s:diff_info_fg  = s:blue
-let s:diff_info_bg0 = color#Mix('#D8EEFD', s:bg, 0.6)
+let s:diff_info_bg0 = '#D8EEFD'
+
+call s:_('NvimTreeFolderName',                   s:blue,              '', 'bold'         )
+call s:_('NvimTreeFolderIcon',                   s:blue,                 )
+
 " Text levels                                                                {{{
 
 let s:text_colors = {
@@ -141,7 +148,7 @@ call s:_('TabLineSel',          s:blue,  s:bg_current, 'bold')
 call s:_('TabLineFill',         'none',  s:bg_other,   'bold')
 call s:_('BufferCurrent',       s:base9,          s:bg_current,  'none')
 call s:_('BufferCurrentIndex',  s:base6,          s:bg_current,  'none')
-call s:_('BufferCurrentMod',    s:orange,         s:bg_current,  'none')
+call s:_('BufferCurrentMod',    s:green,          s:bg_current,  'italic')
 call s:_('BufferCurrentSign',   s:blue,           s:bg_current,  'none')
 call s:_('BufferCurrentTarget', s:red,            s:bg_current,  'bold')
 
@@ -177,7 +184,7 @@ call s:_('BufferPart',        s:base4,   s:bg_other, 'bold')
 
 call s:_('NormalPopup',                 s:fg_highlight,           s:bg_popup)
 call s:_('NormalPopover',               s:fg_highlight,           s:bg_popup)
-call s:_('NormalPopupPrompt',           s:fg_highlight,           color#Darken(s:bg_popup,0.3), 'bold')
+call s:_('NormalPopupPrompt',           s:fg_highlight,           s:bg_popup, 'bold')
 call s:_('NormalPopupSubtle',           s:base6,                  s:bg_popup)
 call s:_('Normal',                      ui_1,                     ui_11)
 call s:_('SignColumn',                  ui_11,)
@@ -235,7 +242,7 @@ call s:_('Macro',                       s:yellow,                 '')
 call s:_('Structure',                   s:blue,                     '')
 call s:_('Directory',                   ui_8,                     '')
 call s:_('CTagsClass',                  ui_3,                     '')
-call s:_('SpellBad',                    ui_1,                     ui_12)
+call s:_('SpellBad',                    s:red,                     '', 'italic')
 call s:_('Repeat',                      s:green,                  '')
 call s:_('MatchParen',                  s:yellow,                 ui_4)
 call s:_('PMenuThumb',                  '',                       ui_4)
@@ -279,7 +286,6 @@ call s:_('Statement',                   s:magenta,                '')
 call s:_('Delimiter',                   s:yellow,                 '')
 call s:_('Search',                      ui_11,                    s:yellow)
 
-call s:_('PMenuSel',                    s:green,                  ui_9)
 call s:_('Label',                       s:yellow,                 '')
 call s:_('StatusLine',                  ui_2,                     ui_9)
 call s:_('LineNr',                      ui_8,                     '')
@@ -315,11 +321,20 @@ call s:_('PmenuSelBold',                s:highlight_color,        s:highlight,  
 call s:_('PmenuSbar',                   '',                       s:bg_alt)
 call s:_('PmenuThumb',                  '#666660',                '#666660')
 call s:_('Section',                     s:magenta,                '',           'bold')
+call s:_('LspDiagnosticsDefaultHint', '#6eaeea')
+call s:_('LspDiagnosticsDefaultWarning', 'Orange')
+call s:_('LspDiagnosticsDefaultError', 'Red')
+call s:_('LspDiagnosticsDefaultInformation', '#Deebfe')
+
+highlight IndentBlanklineContextChar guifg=#848688 gui=nocombine
+highlight CodiVirtualText guifg=red
 
 " to give menu transparency
 if exists('&pumblend')
   set pumblend=20
+  set winblend=20
 end
+hi PmenuSel blend=0
 " Additionnal/Common groups                                         {{{1
 
 call s:_('DbgCurrent',           '#DEEBFE', '#345FA8', '')
@@ -328,13 +343,23 @@ call s:_('DbgBreakPt',           '',        '#4F0037', '')
 " Jumping around {{{
 
 call s:_('JumpTarget', s:red, '', 'bold')
+call s:_('NormalFloat', s:fg, ui_9, 'bold')
+
+hi link EasyMotionTarget ErrorMsg
+hi link EasyMotionShade  Comment
+
+hi link EasyMotionTarget2First MatchParen
+hi link EasyMotionTarget2Second MatchParen
+
+hi link EasyMotionMoveHL Search
+hi link EasyMotionIncSearch Search
 
 hi!  link EasyMotionTargetDefault JumpTarget
 hi!  link Sneak                   JumpTarget
 hi!  link SneakPluginTarget       JumpTarget
 hi!  link SneakStreakTarget       JumpTarget
 hi!  link SneakStreakMask         EasyMotionShadeDefault
-
+highlight link CompeDocumentation NormalFloat
 " }}}
 
 " Languages/Others                                                    {{{1
@@ -408,7 +433,7 @@ hi! link moonObjAssign  StorageClass
 hi! link moonObjAssign  StorageClass
 hi! link moonConstant   Global
 
-" Objective-C/Cocoa                                                         {{{2
+" Objective-C/Cocoa                  
 
 hi! link objcClass Type
 hi! link cocoaClass objcClass

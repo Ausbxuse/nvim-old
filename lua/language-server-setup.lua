@@ -84,20 +84,14 @@ lspconfig.sumneko_lua.setup {
   end
 }
 
--- lspconfig.ccls.setup {
---   init_options = {
---     compilationDatabaseDirectory = "build";
---     index = {
---       threads = 0;
---     };
---     clang = {
---       excludeArgs = { "-frounding-math"} ;
---     };
---   }
--- }
-
-lspconfig.ccls.setup{
+lspconfig.clangd.setup{
   capabilities = capabilities,
   on_attach = on_attach
-
 }
+
+-- require'lspconfig'.zeta_note.setup{
+--   cmd = {'/home/peter/zeta-note-linux'},
+--   root_dir = function(fname)
+--     return "./"
+--   end
+-- }
