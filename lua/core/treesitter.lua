@@ -37,7 +37,8 @@ require'nvim-treesitter.configs'.setup {
     enable = true,              -- false will disable the whole extension
     disable = { "html", "css"},  -- list of language that will be disabled
   },
+
   indent = {
-    enable = true
+    {enable = true, disable = {"python"}}
   },
 }

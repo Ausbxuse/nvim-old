@@ -138,6 +138,8 @@ func! Compile()
     exec 'vs | vert res -10 | te javac % && java %<'
   elseif &filetype == 'html'
     exec 'silent !live-server &'
+  elseif &filetype == 'markdown'
+    exec 'MarkdownPreview'
   endif
 endfunc
 
