@@ -6,25 +6,40 @@ vim.o.background = "dark"
 vim.o.termguicolors = true
 vim.g.colors_name = "snappy"
 
-local util = require "spacegray.util"
-Config = require "spacegray.config"
-C = require "spacegray.palette"
-local highlights = require "spacegray.highlights"
-local Treesitter = require "spacegray.Treesitter"
-local markdown = require "spacegray.markdown"
-local Whichkey = require "spacegray.Whichkey"
-local Git = require "spacegray.Git"
-local LSP = require "spacegray.LSP"
+local util = require "snappy.util"
+--Config = require "snappy.config"
+C = require "snappy.palette"
+Config = {}
+Config.transparent_background = true
+local highlights = require "snappy.highlights"
+local Treesitter = require "snappy.Treesitter"
+-- local markdown = require "snappy.markdown"
+-- local Whichkey = require "snappy.Whichkey"
+local Git = require "snappy.Git"
+local tabbar = require "snappy.tabbar"
+local css = require "snappy.css"
+local LSP = require "snappy.LSP"
 
 local skeletons = {
   highlights,
+  tabbar,
   Treesitter,
-  markdown,
-  Whichkey,
+  css,
+  --markdown,
+  --Whichkey,
   Git,
   LSP,
 }
 
+local link_skeleton = require("snappy.links")
+
 for _, skeleton in ipairs(skeletons) do
   util.initialise(skeleton)
 end
+
+util.hi_link(link_skeleton)
+
+vim.cmd([[
+highlight IndentBlanklineContextChar guifg=#848688 gui=nocombine
+hi PmenuSel blend=0
+]])

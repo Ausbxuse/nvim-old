@@ -2,7 +2,7 @@ local gl = require('galaxyline')
 local colors = require('colors')
 local condition = require('galaxyline.condition')
 local gls = gl.section
-local extension = require("plugins.statusline.providers.extension")
+local extension = require("core.statusline.providers.extension")
 local scrollBar = extension.scrollbar_instance
 gl.short_line_list = {'NvimTree', 'vista', 'dbui'}
 

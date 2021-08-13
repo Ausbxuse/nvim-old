@@ -48,6 +48,8 @@ M.load_options = function()
     spelllang = "en",
     scrolloff = 8, -- is one of my fav
     sidescrolloff = 8,
+    pumblend = 20,
+    winblend = 20,
   } ---  VIM ONLY COMMANDS  ---cmd "filetype plugin on"cmd('let &titleold="' .. TERMINAL .. '"')cmd "set inccommand=split"cmd "set iskeyword+=-"
 
   ---  SETTINGS  ---

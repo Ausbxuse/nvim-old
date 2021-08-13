@@ -114,7 +114,7 @@ return require('packer').startup(function(use)
   -- Use specific branch, dependency and run lua file after load
   use {
     'glepnir/galaxyline.nvim',
-    config = 'require("plugins.statusline")',
+    config = function() require("core.statusline") end,
     branch = 'main',
     requires = {'kyazdani42/nvim-web-devicons'}
   }
@@ -123,7 +123,6 @@ return require('packer').startup(function(use)
   use {
     'lewis6991/gitsigns.nvim',
     requires = {'nvim-lua/plenary.nvim'},
-    config = function() require('gitsigns').setup() end
   }
 
   -- You can specify multiple plugins in a single call
