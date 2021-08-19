@@ -4,6 +4,7 @@ local condition = require('galaxyline.condition')
 local gls = gl.section
 local extension = require("core.statusline.providers.extension")
 local scrollBar = extension.scrollbar_instance
+local cursor_word = extension.cursor_word
 gl.short_line_list = {'NvimTree', 'vista', 'dbui'}
 
 gls.left[1] = {
@@ -75,6 +76,12 @@ gls.left[5] = {
   }
 }
 
+gls.left[6] = {
+  WordCount = {
+    provider = cursor_word,
+    highlight = {colors.fg, colors.bg},
+  }
+}
 
 -- gls.left[5] = {
 --   BufferNumber = {
@@ -221,12 +228,14 @@ gls.right[8] = {
 -- }
 --
 --
-gls.right[9] = {
+
+gls.right[10] = {
   ScrollBar = {
     provider = scrollBar,
     highlight = {colors.blue, colors.bg}
   }
 }
+
 -- gls.right[10] = {
 --   ViMode = {
 --     provider = function()

@@ -99,8 +99,8 @@ return require('packer').startup(function(use)
     'iamcco/markdown-preview.nvim',
     run = 'cd app && yarn install',
     -- cmd = 'MarkdownPreview',
-    opt = false
   }
+  use {'rhysd/vim-grammarous'}
   use {'tzachar/compe-tabnine', run = './install.sh'}
   use {'prettier/vim-prettier', run = 'yarn install'}
   use {'kevinhwang91/rnvimr', run = 'make sync'}

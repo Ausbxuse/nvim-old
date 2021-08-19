@@ -22,6 +22,24 @@ function M.scrollbar_instance(scroll_bar_chars)
   return chars[index]
 end
 
+function M.cursor_word(word_icon)
+  local words = vim.fn.wordcount().words
+  -- local cursor_words = vim.fn.wordcount().cursor_words
+  local str = words
+  local icon = word_icon or "W:"
+  if vim.bo.filetype == "markdown" then
+    return icon .. str .. " "
+  end
+  return nil
+end
+
+function M.cursor_chars()
+  local chars = vim.fn.wordcount().chars
+  local cursor_chars = vim.fn.wordcount().cursor_chars
+  local str = cursor_chars .. ":" .. chars
+  return str
+end
+
 -- extension for vista.vim
 -- show current function or method
 -- see https://github.com/liuchengxu/vista.vim

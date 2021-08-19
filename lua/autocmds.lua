@@ -1,7 +1,7 @@
 vim.cmd([[
 " Keymappings in insert mode
-autocmd Filetype markdown,rmd setlocal nospell
-autocmd FileType markdown,rmd exec 'setlocal nospell'
+autocmd Filetype markdown,rmd setlocal spell
+"autocmd Filetype markdown,rmd setlocal filetype=html
 autocmd Filetype markdown,rmd inoremap ;f <Esc>/<++><CR>:nohlsearch<CR>c4l
 autocmd Filetype markdown,rmd inoremap ;n ---<Enter><Enter>
 autocmd Filetype markdown,rmd inoremap ;b **** <++><Esc>F*hi
