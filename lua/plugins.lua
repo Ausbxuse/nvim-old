@@ -38,9 +38,9 @@ return require('packer').startup(function(use)
   use 'ryanoasis/vim-devicons'
   --  use 'jiangmiao/auto-pairs'
   use 'windwp/nvim-autopairs'
-  -- use 'preservim/tagbar'
+  use 'preservim/tagbar'
   use 'mhinz/vim-startify'
-  --  use 'liuchengxu/vista.vim'
+  -- use 'liuchengxu/vista.vim'
   use 'liuchengxu/vim-which-key'
   use 'kyazdani42/nvim-tree.lua'
   use 'hrsh7th/vim-vsnip'
@@ -97,7 +97,7 @@ return require('packer').startup(function(use)
   -- Plugins can have post-install/update hooks
   use {
     'iamcco/markdown-preview.nvim',
-    run = 'cd app && yarn install',
+    run = 'cd app && yarn install'
     -- cmd = 'MarkdownPreview',
   }
   use {'rhysd/vim-grammarous'}
@@ -120,10 +120,7 @@ return require('packer').startup(function(use)
   }
 
   -- Use dependency and run lua function after load
-  use {
-    'lewis6991/gitsigns.nvim',
-    requires = {'nvim-lua/plenary.nvim'},
-  }
+  use {'lewis6991/gitsigns.nvim', requires = {'nvim-lua/plenary.nvim'}}
 
   -- You can specify multiple plugins in a single call
   --  use {'tjdevries/colorbuddy.vim', {'nvim-treesitter/nvim-treesitter', opt = true}}

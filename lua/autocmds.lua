@@ -26,6 +26,7 @@ autocmd Filetype markdown,rmd nnoremap \s 0f~xxf~xx0
 "highlight clear SpellCap 
 "highlight clear SpellLocal
 
+autocmd BufWritePre *.lua call LuaFormat()
 autocmd BufWritePre *.html PrettierAsync
 autocmd BufWritePre *.css PrettierAsync
 autocmd BufWritePre *.scss PrettierAsync

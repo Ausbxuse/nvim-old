@@ -1,14 +1,12 @@
 vim.api.nvim_command "hi clear"
-if vim.fn.exists "syntax_on" then
-  vim.api.nvim_command "syntax reset"
-end
+if vim.fn.exists "syntax_on" then vim.api.nvim_command "syntax reset" end
 vim.o.background = "dark"
 vim.o.termguicolors = true
 vim.g.colors_name = "snappy"
 
 local util = require "snappy.util"
---Config = require "snappy.config"
-C = require "snappy.palette"
+-- Config = require "snappy.config"
+C = require "snappy.color"
 Config = {}
 Config.transparent_background = true
 local highlights = require "snappy.highlights"
@@ -21,21 +19,14 @@ local css = require "snappy.css"
 local LSP = require "snappy.LSP"
 
 local skeletons = {
-  highlights,
-  tabbar,
-  Treesitter,
-  css,
-  --markdown,
-  --Whichkey,
-  Git,
-  LSP,
+  highlights, tabbar, Treesitter, css, -- markdown,
+  -- Whichkey,
+  Git, LSP
 }
 
 local link_skeleton = require("snappy.links")
 
-for _, skeleton in ipairs(skeletons) do
-  util.initialise(skeleton)
-end
+for _, skeleton in ipairs(skeletons) do util.initialise(skeleton) end
 
 util.hi_link(link_skeleton)
 

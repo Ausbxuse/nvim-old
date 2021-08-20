@@ -19,7 +19,7 @@ vim.g.startify_custom_header = {
   [[      /   | __  _______/ /_  _  ____  __________    ]],
   [[     / /| |/ / / / ___/ __ \| |/_/ / / / ___/ _ \   ]],
   [[    / ___ / /_/ (__  ) /_/ />  </ /_/ (__  )  __/   ]],
-  [[   /_/  |_\__,_/____/_.___/_/|_|\__,_/____/\___/    ]],
+  [[   /_/  |_\__,_/____/_.___/_/|_|\__,_/____/\___/    ]]
 }
 
 vim.g.startify_session_dir = '~/.config/nvim/session'
@@ -30,6 +30,8 @@ vim.g.startify_fortune_use_unicode = 1
 vim.g.startify_session_persistence = 1
 
 vim.g.webdevicons_enable_startify = 1
+
+vim.g.vista_default_executive = 'nvim_lsp'
 
 vim.cmd([[
 function! StartifyEntryFormat()

@@ -11,7 +11,7 @@ local no_errors, error_msg = pcall(function()
 
   local time
   local profile_info
-  local should_profile = true
+  local should_profile = false
   if should_profile then
     local hrtime = vim.loop.hrtime
     profile_info = {}
@@ -174,6 +174,10 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/peter/.local/share/nvim/site/pack/packer/start/rnvimr"
   },
+  tagbar = {
+    loaded = true,
+    path = "/home/peter/.local/share/nvim/site/pack/packer/start/tagbar"
+  },
   ["telescope.nvim"] = {
     loaded = true,
     path = "/home/peter/.local/share/nvim/site/pack/packer/start/telescope.nvim"
@@ -189,6 +193,10 @@ _G.packer_plugins = {
   ["vim-easymotion"] = {
     loaded = true,
     path = "/home/peter/.local/share/nvim/site/pack/packer/start/vim-easymotion"
+  },
+  ["vim-grammarous"] = {
+    loaded = true,
+    path = "/home/peter/.local/share/nvim/site/pack/packer/start/vim-grammarous"
   },
   ["vim-lua-format"] = {
     loaded = true,
