@@ -17,9 +17,10 @@ local Git = require "snappy.Git"
 local tabbar = require "snappy.tabbar"
 local css = require "snappy.css"
 local LSP = require "snappy.LSP"
+local org = require "snappy.org"
 
 local skeletons = {
-  highlights, tabbar, Treesitter, css, -- markdown,
+  highlights, tabbar, Treesitter, css, org, -- markdown,
   -- Whichkey,
   Git, LSP
 }

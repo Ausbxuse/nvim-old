@@ -13,7 +13,7 @@ require'compe'.setup {
   --  documentation = true;
   documentation = {
     -- border = {"╭", "─", "╮", "│", "╯", "─", "╰", "│"}, -- the border option is the same as `|help nvim_open_win|`
-    border = { '', '' ,'', '', '', '', '', '' },
+    border = {'', '', '', '', '', '', '', ''},
     winhighlight = "NormalFloat:CompeDocumentation,FloatBorder:CompeDocumentationBorder",
     max_width = 120,
     min_width = 60,
@@ -22,20 +22,20 @@ require'compe'.setup {
   },
 
   source = {
-    vsnip = {kind = "", priority=3000},
-    -- tabnine = {kind = "", priority=2000, max_num_results=3},
+    vsnip = {kind = "", priority = 30},
+    tabnine = {kind = "", priority = 20, max_num_results = 3},
     path = {menu = ""},
     buffer = {menu = ""},
     nvim_lsp = true,
     nvim_lua = {menu = ""},
     -- treesitter = {menu = "滑"},
-    spell = { kind = "" },
+    spell = {kind = ""},
     calc = false,
     omni = false,
-    emoji = false,
-  },
+    emoji = false
+  }
 
-  on_attach = function(_, _) require"lsp_signature".on_attach() end
+  -- on_attach = function(_, _) require"lsp_signature".on_attach() end
 }
 
 local t = function(str)

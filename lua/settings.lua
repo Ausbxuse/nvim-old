@@ -8,12 +8,12 @@ M.load_options = function()
     clipboard = "unnamedplus", -- allows neovim to access the system clipboard
     cmdheight = 1, -- more space in the neovim command line for displaying messages
     colorcolumn = "99999", -- fixes indentline for now
-    completeopt = { "menuone", "noselect" },
+    completeopt = {"menuone", "noselect"},
     conceallevel = 0, -- so that `` is visible in markdown files
     fileencoding = "utf-8", -- the encoding written to a file
     foldmethod = "manual", -- folding, set to "expr" for treesitter based folding
     foldexpr = "", -- set to "nvim_treesitter#foldexpr()" for treesitter based folding
-    guifont = "monospace:h17", -- the font used in graphical neovim applications
+    guifont = "JetBrains Mono:h11", -- the font used in graphical neovim applications
     hidden = true, -- required to keep multiple buffers and open multiple buffers
     hlsearch = true, -- highlight all matches on previous search pattern
     ignorecase = true, -- ignore case in search patterns
@@ -49,7 +49,7 @@ M.load_options = function()
     scrolloff = 8, -- is one of my fav
     sidescrolloff = 8,
     pumblend = 20,
-    winblend = 20,
+    winblend = 20
   } ---  VIM ONLY COMMANDS  ---cmd "filetype plugin on"cmd('let &titleold="' .. TERMINAL .. '"')cmd "set inccommand=split"cmd "set iskeyword+=-"
 
   ---  SETTINGS  ---
@@ -57,9 +57,7 @@ M.load_options = function()
   opt.shortmess:append "c"
   opt.iskeyword:append "-"
 
-  for k, v in pairs(default_options) do
-    vim.opt[k] = v
-  end
+  for k, v in pairs(default_options) do vim.opt[k] = v end
 end
 
 M.load_autocmds = function()
@@ -108,14 +106,17 @@ M.load_autocmds = function()
 
     " save cursor's last position
     autocmd BufReadPost * if line("'\"") >= 1 && line("'\"") <= line("$") && &ft !~# 'commit'  |   exe "normal! g`\""  | endif
+
+    " for eslint
+    "autocmd BufWritePre <buffer> <cmd>EslintFixAll<CR>
+
+    let g:neovide_transparency=0.8
   ]])
 end
 
 M.load_commands = function()
   local cmd = vim.cmd
-  if lvim.line_wrap_cursor_movement then
-    cmd "set whichwrap+=<,>,[,],h,l"
-  end
+  if lvim.line_wrap_cursor_movement then cmd "set whichwrap+=<,>,[,],h,l" end
 
   if lvim.transparent_window then
     cmd "au ColorScheme * hi Normal ctermbg=none guibg=none"

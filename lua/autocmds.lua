@@ -17,14 +17,11 @@ autocmd Filetype markdown,rmd inoremap ;2 ##<Space><Enter><++><Esc>kA
 autocmd Filetype markdown,rmd inoremap ;3 ###<Space><Enter><++><Esc>kA
 autocmd Filetype markdown,rmd inoremap ;4 ####<Space><Enter><++><Esc>kA
 autocmd Filetype markdown,rmd inoremap ;j \|--------
-" Keymappings in normal mode
+
 autocmd Filetype markdown,rmd nnoremap ;s y$d$i ~~<Esc>pa~~<Esc>0
 autocmd Filetype markdown,rmd nnoremap \s 0f~xxf~xx0
 
-"highlight clear SpellRare 
-"highlight clear SpellBad 
-"highlight clear SpellCap 
-"highlight clear SpellLocal
+autocmd BufWritePost *.rmd AsyncRun compile %
 
 autocmd BufWritePre *.lua call LuaFormat()
 autocmd BufWritePre *.html PrettierAsync

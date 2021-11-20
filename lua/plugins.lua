@@ -1,56 +1,59 @@
--- This file can be loaded by calling `lua require('plugins')` from your init.vim
--- Only required if you have packer configured as `opt`
-vim.cmd [[packadd packer.nvim]]
--- Only if your version of Neovim doesn't have https://github.com/neovim/neovim/pull/12632 merged
--- vim._update_package_paths()
+local execute = vim.api.nvim_command
+local fn = vim.fn
+local install_path = fn.stdpath('data') .. '/site/pack/packer/start/packer.nvim'
+if fn.empty(fn.glob(install_path)) > 0 then
+  fn.system({
+    'git', 'clone', 'https://github.com/wbthomason/packer.nvim', install_path
+  })
+  execute 'packadd packer.nvim'
+end
 
 return require('packer').startup(function(use)
   -- Packer can manage itself
   use 'wbthomason/packer.nvim'
+  use 'lewis6991/impatient.nvim'
   use 'b3nj5m1n/kommentary'
-  use {'glacambre/firenvim', run = function() vim.fn['firenvim#install'](0) end}
+  -- use {'glacambre/firenvim', run = function() vim.fn['firenvim#install'](0) end}
 
   -- Simple plugins can be specified as strings
   -- use '9mm/vim-closer'
   use 'nvim-treesitter/playground'
   use 'alvan/vim-closetag'
   use 'akinsho/nvim-toggleterm.lua'
-  use 'ray-x/lsp_signature.nvim'
+
+  use 'windwp/nvim-ts-autotag'
+  -- use 'ray-x/lsp_signature.nvim'
 
   use 'nvim-lua/popup.nvim'
   use 'nvim-lua/plenary.nvim'
   use 'nvim-telescope/telescope.nvim'
   use 'lukas-reineke/indent-blankline.nvim'
   use 'neovim/nvim-lspconfig'
-  use 'hrsh7th/nvim-compe'
+  -- use 'hrsh7th/nvim-compe' -- not anymore?
   --  use 'romgrk/doom-one.vim'
   --  use 'sainnhe/sonokai'
   -- use 'chuling/equinusocio-material.vim' --????
   -- use 'camspiers/animate.vim'
   -- use 'camspiers/lens.vim'
-  -- use 'godlygeek/tabular'
   use 'romgrk/barbar.nvim'
   -- use 'wfxr/minimap.vim', {'do': ':!cargo install --locked code-minimap'}
-  -- use 'plasticboy/vim-markdown'
   use 'andrejlevkovitch/vim-lua-format'
   use 'norcalli/nvim-colorizer.lua'
   --  use 'sheerun/vim-polyglot'
   use 'ryanoasis/vim-devicons'
   --  use 'jiangmiao/auto-pairs'
-  use 'windwp/nvim-autopairs'
   use 'preservim/tagbar'
-  use 'mhinz/vim-startify'
+  -- use 'mhinz/vim-startify'
   -- use 'liuchengxu/vista.vim'
   use 'liuchengxu/vim-which-key'
   use 'kyazdani42/nvim-tree.lua'
   use 'hrsh7th/vim-vsnip'
   use 'hrsh7th/vim-vsnip-integ'
   use 'honza/vim-snippets'
-  -- use 'https://github.com/vimwiki/vimwiki.git'
+  use 'https://github.com/vimwiki/vimwiki.git'
   use 'metakirby5/codi.vim'
   use 'asvetliakov/vim-easymotion'
   -- use 'glepnir/dashboard-nvim'
-  use 'rafamadriz/friendly-snippets'
   -- use 'p00f/nvim-ts-rainbow'
   -- use 'nvim-lua/completion-nvim'
   use 'turbio/bracey.vim'
@@ -101,7 +104,7 @@ return require('packer').startup(function(use)
     -- cmd = 'MarkdownPreview',
   }
   use {'rhysd/vim-grammarous'}
-  use {'tzachar/compe-tabnine', run = './install.sh'}
+  -- use {'tzachar/compe-tabnine', run = './install.sh'}
   use {'prettier/vim-prettier', run = 'yarn install'}
   use {'kevinhwang91/rnvimr', run = 'make sync'}
 
@@ -124,5 +127,79 @@ return require('packer').startup(function(use)
 
   -- You can specify multiple plugins in a single call
   --  use {'tjdevries/colorbuddy.vim', {'nvim-treesitter/nvim-treesitter', opt = true}}
+  use {'skywind3000/asyncrun.vim'}
+
+  use {
+    'williamboman/nvim-lsp-installer',
+    config = [[ require('core/lsp_installer') ]]
+  }
+  use { -- vscode-like pictograms for neovim lsp completion items Topics
+    'onsails/lspkind-nvim',
+    config = [[ require('core/lspkind') ]]
+  }
+  use { -- A completion plugin for neovim coded in Lua.
+    'hrsh7th/nvim-cmp',
+    requires = {
+      "hrsh7th/cmp-nvim-lsp", -- nvim-cmp source for neovim builtin LSP client
+      "hrsh7th/cmp-nvim-lua", -- nvim-cmp source for nvim lua
+      "hrsh7th/cmp-buffer", -- nvim-cmp source for buffer words.
+      "hrsh7th/cmp-path", -- nvim-cmp source for filesystem paths.
+      "hrsh7th/cmp-calc", -- nvim-cmp source for math calculation.
+      "saadparwaiz1/cmp_luasnip" -- luasnip completion source for nvim-cmp
+    },
+    config = [[ require('core/cmp') ]]
+  }
+
+  use { -- Snippet Engine for Neovim written in Lua.
+    'L3MON4D3/LuaSnip',
+    requires = {
+      "rafamadriz/friendly-snippets" -- Snippets collection for a set of different programming languages for faster development.
+    },
+    config = [[ require('core/luasnip') ]]
+  }
+
+  use { -- A super powerful autopairs for Neovim. It support multiple character.
+    'windwp/nvim-autopairs',
+    config = [[ require('core/autopairs') ]]
+  }
+
+  use {
+    "folke/zen-mode.nvim",
+    config = function()
+      require("zen-mode").setup {
+        window = {
+          width = .65 -- width will be 85% of the editor width
+        }
+      }
+    end
+  }
+  use {
+    'kristijanhusak/orgmode.nvim',
+    config = function()
+      require('orgmode').setup {}
+      require('core/org')
+    end
+  }
+
+  use {
+    "akinsho/org-bullets.nvim",
+    config = function()
+      require("org-bullets").setup {
+        symbols = {"◉", "○", "●", "○"}
+        -- or a function that receives the defaults and returns a list
+        --[[ symbols = function(default_list)
+      table.insert(default_list, "♥")
+      return default_list
+    end ]]
+      }
+    end
+  }
+
+  use {
+    'goolord/alpha-nvim',
+    config = function()
+      require'alpha'.setup(require'alpha.themes.dashboard'.opts)
+    end
+  }
 
 end)

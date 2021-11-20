@@ -32,6 +32,7 @@ vim.g.startify_session_persistence = 1
 vim.g.webdevicons_enable_startify = 1
 
 vim.g.vista_default_executive = 'nvim_lsp'
+vim.g.neovide_transparency = 0.8
 
 vim.cmd([[
 function! StartifyEntryFormat()
@@ -40,7 +41,8 @@ endfunction
 
 let g:startify_lists = [{ 'type': 'files',     'header': ['   Files']                        }, { 'type': 'dir',       'header': ['   Current Directory '. getcwd()] }, { 'type': 'sessions',  'header': ['   Sessions']                     }, { 'type': 'bookmarks', 'header': ['   Bookmarks']                    }, ]
 
-let g:startify_bookmarks = [{ 'i': '~/.config/nvim/init.vim' },{ 'a': '~/.config/awesome/rc.lua' },{ 't': '~/Documents/private/todo.md' },]
+let g:startify_bookmarks = [{ 'i': '~/.config/nvim/init.vim' },{ 'a': '~/.config/awesome/rc.lua' },{ 't': '~/Documents/private/todo/todo.md' },]
+let g:neovide_transparency = 0.8
 ]])
 
 --[[ vim.g.startify_bookmarks = {

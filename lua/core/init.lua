@@ -7,6 +7,5 @@ require('core.kommentary')
 require('core.lspconfig')
 require('core.toggleterm')
 require('core.indent_blankline')
-require('core.compe')
 
 require('core.general')
