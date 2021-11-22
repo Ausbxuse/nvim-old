@@ -1,4 +1,4 @@
-local gl = require('galaxyline')
+--[[ local gl = require('galaxyline')
 local colors = require('colors')
 local condition = require('galaxyline.condition')
 local gls = gl.section
@@ -283,4 +283,40 @@ gls.short_line_left[2] = {
 
 gls.short_line_right[1] = {
   BufferIcon = {provider = 'BufferIcon', highlight = {colors.fg, colors.bg}}
+} ]] local custom_theme = require 'lualine.themes.auto'
+-- Change the background of lualine_c section for normal mode
+custom_theme.visual.a.bg = '#bd93f9' -- rgb colors are supported
+custom_theme.visual.b.fg = '#bd93f9' -- rgb colors are supported
+custom_theme.insert.a.bg = '#abe15b' -- rgb colors are supported
+custom_theme.insert.b.fg = '#abe15b' -- rgb colors are supported
+
+require'lualine'.setup {
+  options = {
+    icons_enabled = true,
+    theme = custom_theme,
+    component_separators = {left = '', right = ''},
+    section_separators = {left = '', right = ''},
+    disabled_filetypes = {},
+    always_divide_middle = true
+  },
+  sections = {
+    lualine_a = {'mode'},
+    lualine_b = {
+      'branch', 'diff', {'diagnostics', sources = {'nvim_lsp', 'coc'}}
+    },
+    lualine_c = {'filename'},
+    lualine_x = {'encoding', 'fileformat', 'filetype'},
+    lualine_y = {'progress'},
+    lualine_z = {'location'}
+  },
+  inactive_sections = {
+    lualine_a = {},
+    lualine_b = {},
+    lualine_c = {'filename'},
+    lualine_x = {'location'},
+    lualine_y = {},
+    lualine_z = {}
+  },
+  tabline = {},
+  extensions = {}
 }

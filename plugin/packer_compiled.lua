@@ -76,7 +76,7 @@ _G.packer_plugins = {
     url = "https://github.com/L3MON4D3/LuaSnip"
   },
   ["alpha-nvim"] = {
-    config = { "\27LJ\1\2_\0\0\3\0\5\0\n4\0\0\0%\1\1\0>\0\2\0027\0\2\0004\1\0\0%\2\3\0>\1\2\0027\1\4\1>\0\2\1G\0\1\0\topts\27alpha.themes.dashboard\nsetup\nalpha\frequire\0" },
+    config = { "\27LJ\1\2\6\0\0\b\0\29\1;4\0\0\0%\1\1\0>\0\2\0024\1\0\0%\2\2\0>\1\2\0027\2\3\0017\2\4\0023\3\6\0:\3\5\0027\2\3\0017\2\a\0022\3\3\0007\4\b\1%\5\t\0%\6\n\0%\a\v\0>\4\4\2;\4\1\0037\4\b\1%\5\f\0%\6\r\0%\a\14\0>\4\4\0<\4\0\0:\3\5\0027\2\3\0017\2\a\0027\2\15\2%\3\17\0:\3\16\0027\2\3\0017\2\a\0027\2\15\2%\3\19\0:\3\18\0024\2\20\0007\2\21\2%\3\22\0>\2\2\2\16\4\2\0007\3\23\2%\5\24\0>\3\3\2\16\5\2\0007\4\25\2>\4\2\0017\4\3\0017\4\26\4:\3\5\0047\4\3\0017\4\26\0047\4\15\4%\5\27\0:\5\16\0047\4\28\0007\5\15\1>\4\2\1G\0\1\0\nsetup\fComment\vfooter\nclose\a*a\tread\ffortune\npopen\aio\vNumber\16hl_shortcut\rFunction\ahl\topts\f:qa<CR>\19ï™™  Quit NVIM\6q :ene <BAR> startinsert <CR>\18ï…›  New file\6e\vbutton\fbuttons\1\a\0\0006                               __                6  ___     ___    ___   __  __ /\\_\\    ___ ___    6 / _ `\\  / __`\\ / __`\\/\\ \\/\\ \\\\/\\ \\  / __` __`\\  6/\\ \\/\\ \\/\\  __//\\ \\_\\ \\ \\ \\_/ |\\ \\ \\/\\ \\/\\ \\/\\ \\ 6\\ \\_\\ \\_\\ \\____\\ \\____/\\ \\___/  \\ \\_\\ \\_\\ \\_\\ \\_\\6 \\/_/\\/_/\\/____/\\/___/  \\/__/    \\/_/\\/_/\\/_/\\/_/\bval\vheader\fsection\27alpha.themes.dashboard\nalpha\frequire\5€€À™\4\0" },
     loaded = true,
     path = "/home/peter/.local/share/nvim/site/pack/packer/start/alpha-nvim",
     url = "https://github.com/goolord/alpha-nvim"
@@ -86,15 +86,16 @@ _G.packer_plugins = {
     path = "/home/peter/.local/share/nvim/site/pack/packer/start/asyncrun.vim",
     url = "https://github.com/skywind3000/asyncrun.vim"
   },
-  ["barbar.nvim"] = {
-    loaded = true,
-    path = "/home/peter/.local/share/nvim/site/pack/packer/start/barbar.nvim",
-    url = "https://github.com/romgrk/barbar.nvim"
-  },
   ["bracey.vim"] = {
     loaded = true,
     path = "/home/peter/.local/share/nvim/site/pack/packer/start/bracey.vim",
     url = "https://github.com/turbio/bracey.vim"
+  },
+  ["bufferline.nvim"] = {
+    config = { "\27LJ\1\2/\0\0\2\0\2\0\0044\0\0\0%\1\1\0>\0\2\1G\0\1\0\20core/bufferline\frequire\0" },
+    loaded = true,
+    path = "/home/peter/.local/share/nvim/site/pack/packer/start/bufferline.nvim",
+    url = "https://github.com/akinsho/bufferline.nvim"
   },
   ["cmp-buffer"] = {
     loaded = true,
@@ -141,12 +142,6 @@ _G.packer_plugins = {
     path = "/home/peter/.local/share/nvim/site/pack/packer/start/friendly-snippets",
     url = "https://github.com/rafamadriz/friendly-snippets"
   },
-  ["galaxyline.nvim"] = {
-    config = { "\27LJ\1\2/\0\0\2\0\2\0\0044\0\0\0%\1\1\0>\0\2\1G\0\1\0\20core.statusline\frequire\0" },
-    loaded = true,
-    path = "/home/peter/.local/share/nvim/site/pack/packer/start/galaxyline.nvim",
-    url = "https://github.com/glepnir/galaxyline.nvim"
-  },
   ["gitsigns.nvim"] = {
     loaded = true,
     path = "/home/peter/.local/share/nvim/site/pack/packer/start/gitsigns.nvim",
@@ -172,6 +167,12 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/peter/.local/share/nvim/site/pack/packer/start/lspkind-nvim",
     url = "https://github.com/onsails/lspkind-nvim"
+  },
+  ["lualine.nvim"] = {
+    config = { ' require("core/statusline") ' },
+    loaded = true,
+    path = "/home/peter/.local/share/nvim/site/pack/packer/start/lualine.nvim",
+    url = "https://github.com/nvim-lualine/lualine.nvim"
   },
   ["markdown-preview.nvim"] = {
     loaded = true,
@@ -225,6 +226,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/peter/.local/share/nvim/site/pack/packer/start/nvim-ts-autotag",
     url = "https://github.com/windwp/nvim-ts-autotag"
+  },
+  ["nvim-ts-rainbow"] = {
+    loaded = true,
+    path = "/home/peter/.local/share/nvim/site/pack/packer/start/nvim-ts-rainbow",
+    url = "https://github.com/p00f/nvim-ts-rainbow"
   },
   ["nvim-web-devicons"] = {
     loaded = true,
@@ -333,11 +339,6 @@ _G.packer_plugins = {
     path = "/home/peter/.local/share/nvim/site/pack/packer/start/vimspector",
     url = "https://github.com/puremourning/vimspector"
   },
-  ["vimwiki.git"] = {
-    loaded = true,
-    path = "/home/peter/.local/share/nvim/site/pack/packer/start/vimwiki.git",
-    url = "https://github.com/vimwiki/vimwiki"
-  },
   ["zen-mode.nvim"] = {
     config = { "\27LJ\1\2`\0\0\3\0\6\0\t4\0\0\0%\1\1\0>\0\2\0027\0\2\0003\1\4\0003\2\3\0:\2\5\1>\0\2\1G\0\1\0\vwindow\1\0\0\1\0\1\nwidth\4Í™³æ\fÌ™“ÿ\3\nsetup\rzen-mode\frequire\0" },
     loaded = true,
@@ -347,10 +348,10 @@ _G.packer_plugins = {
 }
 
 time([[Defining packer_plugins]], false)
--- Config for: org-bullets.nvim
-time([[Config for org-bullets.nvim]], true)
-try_loadstring("\27LJ\1\2d\0\0\3\0\6\0\t4\0\0\0%\1\1\0>\0\2\0027\0\2\0003\1\4\0003\2\3\0:\2\5\1>\0\2\1G\0\1\0\fsymbols\1\0\0\1\5\0\0\bâ—‰\bâ—‹\bâ—\bâ—‹\nsetup\16org-bullets\frequire\0", "config", "org-bullets.nvim")
-time([[Config for org-bullets.nvim]], false)
+-- Config for: LuaSnip
+time([[Config for LuaSnip]], true)
+ require('core/luasnip') 
+time([[Config for LuaSnip]], false)
 -- Config for: nvim-cmp
 time([[Config for nvim-cmp]], true)
  require('core/cmp') 
@@ -361,32 +362,36 @@ try_loadstring("\27LJ\1\2N\0\0\2\0\4\0\n4\0\0\0%\1\1\0>\0\2\0027\0\2\0002\1\0\0>
 time([[Config for orgmode.nvim]], false)
 -- Config for: alpha-nvim
 time([[Config for alpha-nvim]], true)
-try_loadstring("\27LJ\1\2_\0\0\3\0\5\0\n4\0\0\0%\1\1\0>\0\2\0027\0\2\0004\1\0\0%\2\3\0>\1\2\0027\1\4\1>\0\2\1G\0\1\0\topts\27alpha.themes.dashboard\nsetup\nalpha\frequire\0", "config", "alpha-nvim")
+try_loadstring("\27LJ\1\2\6\0\0\b\0\29\1;4\0\0\0%\1\1\0>\0\2\0024\1\0\0%\2\2\0>\1\2\0027\2\3\0017\2\4\0023\3\6\0:\3\5\0027\2\3\0017\2\a\0022\3\3\0007\4\b\1%\5\t\0%\6\n\0%\a\v\0>\4\4\2;\4\1\0037\4\b\1%\5\f\0%\6\r\0%\a\14\0>\4\4\0<\4\0\0:\3\5\0027\2\3\0017\2\a\0027\2\15\2%\3\17\0:\3\16\0027\2\3\0017\2\a\0027\2\15\2%\3\19\0:\3\18\0024\2\20\0007\2\21\2%\3\22\0>\2\2\2\16\4\2\0007\3\23\2%\5\24\0>\3\3\2\16\5\2\0007\4\25\2>\4\2\0017\4\3\0017\4\26\4:\3\5\0047\4\3\0017\4\26\0047\4\15\4%\5\27\0:\5\16\0047\4\28\0007\5\15\1>\4\2\1G\0\1\0\nsetup\fComment\vfooter\nclose\a*a\tread\ffortune\npopen\aio\vNumber\16hl_shortcut\rFunction\ahl\topts\f:qa<CR>\19ï™™  Quit NVIM\6q :ene <BAR> startinsert <CR>\18ï…›  New file\6e\vbutton\fbuttons\1\a\0\0006                               __                6  ___     ___    ___   __  __ /\\_\\    ___ ___    6 / _ `\\  / __`\\ / __`\\/\\ \\/\\ \\\\/\\ \\  / __` __`\\  6/\\ \\/\\ \\/\\  __//\\ \\_\\ \\ \\ \\_/ |\\ \\ \\/\\ \\/\\ \\/\\ \\ 6\\ \\_\\ \\_\\ \\____\\ \\____/\\ \\___/  \\ \\_\\ \\_\\ \\_\\ \\_\\6 \\/_/\\/_/\\/____/\\/___/  \\/__/    \\/_/\\/_/\\/_/\\/_/\bval\vheader\fsection\27alpha.themes.dashboard\nalpha\frequire\5€€À™\4\0", "config", "alpha-nvim")
 time([[Config for alpha-nvim]], false)
 -- Config for: lspkind-nvim
 time([[Config for lspkind-nvim]], true)
  require('core/lspkind') 
 time([[Config for lspkind-nvim]], false)
--- Config for: LuaSnip
-time([[Config for LuaSnip]], true)
- require('core/luasnip') 
-time([[Config for LuaSnip]], false)
+-- Config for: lualine.nvim
+time([[Config for lualine.nvim]], true)
+ require("core/statusline") 
+time([[Config for lualine.nvim]], false)
+-- Config for: org-bullets.nvim
+time([[Config for org-bullets.nvim]], true)
+try_loadstring("\27LJ\1\2d\0\0\3\0\6\0\t4\0\0\0%\1\1\0>\0\2\0027\0\2\0003\1\4\0003\2\3\0:\2\5\1>\0\2\1G\0\1\0\fsymbols\1\0\0\1\5\0\0\bâ—‰\bâ—‹\bâ—\bâ—‹\nsetup\16org-bullets\frequire\0", "config", "org-bullets.nvim")
+time([[Config for org-bullets.nvim]], false)
 -- Config for: nvim-lsp-installer
 time([[Config for nvim-lsp-installer]], true)
  require('core/lsp_installer') 
 time([[Config for nvim-lsp-installer]], false)
--- Config for: nvim-autopairs
-time([[Config for nvim-autopairs]], true)
- require('core/autopairs') 
-time([[Config for nvim-autopairs]], false)
 -- Config for: zen-mode.nvim
 time([[Config for zen-mode.nvim]], true)
 try_loadstring("\27LJ\1\2`\0\0\3\0\6\0\t4\0\0\0%\1\1\0>\0\2\0027\0\2\0003\1\4\0003\2\3\0:\2\5\1>\0\2\1G\0\1\0\vwindow\1\0\0\1\0\1\nwidth\4Í™³æ\fÌ™“ÿ\3\nsetup\rzen-mode\frequire\0", "config", "zen-mode.nvim")
 time([[Config for zen-mode.nvim]], false)
--- Config for: galaxyline.nvim
-time([[Config for galaxyline.nvim]], true)
-try_loadstring("\27LJ\1\2/\0\0\2\0\2\0\0044\0\0\0%\1\1\0>\0\2\1G\0\1\0\20core.statusline\frequire\0", "config", "galaxyline.nvim")
-time([[Config for galaxyline.nvim]], false)
+-- Config for: nvim-autopairs
+time([[Config for nvim-autopairs]], true)
+ require('core/autopairs') 
+time([[Config for nvim-autopairs]], false)
+-- Config for: bufferline.nvim
+time([[Config for bufferline.nvim]], true)
+try_loadstring("\27LJ\1\2/\0\0\2\0\2\0\0044\0\0\0%\1\1\0>\0\2\1G\0\1\0\20core/bufferline\frequire\0", "config", "bufferline.nvim")
+time([[Config for bufferline.nvim]], false)
 if should_profile then save_profiles() end
 
 end)

@@ -78,7 +78,7 @@ local highlight = {
   SpecialComment = {fg = C.yellow, bg = 'NONE'},
   SignColumn = {
     fg = C.ui_12,
-    bg = Config.transparent_background and "NONE" or C.blue
+    bg = Config.transparent_background and "NONE" or C.ui_10
   },
   WildMenu = {fg = 'NONE', bg = C.ui_4},
   IncSearch = {fg = C.ui_10, bg = C.yellow},

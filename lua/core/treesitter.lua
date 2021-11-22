@@ -28,8 +28,9 @@ require'nvim-treesitter.configs'.setup {
       show_help = '?'
     }
   },
-  rainbow = {
-    enable = true,
+
+  rainbow = { -- TODO: looks awful, need to change color scheme
+    enable = false,
     extended_mode = true, -- Highlight also non-parentheses delimiters, boolean or table: lang -> boolean
     max_file_lines = 1000, -- Do not enable for files with more than 1000 lines, int
     colors = {

@@ -35,7 +35,7 @@ return require('packer').startup(function(use)
   -- use 'chuling/equinusocio-material.vim' --????
   -- use 'camspiers/animate.vim'
   -- use 'camspiers/lens.vim'
-  use 'romgrk/barbar.nvim'
+  -- use 'romgrk/barbar.nvim'
   -- use 'wfxr/minimap.vim', {'do': ':!cargo install --locked code-minimap'}
   use 'andrejlevkovitch/vim-lua-format'
   use 'norcalli/nvim-colorizer.lua'
@@ -50,11 +50,11 @@ return require('packer').startup(function(use)
   use 'hrsh7th/vim-vsnip'
   use 'hrsh7th/vim-vsnip-integ'
   use 'honza/vim-snippets'
-  use 'https://github.com/vimwiki/vimwiki.git'
+  -- use 'https://github.com/vimwiki/vimwiki.git'
   use 'metakirby5/codi.vim'
   use 'asvetliakov/vim-easymotion'
   -- use 'glepnir/dashboard-nvim'
-  -- use 'p00f/nvim-ts-rainbow'
+  use 'p00f/nvim-ts-rainbow'
   -- use 'nvim-lua/completion-nvim'
   use 'turbio/bracey.vim'
   use 'mattn/emmet-vim'
@@ -115,12 +115,12 @@ return require('packer').startup(function(use)
   --  use { 'glacambre/firenvim', run = function() vim.fn['firenvim#install'](0) end }
 
   -- Use specific branch, dependency and run lua file after load
-  use {
+  --[[ use {
     'glepnir/galaxyline.nvim',
     config = function() require("core.statusline") end,
     branch = 'main',
     requires = {'kyazdani42/nvim-web-devicons'}
-  }
+  } ]]
 
   -- Use dependency and run lua function after load
   use {'lewis6991/gitsigns.nvim', requires = {'nvim-lua/plenary.nvim'}}
@@ -198,8 +198,41 @@ return require('packer').startup(function(use)
   use {
     'goolord/alpha-nvim',
     config = function()
-      require'alpha'.setup(require'alpha.themes.dashboard'.opts)
+      local alpha = require 'alpha'
+      local dashboard = require 'alpha.themes.dashboard'
+      dashboard.section.header.val = {
+        [[                               __                ]],
+        [[  ___     ___    ___   __  __ /\_\    ___ ___    ]],
+        [[ / _ `\  / __`\ / __`\/\ \/\ \\/\ \  / __` __`\  ]],
+        [[/\ \/\ \/\  __//\ \_\ \ \ \_/ |\ \ \/\ \/\ \/\ \ ]],
+        [[\ \_\ \_\ \____\ \____/\ \___/  \ \_\ \_\ \_\ \_\]],
+        [[ \/_/\/_/\/____/\/___/  \/__/    \/_/\/_/\/_/\/_/]]
+      }
+      dashboard.section.buttons.val = {
+        dashboard.button("e", "  New file", ":ene <BAR> startinsert <CR>"),
+        dashboard.button("q", "  Quit NVIM", ":qa<CR>")
+      }
+      dashboard.section.buttons.opts.hl = "Function"
+      dashboard.section.buttons.opts.hl_shortcut = "Number"
+      local handle = io.popen('fortune')
+      local fortune = handle:read("*a")
+      handle:close()
+      dashboard.section.footer.val = fortune
+      dashboard.section.footer.opts.hl = "Comment"
+      alpha.setup(dashboard.opts)
     end
+  }
+
+  use {
+    'nvim-lualine/lualine.nvim',
+    config = [[ require("core/statusline") ]],
+    requires = {'kyazdani42/nvim-web-devicons'}
+  }
+
+  use {
+    'akinsho/bufferline.nvim',
+    config = function() require("core/bufferline") end,
+    requires = {'kyazdani42/nvim-web-devicons'}
   }
 
 end)

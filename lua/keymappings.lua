@@ -54,7 +54,8 @@ local default_keys = {
     {"<leader>b", "<cmd>Telescope buffers<cr>"},
     {"<leader>x", "<cmd>Telescope commands<cr>"},
     {"<leader>fh", "<cmd>Telescope help_tags<cr>"}, {"<leader>j", ":bn<cr>"},
-    {"<leader>k", ":bp<cr>"}, {"gd", "<cmd>lua vim.lsp.buf.definition()<cr>"}
+    {"<leader>k", ":bp<cr>"}, {"gd", "<cmd>lua vim.lsp.buf.definition()<cr>"},
+    {"gb", ":BufferLinePick<CR>"}
     --[[ {"gD", "<cmd>lua vim.lsp.buf.declaration()<cr>"},
     {"gr", "<cmd>lua vim.lsp.buf.references()<cr>"},
     {"gi", "<cmd>lua vim.lsp.buf.implementation()<cr>"},

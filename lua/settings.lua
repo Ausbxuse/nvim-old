@@ -27,7 +27,7 @@ M.load_options = function()
     splitright = true, -- force all vertical splits to go to the right of current window
     swapfile = false, -- creates a swapfile
     termguicolors = true, -- set term gui colors (most terminals support this)
-    timeoutlen = 200, -- time to wait for a mapped sequence to complete (in milliseconds)
+    timeoutlen = 500, -- time to wait for a mapped sequence to complete (in milliseconds)
     title = true, -- set the title of window to the value of the titlestring
     -- opt.titlestring = "%<%F%=%l/%L - nvim" -- what the title of the window will be set to
     undodir = "/home/peter/.cache/nvim/undo", -- set an undo directory
@@ -114,7 +114,7 @@ M.load_autocmds = function()
   ]])
 end
 
-M.load_commands = function()
+--[[ M.load_commands = function()
   local cmd = vim.cmd
   if lvim.line_wrap_cursor_movement then cmd "set whichwrap+=<,>,[,],h,l" end
 
@@ -127,6 +127,6 @@ M.load_commands = function()
     cmd "au ColorScheme * hi NvimTreeNormal ctermbg=none guibg=none"
     cmd "let &fcs='eob: '"
   end
-end
+end ]]
 
 return M
