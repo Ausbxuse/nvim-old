@@ -49,7 +49,8 @@ M.load_options = function()
     scrolloff = 8, -- is one of my fav
     sidescrolloff = 8,
     pumblend = 20,
-    winblend = 20
+    winblend = 20,
+    inccommand = "split"
   } ---  VIM ONLY COMMANDS  ---cmd "filetype plugin on"cmd('let &titleold="' .. TERMINAL .. '"')cmd "set inccommand=split"cmd "set iskeyword+=-"
 
   ---  SETTINGS  ---
@@ -113,20 +114,5 @@ M.load_autocmds = function()
     let g:neovide_transparency=0.8
   ]])
 end
-
---[[ M.load_commands = function()
-  local cmd = vim.cmd
-  if lvim.line_wrap_cursor_movement then cmd "set whichwrap+=<,>,[,],h,l" end
-
-  if lvim.transparent_window then
-    cmd "au ColorScheme * hi Normal ctermbg=none guibg=none"
-    cmd "au ColorScheme * hi SignColumn ctermbg=none guibg=none"
-    cmd "au ColorScheme * hi NormalNC ctermbg=none guibg=none"
-    cmd "au ColorScheme * hi MsgArea ctermbg=none guibg=none"
-    cmd "au ColorScheme * hi TelescopeBorder ctermbg=none guibg=none"
-    cmd "au ColorScheme * hi NvimTreeNormal ctermbg=none guibg=none"
-    cmd "let &fcs='eob: '"
-  end
-end ]]
 
 return M

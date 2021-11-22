@@ -76,7 +76,7 @@ _G.packer_plugins = {
     url = "https://github.com/L3MON4D3/LuaSnip"
   },
   ["alpha-nvim"] = {
-    config = { "\27LJ\1\2\6\0\0\b\0\29\1;4\0\0\0%\1\1\0>\0\2\0024\1\0\0%\2\2\0>\1\2\0027\2\3\0017\2\4\0023\3\6\0:\3\5\0027\2\3\0017\2\a\0022\3\3\0007\4\b\1%\5\t\0%\6\n\0%\a\v\0>\4\4\2;\4\1\0037\4\b\1%\5\f\0%\6\r\0%\a\14\0>\4\4\0<\4\0\0:\3\5\0027\2\3\0017\2\a\0027\2\15\2%\3\17\0:\3\16\0027\2\3\0017\2\a\0027\2\15\2%\3\19\0:\3\18\0024\2\20\0007\2\21\2%\3\22\0>\2\2\2\16\4\2\0007\3\23\2%\5\24\0>\3\3\2\16\5\2\0007\4\25\2>\4\2\0017\4\3\0017\4\26\4:\3\5\0047\4\3\0017\4\26\0047\4\15\4%\5\27\0:\5\16\0047\4\28\0007\5\15\1>\4\2\1G\0\1\0\nsetup\fComment\vfooter\nclose\a*a\tread\ffortune\npopen\aio\vNumber\16hl_shortcut\rFunction\ahl\topts\f:qa<CR>\19ï™™  Quit NVIM\6q :ene <BAR> startinsert <CR>\18ï…›  New file\6e\vbutton\fbuttons\1\a\0\0006                               __                6  ___     ___    ___   __  __ /\\_\\    ___ ___    6 / _ `\\  / __`\\ / __`\\/\\ \\/\\ \\\\/\\ \\  / __` __`\\  6/\\ \\/\\ \\/\\  __//\\ \\_\\ \\ \\ \\_/ |\\ \\ \\/\\ \\/\\ \\/\\ \\ 6\\ \\_\\ \\_\\ \\____\\ \\____/\\ \\___/  \\ \\_\\ \\_\\ \\_\\ \\_\\6 \\/_/\\/_/\\/____/\\/___/  \\/__/    \\/_/\\/_/\\/_/\\/_/\bval\vheader\fsection\27alpha.themes.dashboard\nalpha\frequire\5€€À™\4\0" },
+    config = { "\27LJ\1\2=\0\0\2\0\3\0\0064\0\0\0%\1\1\0>\0\2\0027\0\2\0>\0\1\1G\0\1\0\vconfig\19core/dashboard\frequire\0" },
     loaded = true,
     path = "/home/peter/.local/share/nvim/site/pack/packer/start/alpha-nvim",
     url = "https://github.com/goolord/alpha-nvim"
@@ -362,7 +362,7 @@ try_loadstring("\27LJ\1\2N\0\0\2\0\4\0\n4\0\0\0%\1\1\0>\0\2\0027\0\2\0002\1\0\0>
 time([[Config for orgmode.nvim]], false)
 -- Config for: alpha-nvim
 time([[Config for alpha-nvim]], true)
-try_loadstring("\27LJ\1\2\6\0\0\b\0\29\1;4\0\0\0%\1\1\0>\0\2\0024\1\0\0%\2\2\0>\1\2\0027\2\3\0017\2\4\0023\3\6\0:\3\5\0027\2\3\0017\2\a\0022\3\3\0007\4\b\1%\5\t\0%\6\n\0%\a\v\0>\4\4\2;\4\1\0037\4\b\1%\5\f\0%\6\r\0%\a\14\0>\4\4\0<\4\0\0:\3\5\0027\2\3\0017\2\a\0027\2\15\2%\3\17\0:\3\16\0027\2\3\0017\2\a\0027\2\15\2%\3\19\0:\3\18\0024\2\20\0007\2\21\2%\3\22\0>\2\2\2\16\4\2\0007\3\23\2%\5\24\0>\3\3\2\16\5\2\0007\4\25\2>\4\2\0017\4\3\0017\4\26\4:\3\5\0047\4\3\0017\4\26\0047\4\15\4%\5\27\0:\5\16\0047\4\28\0007\5\15\1>\4\2\1G\0\1\0\nsetup\fComment\vfooter\nclose\a*a\tread\ffortune\npopen\aio\vNumber\16hl_shortcut\rFunction\ahl\topts\f:qa<CR>\19ï™™  Quit NVIM\6q :ene <BAR> startinsert <CR>\18ï…›  New file\6e\vbutton\fbuttons\1\a\0\0006                               __                6  ___     ___    ___   __  __ /\\_\\    ___ ___    6 / _ `\\  / __`\\ / __`\\/\\ \\/\\ \\\\/\\ \\  / __` __`\\  6/\\ \\/\\ \\/\\  __//\\ \\_\\ \\ \\ \\_/ |\\ \\ \\/\\ \\/\\ \\/\\ \\ 6\\ \\_\\ \\_\\ \\____\\ \\____/\\ \\___/  \\ \\_\\ \\_\\ \\_\\ \\_\\6 \\/_/\\/_/\\/____/\\/___/  \\/__/    \\/_/\\/_/\\/_/\\/_/\bval\vheader\fsection\27alpha.themes.dashboard\nalpha\frequire\5€€À™\4\0", "config", "alpha-nvim")
+try_loadstring("\27LJ\1\2=\0\0\2\0\3\0\0064\0\0\0%\1\1\0>\0\2\0027\0\2\0>\0\1\1G\0\1\0\vconfig\19core/dashboard\frequire\0", "config", "alpha-nvim")
 time([[Config for alpha-nvim]], false)
 -- Config for: lspkind-nvim
 time([[Config for lspkind-nvim]], true)

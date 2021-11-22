@@ -19,3 +19,4 @@ require('language-server-setup')
 vim.g.colors_name = 'snappy'
 
 require('core')
+require'impatient'.enable_profile()
