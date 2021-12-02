@@ -8,6 +8,14 @@ parser_config.org = {
   filetype = 'org'
 }
 
+parser_config.norg = {
+  install_info = {
+    url = "https://github.com/nvim-neorg/tree-sitter-norg",
+    files = {"src/parser.c", "src/scanner.cc"},
+    branch = "main"
+  }
+}
+
 require'nvim-treesitter.configs'.setup {
   autotag = {enable = true},
   playground = {

@@ -1,7 +1,7 @@
 local Treesitter = {
   -- TSComment = { fg = C.ui_4 },
   -- TSAnnotation = { fg = C.purple },
-  -- TSAttribute = { fg = C.cyan },
+  TSAttribute = {fg = C.cyan},
   TSConstructor = {fg = C.blue, style = 'bold'},
   -- TSType = { fg = C.purple },
   -- TSTypeBuiltin = { fg = C.purple },
@@ -11,7 +11,8 @@ local Treesitter = {
   -- TSKeyword = { fg = C.blue },
   TSEnvironment = {fg = C.magenta},
   TSKeywordFunction = {fg = C.blue, style = 'bold'},
-  -- TSLabel = { fg = C.blue },
+  TSLabel = {fg = C.magenta, style = 'bold'},
+  TSMath = {fg = C.purple, style = 'bold'},
   -- TSNamespace = { fg = C.blue },
   -- TSRepeat = { fg = C.blue },
   TSConstant = {fg = C.green},

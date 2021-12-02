@@ -24,8 +24,8 @@ autocmd Filetype markdown,rmd nnoremap \s 0f~xxf~xx0
 autocmd BufWritePost *.rmd AsyncRun compile %
 
 autocmd BufWritePre *.lua call LuaFormat()
-autocmd BufWritePre *.html PrettierAsync
-autocmd BufWritePre *.css PrettierAsync
-autocmd BufWritePre *.scss PrettierAsync
-autocmd BufWritePre *.js PrettierAsync
+" autocmd BufWritePre *.html PrettierAsync
+" autocmd BufWritePre *.css PrettierAsync
+" autocmd BufWritePre *.scss PrettierAsync
+" autocmd BufWritePre *.js PrettierAsync
 ]])

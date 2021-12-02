@@ -46,13 +46,17 @@ return require('packer').startup(function(use)
   -- use 'mhinz/vim-startify'
   -- use 'liuchengxu/vista.vim'
   use 'liuchengxu/vim-which-key'
-  use 'kyazdani42/nvim-tree.lua'
+  use {
+    'kyazdani42/nvim-tree.lua',
+    requires = 'kyazdani42/nvim-web-devicons',
+    config = function() require'nvim-tree'.setup {} end
+  }
   use 'hrsh7th/vim-vsnip'
   use 'hrsh7th/vim-vsnip-integ'
   use 'honza/vim-snippets'
   -- use 'https://github.com/vimwiki/vimwiki.git'
   use 'metakirby5/codi.vim'
-  use 'asvetliakov/vim-easymotion'
+  -- use 'asvetliakov/vim-easymotion'
   -- use 'glepnir/dashboard-nvim'
   use 'p00f/nvim-ts-rainbow'
   -- use 'nvim-lua/completion-nvim'
@@ -181,19 +185,19 @@ return require('packer').startup(function(use)
     end
   }
 
-  use {
+  --[[ use {
     "akinsho/org-bullets.nvim",
     config = function()
       require("org-bullets").setup {
         symbols = {"◉", "○", "●", "○"}
         -- or a function that receives the defaults and returns a list
-        --[[ symbols = function(default_list)
+        symbols = function(default_list)
       table.insert(default_list, "♥")
       return default_list
-    end ]]
+    end
       }
     end
-  }
+  } ]]
 
   use {
     'goolord/alpha-nvim',
@@ -211,5 +215,44 @@ return require('packer').startup(function(use)
     config = function() require("core/bufferline") end,
     requires = {'kyazdani42/nvim-web-devicons'}
   }
+  use {
+    'sindrets/diffview.nvim',
+    requires = 'nvim-lua/plenary.nvim',
+    config = function() require("diffview").setup {} end
+  }
+  --[[ use {
+    'glepnir/lspsaga.nvim',
+    config = function() require("lspsaga").init_lsp_saga() end
+  } ]]
+  use {
+    'phaazon/hop.nvim',
+    branch = 'v1', -- optional but strongly recommended
+    config = function()
+      -- you can configure Hop the way you like here; see :h hop-config
+      require'hop'.setup {}
+    end
+  }
+  use {
+    "nvim-neorg/neorg",
+    config = function()
+      require('neorg').setup {
+        -- Tell Neorg what modules to load
+        load = {
+          ["core.norg.completion"] = {
+            config = {
+              engine = "nvim-cmp" -- We current support nvim-compe and nvim-cmp only
+            }
+          },
+          ["core.defaults"] = {}, -- Load all the default modules
+          ["core.norg.concealer"] = {}, -- Allows for use of icons
+          ["core.norg.dirman"] = { -- Manage your directories with Neorg
+            config = {workspaces = {my_workspace = "~/Documents/neorg"}}
+          }
+        }
+      }
+    end,
+    requires = "nvim-lua/plenary.nvim"
+  }
+  use "Pocco81/TrueZen.nvim"
 
 end)

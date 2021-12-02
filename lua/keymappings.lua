@@ -52,17 +52,19 @@ local default_keys = {
     {"<leader>fr", ":Telescope oldfiles<cr>"},
     {"<leader>fg", "<cmd>Telescope live_grep<cr>"},
     {"<leader>b", "<cmd>Telescope buffers<cr>"},
-    {"<leader>x", "<cmd>Telescope commands<cr>"},
+    {"<leader>x", "<cmd>Telescope<cr>"},
+    {"<leader>fa", ":cd ~/Documents/org/ | e Tasks.org <cr>"},
+    {"<leader>fi", ":cd ~/.config/nvim | e init.lua <cr>"},
     {"<leader>fh", "<cmd>Telescope help_tags<cr>"}, {"<leader>j", ":bn<cr>"},
     {"<leader>k", ":bp<cr>"}, {"gd", "<cmd>lua vim.lsp.buf.definition()<cr>"},
-    {"gb", ":BufferLinePick<CR>"}
+    {"gb", ":BufferLinePick<CR>"},
     --[[ {"gD", "<cmd>lua vim.lsp.buf.declaration()<cr>"},
     {"gr", "<cmd>lua vim.lsp.buf.references()<cr>"},
     {"gi", "<cmd>lua vim.lsp.buf.implementation()<cr>"},
     {"<C-k>", "<cmd>lua vim.lsp.buf.hover()<cr>"},
-    {"<C-j>", "<cmd>lua vim.lsp.buf.signature_help()<cr>"},
+    {"<C-j>", "<cmd>lua vim.lsp.buf.signature_help()<cr>"}, ]]
     {"<C-p>", "<cmd>lua vim.lsp.diagnostic.goto_prev()<cr>"},
-    {"<C-n>", "<cmd>lua vim.lsp.diagnostic.goto_next()<cr>"} ]]
+    {"<C-n>", "<cmd>lua vim.lsp.diagnostic.goto_next()<cr>"}
   },
 
   term_mode = {
@@ -83,6 +85,27 @@ local default_keys = {
     {"K", ":move '<-2<CR>gv-gv"}, {"J", ":move '>+1<CR>gv-gv"}
   }
 }
+
+-- place this in one of your configuration file(s)
+vim.api.nvim_set_keymap('n', 's', "<cmd>HopChar2<cr>", {})
+vim.api.nvim_set_keymap('n', 'f',
+                        "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR, current_line_only = true })<cr>",
+                        {})
+vim.api.nvim_set_keymap('n', 'F',
+                        "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR, current_line_only = true })<cr>",
+                        {})
+vim.api.nvim_set_keymap('o', 'f',
+                        "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR, current_line_only = true, inclusive_jump = true })<cr>",
+                        {})
+vim.api.nvim_set_keymap('o', 'F',
+                        "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR, current_line_only = true, inclusive_jump = true })<cr>",
+                        {})
+vim.api.nvim_set_keymap('', 't',
+                        "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR, current_line_only = true })<cr>",
+                        {})
+vim.api.nvim_set_keymap('', 'T',
+                        "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR, current_line_only = true })<cr>",
+                        {})
 
 utils.add_keymap_normal_mode(opts.nnoremap, default_keys["normal_mode"])
 utils.add_keymap_insert_mode(opts.inoremap, default_keys["insert_mode"])
@@ -105,7 +128,7 @@ utils.add_keymap_insert_mode(compe_opts, compe_keys["insert"])
 
 vim.cmd([[
 " easy motion keybinds
-nmap s <Plug>(easymotion-overwin-f2)
+"  nmap s <Plug>(easymotion-overwin-f2)
 
 
 func! Compile()
