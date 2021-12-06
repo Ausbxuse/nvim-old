@@ -1,6 +1,7 @@
 local highlight = {
   NormalPopupPrompt = {fg = C.fg_highlight, bg = C.bg_popup, style = 'bold'},
   NormalPopupSubtle = {fg = C.ui_6, bg = C.bg_popup},
+  NormalFloat = {fg = C.fg, bg = C.bg, style = 'bold'},
   Normal = {
     fg = C.ui_1,
     bg = Config.transparent_background and "NONE" or C.ui_10
@@ -84,14 +85,14 @@ local highlight = {
   IncSearch = {fg = C.ui_10, bg = C.yellow},
   Visual = {fg = 'NONE', bg = C.bg_visual},
   VisualBold = {fg = 'NONE', bg = C.bg_visual, style = 'bold'},
-  Pmenu = {fg = C.fg, bg = C.bg_popup},
-  PmenuSel = {fg = C.highlight_color, bg = C.highlight},
+  -- Pmenu = {fg = C.fg, bg = C.bg_popup},
+  Pmenu = {fg = C.fg, bg = "#2d2f39"},
+  PmenuSel = {fg = "#80bbfe", bg = "#3d4a60", style = 'bold'},
   PmenuSelBold = {fg = C.highlight_color, bg = C.highlight, style = 'bold'},
   PmenuSbar = {fg = 'NONE', bg = C.bg_alt},
   PmenuThumb = {fg = '#666660', bg = '#666660'},
   Section = {fg = C.magenta, bg = 'NONE', style = 'bold'},
-  JumpTarget = {fg = C.red, style = 'bold'},
-  NormalFloat = {fg = C.fg, bg = C.ui_9, style = 'bold'}
+  JumpTarget = {fg = C.red, style = 'bold'}
   -- MsgArea = {fg = , bg = , style = },
   -- MsgSeparator = {fg = , bg = , style = },
   -- NormalNC = {fg = , bg = , style = },

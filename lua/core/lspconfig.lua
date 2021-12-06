@@ -15,14 +15,9 @@ vim.lsp.handlers["textDocument/hover"] =
 vim.lsp.handlers["textDocument/signatureHelp"] =
   vim.lsp.with(vim.lsp.handlers.signature_help, {border = "rounded"})
 
-vim.cmd([[
-autocmd BufWritePre *.py lua vim.lsp.buf.formatting_sync(nil, 100)
-autocmd BufWritePre *.lua lua vim.lsp.buf.formatting_sync(nil, 100)
-autocmd BufWritePre *.html lua vim.lsp.buf.formatting_sync(nil, 100)
-autocmd BufWritePre *.cpp lua vim.lsp.buf.formatting_sync(nil, 100)
-autocmd BufWritePre *.c lua vim.lsp.buf.formatting_sync(nil, 100)
-autocmd BufWritePre *.rs lua vim.lsp.buf.formatting_sync(nil, 100)
+-- vim.lsp.util.make_floating_popup_options({opts = {border = nil}})
 
+vim.cmd([[
 sign define LspDiagnosticsSignError text= texthl=LspDiagnosticsSignError linehl= numhl=LspDiagnosticsSignError
 sign define LspDiagnosticsSignWarning text=  texthl=LspDiagnosticsSignWarning linehl= numhl=LspDiagnosticsSignWarning
 sign define LspDiagnosticsSignInformation text= texthl=LspDiagnosticsSignInformation linehl= numhl=LspDiagnosticsSignInformation

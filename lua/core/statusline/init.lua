@@ -285,6 +285,9 @@ gls.short_line_right[1] = {
   BufferIcon = {provider = 'BufferIcon', highlight = {colors.fg, colors.bg}}
 } ]] local custom_theme = require 'lualine.themes.auto'
 -- Change the background of lualine_c section for normal mode
+custom_theme.normal.a.bg = '#5fdaff' -- rgb colors are supported
+custom_theme.normal.a.fg = '#2c2e3b' -- rgb colors are supported
+custom_theme.normal.b.fg = '#5fdaff' -- rgb colors are supported
 custom_theme.visual.a.bg = '#bd93f9' -- rgb colors are supported
 custom_theme.visual.b.fg = '#bd93f9' -- rgb colors are supported
 custom_theme.insert.a.bg = '#abe15b' -- rgb colors are supported

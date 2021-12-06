@@ -18,7 +18,7 @@ return require('packer').startup(function(use)
   -- Simple plugins can be specified as strings
   -- use '9mm/vim-closer'
   use 'nvim-treesitter/playground'
-  use 'alvan/vim-closetag'
+  -- use 'alvan/vim-closetag'
   use 'akinsho/nvim-toggleterm.lua'
 
   use 'windwp/nvim-ts-autotag'
@@ -40,30 +40,30 @@ return require('packer').startup(function(use)
   use 'andrejlevkovitch/vim-lua-format'
   use 'norcalli/nvim-colorizer.lua'
   --  use 'sheerun/vim-polyglot'
-  use 'ryanoasis/vim-devicons'
+  -- use 'ryanoasis/vim-devicons'
   --  use 'jiangmiao/auto-pairs'
   use 'preservim/tagbar'
   -- use 'mhinz/vim-startify'
   -- use 'liuchengxu/vista.vim'
-  use 'liuchengxu/vim-which-key'
+  -- use 'liuchengxu/vim-which-key'
   use {
     'kyazdani42/nvim-tree.lua',
     requires = 'kyazdani42/nvim-web-devicons',
     config = function() require'nvim-tree'.setup {} end
   }
-  use 'hrsh7th/vim-vsnip'
-  use 'hrsh7th/vim-vsnip-integ'
-  use 'honza/vim-snippets'
+  -- use 'hrsh7th/vim-vsnip'
+  -- use 'hrsh7th/vim-vsnip-integ'
+  -- use 'honza/vim-snippets'
   -- use 'https://github.com/vimwiki/vimwiki.git'
-  use 'metakirby5/codi.vim'
+  -- use 'metakirby5/codi.vim'
   -- use 'asvetliakov/vim-easymotion'
   -- use 'glepnir/dashboard-nvim'
   use 'p00f/nvim-ts-rainbow'
   -- use 'nvim-lua/completion-nvim'
-  use 'turbio/bracey.vim'
-  use 'mattn/emmet-vim'
+  -- use 'turbio/bracey.vim'
+  -- use 'mattn/emmet-vim'
   -- use 'patstockwell/vim-monokai-tasty'
-  use 'puremourning/vimspector'
+  -- use 'puremourning/vimspector'
 
   -- Lazy loading:
   -- Load on specific commands
@@ -110,7 +110,7 @@ return require('packer').startup(function(use)
   use {'rhysd/vim-grammarous'}
   -- use {'tzachar/compe-tabnine', run = './install.sh'}
   use {'prettier/vim-prettier', run = 'yarn install'}
-  use {'kevinhwang91/rnvimr', run = 'make sync'}
+  -- use {'kevinhwang91/rnvimr', run = 'make sync'}
 
   -- Post-install/update hook with neovim command
   use {'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'}
@@ -131,7 +131,7 @@ return require('packer').startup(function(use)
 
   -- You can specify multiple plugins in a single call
   --  use {'tjdevries/colorbuddy.vim', {'nvim-treesitter/nvim-treesitter', opt = true}}
-  use {'skywind3000/asyncrun.vim'}
+  -- use {'skywind3000/asyncrun.vim'}
 
   use {
     'williamboman/nvim-lsp-installer',
@@ -253,6 +253,16 @@ return require('packer').startup(function(use)
     end,
     requires = "nvim-lua/plenary.nvim"
   }
-  use "Pocco81/TrueZen.nvim"
+  -- use "Pocco81/TrueZen.nvim"
+  use {
+    "folke/which-key.nvim",
+    config = function()
+      require("which-key").setup {
+        -- your configuration comes here
+        -- or leave it empty to use the default settings
+        -- refer to the configuration section below
+      }
+    end
+  }
 
 end)

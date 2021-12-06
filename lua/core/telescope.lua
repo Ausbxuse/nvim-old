@@ -1,5 +1,5 @@
 local full_theme = {
-  winblend = 20,
+  winblend = 0,
   width = 0.8,
   show_line = false,
   prompt_prefix = 'TS Symbols>',
@@ -23,7 +23,7 @@ require("telescope").setup {
       results = {"─", "│", "─", "│", "┌", "┐", "┘", "└"},
       preview = {'─', '│', '─', '│', '┌', '┐', '┘', '└'}
     },
-    winblend = 20,
+    winblend = 10,
     width = 1,
     show_line = false,
     prompt_prefix = '❯ ',

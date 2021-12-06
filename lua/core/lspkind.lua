@@ -1,4 +1,4 @@
-require('lspkind').init({
+--[[ require('lspkind').init({
   -- enables text annotations (default: true)
   with_text = true,
 
@@ -29,9 +29,7 @@ require('lspkind').init({
     Constant = '',
     Struct = ''
   }
-})
-
-local M = {}
+}) ]] local M = {}
 
 M.cmp_kind = {
   Class = " ",

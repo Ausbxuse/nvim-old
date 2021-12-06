@@ -2,7 +2,7 @@ vim.api.nvim_command "hi clear"
 if vim.fn.exists "syntax_on" then vim.api.nvim_command "syntax reset" end
 vim.o.background = "dark"
 vim.o.termguicolors = true
-vim.g.colors_name = "snappy"
+-- vim.g.colors_name = "snappy"
 
 local util = require "snappy.util"
 -- Config = require "snappy.config"
@@ -19,9 +19,10 @@ local css = require "snappy.css"
 local LSP = require "snappy.LSP"
 local org = require "snappy.org"
 local neorg = require "snappy.neorg"
+local cmp = require "snappy.cmp"
 
 local skeletons = {
-  highlights, tabbar, Treesitter, css, org, neorg, -- markdown,
+  highlights, tabbar, Treesitter, css, org, neorg, cmp, -- markdown,
   -- Whichkey,
   Git, LSP
 }

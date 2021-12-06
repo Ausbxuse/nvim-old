@@ -19,7 +19,7 @@ M.config = function()
   }
 
   local handle =
-    io.popen 'fd -d 2 . $HOME"/.local/share/lunarvim/site/pack/packer" | grep pack | wc -l | tr -d "\n" '
+    io.popen 'fd -d 2 . $HOME"/.local/share/nvim/site/pack/packer" | grep pack | wc -l | tr -d "\n" '
   local plugins = handle:read "*a"
   handle:close()
 
