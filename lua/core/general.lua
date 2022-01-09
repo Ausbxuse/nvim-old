@@ -4,7 +4,7 @@ vim.g.rnvimr_pick_enable = 1
 vim.g.rnvimr_bw_enable = 1 ]] vim.g.user_emmet_mode = 'n'
 vim.g.user_emmet_install_global = 0
 vim.g.user_emmet_leader_key = ','
-vim.cmd([[autocmd FileType html,css,markdown,md EmmetInstall]])
+-- vim.cmd([[autocmd FileType html,css,markdown,md EmmetInstall]])
 
 vim.g.EasyMotion_smartcase = 1
 
