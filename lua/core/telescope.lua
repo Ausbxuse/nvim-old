@@ -15,21 +15,53 @@ local full_theme = {
 
 require("telescope").setup {
   defaults = {
+    sorting_strategy = "ascending",
+    layout_config = {
+      horizontal = {
+        prompt_position = "top",
+        preview_width = 0.55,
+        results_width = 0.8,
+      },
+      vertical = {
+        mirror = false,
+      },
+      width = 0.87,
+      height = 0.80,
+      preview_cutoff = 120,
+    },
     -- Your defaults config goes in here
-    -- theme = "ivy",
+    theme = {
+      show_line = false,
+      results_title = false,
+      layout_config = {
+        horizontal = {
+          prompt_position = "top",
+          preview_width = 0.55,
+          results_width = 0.8,
+        },
+        vertical = {
+          mirror = false,
+        },
+        width = 0.87,
+        height = 0.80,
+        preview_cutoff = 120,
+      },
+
+    },
     --
     borderchars = {
-      prompt = {"─", "│", "─", "│", '┌', '┐', "┘", "└"},
+      prompt = {" ", " ", " ", " ", " ", " ", " ", " "},
+      results = {" ", " ", " ", " ", " ", " ", " ", " "},
+      preview = {" ", " ", " ", " ", " ", " ", " ", " "}
+      --[[ prompt = {"─", "│", "─", "│", '┌', '┐', "┘", "└"},
       results = {"─", "│", "─", "│", "┌", "┐", "┘", "└"},
-      preview = {'─', '│', '─', '│', '┌', '┐', '┘', '└'}
+      preview = {'─', '│', '─', '│', '┌', '┐', '┘', '└'} ]]
     },
     winblend = 10,
     width = 1,
-    show_line = false,
     prompt_prefix = '❯ ',
     prompt_title = '',
-    results_title = '',
-    preview_title = 'lmao'
+    -- preview_title = 'lmao'
     -- winblend = 20
     --[[ width = 1,
     layout_config = {

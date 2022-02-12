@@ -81,6 +81,8 @@ M.config = function()
   local buttons = {
     type = "group",
     val = {
+      button("a", " " .. kind.cmp_kind.Folder .. " Agenda",
+             ":NeorgStart<CR>"),
       button("f", " " .. kind.cmp_kind.Folder .. " Explore",
              ":Telescope find_files<CR>"),
       button("e", " " .. kind.cmp_kind.File .. " New file",

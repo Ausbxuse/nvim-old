@@ -53,6 +53,7 @@ local default_keys = {
     {"<leader>fg", "<cmd>Telescope live_grep<cr>"},
     {"<leader>b", "<cmd>Telescope buffers<cr>"},
     {"<leader>x", "<cmd>Telescope<cr>"},
+    {"<leader>t", "<cmd>Neorg gtd capture<cr>"},
     {"<leader>fa", ":cd ~/Documents/org/ | e Tasks.org <cr>"},
     {"<leader>fi", ":cd ~/.config/nvim | e init.lua <cr>"},
     {"<leader>fh", "<cmd>Telescope help_tags<cr>"}, {"<leader>j", ":bn<cr>"},

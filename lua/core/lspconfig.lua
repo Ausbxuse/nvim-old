@@ -18,8 +18,8 @@ vim.lsp.handlers["textDocument/signatureHelp"] =
 -- vim.lsp.util.make_floating_popup_options({opts = {border = nil}})
 
 vim.cmd([[
-sign define LspDiagnosticsSignError text= texthl=LspDiagnosticsSignError linehl= numhl=LspDiagnosticsSignError
-sign define LspDiagnosticsSignWarning text=  texthl=LspDiagnosticsSignWarning linehl= numhl=LspDiagnosticsSignWarning
-sign define LspDiagnosticsSignInformation text= texthl=LspDiagnosticsSignInformation linehl= numhl=LspDiagnosticsSignInformation
-sign define LspDiagnosticsSignHint text=  texthl=LspDiagnosticsSignHint linehl= numhl=LspDiagnosticsSignHint
+sign define DiagnosticSignError text= texthl=DiagnosticSignError linehl= numhl=DiagnosticSignError
+sign define DiagnosticSignWarning text=  texthl=DiagnosticSignWarning linehl= numhl=DiagnosticSignWarning
+sign define DiagnosticSignInformation text= texthl=DiagnosticSignInformation linehl= numhl=DiagnosticSignInformation
+sign define DiagnosticSignHint text=  texthl=DiagnosticSignHint linehl= numhl=DiagnosticSignHint
 ]])

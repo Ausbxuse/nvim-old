@@ -3,7 +3,7 @@ require("nvim-autopairs.completion.compe").setup({
   map_cr = true, --  map <CR> on insert mode
   map_complete = true -- it will auto insert `(` after select function or method item
 }) ]] require('nvim-autopairs').setup({
-  enable_check_bracket_line = true, -- Don't add pairs if it already have a close pairs in same line
+  enable_check_bracket_line = false, -- Don't add pairs if it already have a close pairs in same line
   disable_filetype = {"TelescopePrompt", "vim"}, --
   enable_afterquote = false, -- add bracket pairs after quote
   enable_moveright = true

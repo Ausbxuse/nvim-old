@@ -16,8 +16,8 @@ require('autocmds')
 -- LSP
 require('language-server-setup')
 
-vim.g.colors_name = 'snappy' -- doesn't work for 0.7.0
+vim.g.colors_name = 'snappy'
 
 vim.cmd([[colorscheme snappy]])
 require('core')
-require'impatient'.enable_profile()
+-- require'impatient'.enable_profile()

@@ -92,7 +92,7 @@ local highlight = {
   PmenuSbar = {fg = 'NONE', bg = C.bg_alt},
   PmenuThumb = {fg = '#666660', bg = '#666660'},
   Section = {fg = C.magenta, bg = 'NONE', style = 'bold'},
-  JumpTarget = {fg = C.red, style = 'bold'}
+  JumpTarget = {fg = C.red, style = 'bold'},
   -- MsgArea = {fg = , bg = , style = },
   -- MsgSeparator = {fg = , bg = , style = },
   -- NormalNC = {fg = , bg = , style = },
@@ -113,5 +113,20 @@ local highlight = {
   -- Bold = {fg = , bg = , style = },
   -- Italic = {fg = , bg = , style = },
   -- Ignore = {fg = , bg = , style = },
+  --
+  --
+TelescopeBorder = {fg = C.ui_11, bg = C.ui_11},
+TelescopePromptBorder = {fg = C.ui_10, bg = C.ui_10},
+
+TelescopePromptNormal = {fg = C.white, bg = C.ui_10},
+TelescopePromptPrefix = {fg = C.red, bg = C.ui_10},
+
+TelescopeNormal = {bg = C.ui_11},
+
+TelescopePreviewTitle = {fg = C.ui_9, bg = C.green},
+TelescopePromptTitle = {fg = C.ui_10, bg = C.red},
+TelescopeResultsTitle = {fg = C.ui_11, bg = C.ui_11},
+
+TelescopeSelection = {bg =  C.ui_10},
 }
 return highlight

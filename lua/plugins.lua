@@ -11,7 +11,7 @@ end
 return require('packer').startup(function(use)
   -- Packer can manage itself
   use 'wbthomason/packer.nvim'
-  use 'lewis6991/impatient.nvim'
+  -- use 'lewis6991/impatient.nvim'
   use 'b3nj5m1n/kommentary'
   -- use {'glacambre/firenvim', run = function() vim.fn['firenvim#install'](0) end}
 
@@ -172,30 +172,34 @@ return require('packer').startup(function(use)
     config = function()
       require("zen-mode").setup {
         window = {
-          width = .65 -- width will be 85% of the editor width
+          backdrop = 0.95, -- shade the backdrop of the Zen window. Set to 1 to keep the same as Normal
+          -- height and width can be:
+          -- * an absolute number of cells when > 1
+          -- * a percentage of the width / height of the editor when <= 1
+          -- * a function that returns the width or the height
+          width = 120, -- width of the Zen window
+          height = 1, -- height of the Zen window
+          -- by default, no options are changed for the Zen window
+          -- uncomment any of the options below, or add other vim.wo options you want to apply
+          options = {
+            signcolumn = "no", -- disable signcolumn
+            number = false, -- disable number column
+            relativenumber = false, -- disable relative numbers
+            cursorline = false, -- disable cursorline
+            cursorcolumn = false, -- disable cursor column
+            foldcolumn = "0", -- disable fold column
+            list = false, -- disable whitespace characters
+          },
         }
+
       }
     end
   }
-  use {
+  --[[ use {
     'kristijanhusak/orgmode.nvim',
     config = function()
       require('orgmode').setup {}
       require('core/org')
-    end
-  }
-
-  --[[ use {
-    "akinsho/org-bullets.nvim",
-    config = function()
-      require("org-bullets").setup {
-        symbols = {"◉", "○", "●", "○"}
-        -- or a function that receives the defaults and returns a list
-        symbols = function(default_list)
-      table.insert(default_list, "♥")
-      return default_list
-    end
-      }
     end
   } ]]
 
@@ -232,22 +236,104 @@ return require('packer').startup(function(use)
       require'hop'.setup {}
     end
   }
+
   use {
     "nvim-neorg/neorg",
     config = function()
       require('neorg').setup {
         -- Tell Neorg what modules to load
         load = {
+          ["core.defaults"] = {},
+          ["core.presenter"] = {
+            config = {
+              zen_mode = "zen-mode",
+            }
+
+          },
+          ["core.norg.qol.toc"] = {},
+          ["core.norg.manoeuvre"] = {},
+          ["core.keybinds"] = {},
+          ["core.gtd.ui"] = {},
+          ["core.gtd.helpers"] = {},
+          ["core.neorgcmd"] = {},
+          ["core.gtd.queries"] = {},
           ["core.norg.completion"] = {
             config = {
               engine = "nvim-cmp" -- We current support nvim-compe and nvim-cmp only
             }
           },
-          ["core.defaults"] = {}, -- Load all the default modules
-          ["core.norg.concealer"] = {}, -- Allows for use of icons
+          ["core.norg.concealer"] = {
+            config = {
+              icons = {
+                heading = {
+                  enabled = true,
+
+                  level_1 = {
+                    enabled = true,
+                    icon = "◉",
+                    highlight = "NeorgHeadingBullet1",
+                    query = "[ (heading1_prefix) (link_target_heading1) ] @icon",
+                  },
+
+                  level_2 = {
+                    enabled = true,
+                    icon = " ○",
+                    highlight = "NeorgHeadingBullet2",
+                    query = "[ (heading2_prefix) (link_target_heading2) ] @icon",
+                  },
+
+                  level_3 = {
+                    enabled = true,
+                    icon = "  ●",
+                    highlight = "NeorgHeadingBullet3",
+                    query = "[ (heading3_prefix) (link_target_heading3) ] @icon",
+                  },
+
+                  level_4 = {
+                    enabled = true,
+                    icon = "   ○",
+                    highlight = "NeorgHeadingBullet4",
+                    query = "[ (heading4_prefix) (link_target_heading4) ] @icon",
+                  },
+
+                  level_5 = {
+                    enabled = true,
+                    icon = "    ●",
+                    highlight = "NeorgHeadingBullet5",
+                    query = "[ (heading5_prefix) (link_target_heading5) ] @icon",
+                  },
+
+                  level_6 = {
+                    enabled = true,
+                    icon = "     ○",
+                    highlight = "NeorgHeadingBullet6",
+                    query = "[ (heading6_prefix) (link_target_heading6) ] @icon",
+                    render = function(self, text)
+                      return {
+                      {
+                          string.rep(" ", text:len() - string.len("******") - string.len(" ")) .. self.icon,
+                          self.highlight,
+                        },
+                      }
+                    end,
+                  },
+                }
+
+              }
+            }
+          }, -- Allows for use of icons
           ["core.norg.dirman"] = { -- Manage your directories with Neorg
-            config = {workspaces = {my_workspace = "~/Documents/neorg"}}
-          }
+            config = {
+              workspaces = {
+                my_workspace = "~/Documents/neorg",
+              }
+            }
+          },
+          ["core.gtd.base"] = {
+            config = {
+              workspace = "my_workspace",
+            }
+          }, -- Load all the default modules
         }
       }
     end,

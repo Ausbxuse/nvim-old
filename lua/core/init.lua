@@ -1,4 +1,4 @@
-require('core.autopairs')
+-- require('core.autopairs') called twice
 require('core.colorizer')
 require('core.gitsigns')
 require('core.telescope')
