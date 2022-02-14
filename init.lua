@@ -5,19 +5,18 @@
 -- /___/_/ /_/_/\__(_)_/\__,_/\__,_/
 -- Plugins
 require('plugins')
--- Settings
-require('settings').load_options()
-require('settings').load_autocmds()
--- Key Mappings
-require('keymappings')
--- Markdown Settings: TODO: put all of the commands in this file
-require('autocmds')
--- Plugin Config
+
+-- Core settings
+require('core.settings').load_options()
+require('core.settings').load_autocmds()
+require('core.keymappings')
+require('core.autocmds')
+
 -- LSP
-require('language-server-setup')
+require('core.language-server-setup')
 
+-- Color Scheme
 vim.g.colors_name = 'snappy'
-
 vim.cmd([[colorscheme snappy]])
-require('core')
+
 -- require'impatient'.enable_profile()

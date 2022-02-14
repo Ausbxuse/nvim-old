@@ -124,7 +124,7 @@ TelescopePromptPrefix = {fg = C.red, bg = C.ui_10},
 TelescopeNormal = {bg = C.ui_11},
 
 TelescopePreviewTitle = {fg = C.ui_9, bg = C.green},
-TelescopePromptTitle = {fg = C.ui_10, bg = C.red},
+TelescopePromptTitle = {fg = C.ui_11, bg = C.red},
 TelescopeResultsTitle = {fg = C.ui_11, bg = C.ui_11},
 
 TelescopeSelection = {bg =  C.ui_10},

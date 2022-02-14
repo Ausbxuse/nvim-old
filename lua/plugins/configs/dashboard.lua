@@ -4,7 +4,7 @@ M.config = function()
   local present, alpha = pcall(require, "alpha")
   if not present then return end
 
-  local kind = require "core.lspkind"
+  local kind = require "plugins.configs.lspkind"
 
   local header = {
     type = "text",

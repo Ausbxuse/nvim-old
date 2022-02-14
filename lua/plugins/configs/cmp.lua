@@ -13,7 +13,7 @@ cmp.setup({
   formatting = {
     format = lspkind.cmp_format({
       with_text = true, -- whether show text alongside icons
-      -- mode = 'symbol',
+      mode = 'symbol_text',
       maxwidth = 20, -- prevent the popup from showing more than provided characters (e.g 50 will not show more than 50 characters)
       --[[ symbol_map = {
         Text = '',
