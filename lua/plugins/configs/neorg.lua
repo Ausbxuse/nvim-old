@@ -9,7 +9,7 @@ require('neorg').setup {
 
     },
     ["core.norg.qol.toc"] = {},
-    ["core.norg.manoeuvre"] = {},
+    -- ["core.norg.manoeuvre"] = {}, -- requries nvim 0.7
     ["core.keybinds"] = {},
     ["core.gtd.ui"] = {},
     ["core.gtd.helpers"] = {},

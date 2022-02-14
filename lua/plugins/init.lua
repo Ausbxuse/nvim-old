@@ -10,7 +10,7 @@ end
 
 return require('packer').startup(function(use)
   use 'wbthomason/packer.nvim'
-  -- use 'lewis6991/impatient.nvim'
+  use 'lewis6991/impatient.nvim'
   use {
     'b3nj5m1n/kommentary',
     config = function() require("plugins.configs.kommentary") end

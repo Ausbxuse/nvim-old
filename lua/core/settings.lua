@@ -4,6 +4,7 @@ M.load_options = function()
   local opt = vim.opt
 
   local default_options = {
+    fillchars='eob: ',
     backup = false, -- creates a backup file
     clipboard = "unnamedplus", -- allows neovim to access the system clipboard
     cmdheight = 1, -- more space in the neovim command line for displaying messages

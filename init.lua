@@ -19,4 +19,4 @@ require('core.language-server-setup')
 vim.g.colors_name = 'snappy'
 vim.cmd([[colorscheme snappy]])
 
--- require'impatient'.enable_profile()
+require'impatient'.enable_profile()
