@@ -286,27 +286,31 @@ gls.short_line_right[1] = {
 } ]] 
 local custom_theme = require 'lualine.themes.auto'
 -- Change the background of lualine_c section for normal mode
-custom_theme.normal.a.bg = '#5fdaff' -- rgb colors are supported
-custom_theme.normal.a.fg = '#2c2e3b' -- rgb colors are supported
+custom_theme.normal.a.fg = '#5fdaff' -- rgb colors are supported
+custom_theme.normal.a.bg = '#2c2e3b' -- rgb colors are supported
 custom_theme.normal.b.fg = '#5fdaff' -- rgb colors are supported
 custom_theme.normal.c.bg = '#171920' -- rgb colors are supported
-custom_theme.visual.c.bg = '#171920' -- rgb colors are supported
-custom_theme.insert.c.bg = '#171920' -- rgb colors are supported
 custom_theme.command.c.bg = '#171920' -- rgb colors are supported
 custom_theme.replace.a.bg = '#ff4a00' -- rgb colors are supported
 custom_theme.replace.b.fg = '#ff4a00' -- rgb colors are supported
 custom_theme.replace.c.bg = '#171920' -- rgb colors are supported
-custom_theme.visual.a.bg = '#bd93f9' -- rgb colors are supported
+custom_theme.visual.a.fg = '#bd93f9' -- rgb colors are supported
+custom_theme.visual.a.bg = '#2c2e3b' -- rgb colors are supported
 custom_theme.visual.b.fg = '#bd93f9' -- rgb colors are supported
-custom_theme.insert.a.bg = '#abe15b' -- rgb colors are supported
+custom_theme.visual.c.bg = '#171920' -- rgb colors are supported
+custom_theme.insert.a.fg = '#abe15b' -- rgb colors are supported
+custom_theme.insert.a.bg = '#2c2e3b' -- rgb colors are supported
 custom_theme.insert.b.fg = '#abe15b' -- rgb colors are supported
+custom_theme.insert.c.bg = '#171920' -- rgb colors are supported
 
 require'lualine'.setup {
   options = {
     icons_enabled = true,
     theme = custom_theme,
-    component_separators = {left = '', right = ''},
-    section_separators = {left = '', right = ''},
+    component_separators = {left = '', right = ''},
+    section_separators = {left = '', right = ''},
+    --[[ component_separators = {left = '', right = ''},
+    section_separators = {left = '', right = ''}, ]]
     disabled_filetypes = {},
     always_divide_middle = true
   },
