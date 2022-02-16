@@ -88,6 +88,17 @@ require("telescope").setup {
     -- commands = {theme = "ivy"}
   },
   extensions = {
+    file_browser = {
+      mappings = {
+        ["i"] = {
+          -- your custom insert mode mappings
+        },
+        ["n"] = {
+          -- your custom normal mode mappings
+        },
+      },
+    },
+  },
     -- your extension config goes in here
-  }
 }
+require("telescope").load_extension "file_browser"

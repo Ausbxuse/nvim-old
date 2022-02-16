@@ -128,5 +128,10 @@ TelescopePromptTitle = {fg = C.ui_11, bg = C.red},
 TelescopeResultsTitle = {fg = C.ui_11, bg = C.ui_11},
 
 TelescopeSelection = {bg =  C.ui_10},
+NotifyERRORBody = {bg = "NONE"},
+NotifyWARNBody = {bg = "NONE"},
+NotifyINFOBody = {bg = "NONE"},
+NotifyDEBUGBody = {bg = "NONE"},
+NotifyTRACEBody = {bg = "NONE"},
 }
 return highlight

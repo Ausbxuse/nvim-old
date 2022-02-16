@@ -11,6 +11,29 @@ end
 return require('packer').startup(function(use)
   use 'wbthomason/packer.nvim'
   use 'lewis6991/impatient.nvim'
+  use 'simrat39/symbols-outline.nvim'
+  use {'rcarriga/nvim-notify',
+    config = function() require("plugins.configs.notify") end
+  }
+  use 'jbyuki/nabla.nvim'
+  use { 'michaelb/sniprun', run = 'bash ./install.sh'}
+  use 'rudism/telescope-dict.nvim' -- requires dictd dict-wn dict-moby-thesaurus
+  -- use 'f3fora/cmp-spell'
+  use {'jose-elias-alvarez/null-ls.nvim',
+  config = function() require("null-ls").setup({
+    sources = {
+        require("null-ls").builtins.formatting.stylua,
+        require("null-ls").builtins.diagnostics.eslint,
+        require("null-ls").builtins.completion.spell,
+        require("null-ls").builtins.hover.dictionary
+    },
+})end}
+  use {
+    "petertriho/nvim-scrollbar",
+    config = function() require("scrollbar").setup{} end
+  }
+  use { "nvim-telescope/telescope-file-browser.nvim"
+    }
   use {
     'b3nj5m1n/kommentary',
     config = function() require("plugins.configs.kommentary") end
@@ -201,8 +224,6 @@ return require('packer').startup(function(use)
   use {
     "folke/which-key.nvim",
     config = function()
-      require("which-key").setup {
-      }
-    end
+      require("plugins.configs.which-key")    end
   }
 end)

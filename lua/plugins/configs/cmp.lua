@@ -40,7 +40,21 @@ cmp.setup({
 
       -- The function below will be called before any actual modifications from lspkind
       -- so that you can provide more controls on popup customization. (See [#30](https://github.com/onsails/lspkind-nvim/pull/30))
-      before = function(entry, vim_item) return vim_item end
+      before = function(entry, vim_item)
+        -- fancy icons and a name of kind
+        vim_item.kind = lspkind.presets.default[vim_item.kind]
+        vim_item.abbr = string.sub(vim_item.abbr, 1, 10)
+        -- set a name for each source
+        vim_item.menu = ({
+          buffer = "[Buff]",
+          spell = "[Spell]",
+          nvim_lsp = "[LSP]",
+          luasnip = "[LuaSnip]",
+          nvim_lua = "[Lua]",
+          latex_symbols = "[Latex]"
+        })[entry.source.name]
+        return vim_item
+      end
     })
 
     --[[ format = function(entry, vim_item)
@@ -60,7 +74,7 @@ cmp.setup({
   },
   documentation = {border = nil},
   sources = {
-    {name = 'orgmode'}, {name = 'nvim_lsp'}, {name = 'nvim_lua'},
+    {name = 'spell'}, {name = 'nvim_lsp'}, {name = 'nvim_lua'},
     {name = 'neorg'}, {name = 'path'}, {name = 'luasnip'},
     {name = 'buffer', keyword_length = 1}, {name = 'calc'}
   },

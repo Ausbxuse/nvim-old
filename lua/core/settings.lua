@@ -50,7 +50,7 @@ M.load_options = function()
     scrolloff = 8, -- is one of my fav
     sidescrolloff = 8,
     pumblend = 10,
-    winblend = 10,
+    winblend = 0,
     inccommand = "nosplit"
   } ---  VIM ONLY COMMANDS  ---cmd "filetype plugin on"cmd('let &titleold="' .. TERMINAL .. '"')cmd "set inccommand=split"cmd "set iskeyword+=-"
 

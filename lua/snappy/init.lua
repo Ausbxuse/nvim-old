@@ -36,4 +36,6 @@ util.hi_link(link_skeleton)
 vim.cmd([[
 highlight IndentBlanklineContextChar guifg=#848688 gui=nocombine
 hi PmenuSel blend=0
+hi Normal blend=0
+hi NotifyINFOBody blend=0
 ]])
