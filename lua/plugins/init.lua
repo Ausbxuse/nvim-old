@@ -6,7 +6,7 @@ if fn.empty(fn.glob(install_path)) > 0 then
     'git', 'clone', 'https://github.com/wbthomason/packer.nvim', install_path
   })
   execute 'packadd packer.nvim'
-  execute 'PackerSync'
+  -- execute 'PackerSync' -- doesn't work
 end
 
 return require('packer').startup(function(use)
