@@ -1,12 +1,107 @@
+-- For auto install packer when it is absent
 local execute = vim.api.nvim_command
 local fn = vim.fn
 local install_path = fn.stdpath('data') .. '/site/pack/packer/start/packer.nvim'
+-- if the path for packer is empty, meaning no plugins are installed, install packer and the plugins
 if fn.empty(fn.glob(install_path)) > 0 then
   fn.system({
     'git', 'clone', 'https://github.com/wbthomason/packer.nvim', install_path
   })
   execute 'packadd packer.nvim'
-  -- execute 'PackerSync' -- doesn't work
+  require('packer').startup(function(use)
+    use 'wbthomason/packer.nvim'
+    use 'lewis6991/impatient.nvim'
+    use 'simrat39/symbols-outline.nvim'
+    use 'rcarriga/nvim-notify'
+    use 'jbyuki/nabla.nvim'
+    use { 'michaelb/sniprun', run = 'bash ./install.sh'}
+    use 'rudism/telescope-dict.nvim' -- requires dictd dict-wn dict-moby-thesaurus
+    use 'jose-elias-alvarez/null-ls.nvim'
+    use 'petertriho/nvim-scrollbar'
+    use 'nvim-telescope/telescope-file-browser.nvim'
+    use 'b3nj5m1n/kommentary'
+    use 'nvim-treesitter/playground'
+    use 'akinsho/nvim-toggleterm.lua'
+    use 'windwp/nvim-ts-autotag'
+    use 'nvim-lua/popup.nvim'
+    use 'nvim-lua/plenary.nvim'
+    use 'nvim-telescope/telescope.nvim'
+    use 'lukas-reineke/indent-blankline.nvim'
+    use 'neovim/nvim-lspconfig'
+    use 'andrejlevkovitch/vim-lua-format'
+    use 'preservim/tagbar'
+    use 'norcalli/nvim-colorizer.lua'
+    use {
+      'kyazdani42/nvim-tree.lua',
+      requires = 'kyazdani42/nvim-web-devicons',
+    }
+    use 'p00f/nvim-ts-rainbow'
+    use {
+      'iamcco/markdown-preview.nvim',
+      run = 'cd app && yarn install'
+    }
+    use 'rhysd/vim-grammarous'
+    use {'prettier/vim-prettier', run = 'yarn install'}
+    use {'kevinhwang91/rnvimr', run = 'make sync'}
+    use {
+      'nvim-treesitter/nvim-treesitter',
+      run = ':TSUpdate'}
+    use {
+      'lewis6991/gitsigns.nvim',
+      requires = {'nvim-lua/plenary.nvim'}
+    }
+    use 'williamboman/nvim-lsp-installer'
+    use 'onsails/lspkind-nvim'
+    use { -- A completion plugin for neovim coded in Lua.
+      'hrsh7th/nvim-cmp',
+      requires = {
+        "hrsh7th/cmp-nvim-lsp", -- nvim-cmp source for neovim builtin LSP client
+        "hrsh7th/cmp-nvim-lua", -- nvim-cmp source for nvim lua
+        "hrsh7th/cmp-buffer", -- nvim-cmp source for buffer words.
+        "hrsh7th/cmp-path", -- nvim-cmp source for filesystem paths.
+        "hrsh7th/cmp-calc", -- nvim-cmp source for math calculation.
+        "saadparwaiz1/cmp_luasnip" -- luasnip completion source for nvim-cmp
+      },
+    }
+    use { -- Snippet Engine for Neovim written in Lua.
+      'L3MON4D3/LuaSnip',
+      requires = {
+        "rafamadriz/friendly-snippets" -- Snippets collection for a set of different programming languages for faster development.
+      },
+    }
+    use 'windwp/nvim-autopairs'
+    use "folke/zen-mode.nvim"
+    use 'goolord/alpha-nvim'
+    use {
+      'nvim-lualine/lualine.nvim',
+      requires = {'kyazdani42/nvim-web-devicons'}
+    }
+    use {
+      'akinsho/bufferline.nvim',
+      requires = {'kyazdani42/nvim-web-devicons'}
+    }
+    use {
+      'sindrets/diffview.nvim',
+      requires = 'nvim-lua/plenary.nvim',
+    }
+    use {
+      'phaazon/hop.nvim',
+      branch = 'v1', -- optional but strongly recommended
+    }
+    use {
+      "nvim-neorg/neorg",
+      requires = "nvim-lua/plenary.nvim"
+    }
+    use {
+      "folke/todo-comments.nvim",
+      requires = "nvim-lua/plenary.nvim",
+    }
+    use {
+      "folke/which-key.nvim",
+    }
+  end)
+  execute 'PackerSync'
+else
 end
 
 return require('packer').startup(function(use)
@@ -21,14 +116,14 @@ return require('packer').startup(function(use)
   use 'rudism/telescope-dict.nvim' -- requires dictd dict-wn dict-moby-thesaurus
   -- use 'f3fora/cmp-spell'
   use {'jose-elias-alvarez/null-ls.nvim',
-  config = function() require("null-ls").setup({
-    sources = {
+    config = function() require("null-ls").setup({
+      sources = {
         require("null-ls").builtins.formatting.stylua,
         require("null-ls").builtins.diagnostics.eslint,
         require("null-ls").builtins.completion.spell,
         require("null-ls").builtins.hover.dictionary
-    },
-})end}
+      },
+    })end}
   --[[ use {
   "vimwiki/vimwiki"
 
@@ -38,7 +133,7 @@ return require('packer').startup(function(use)
     config = function() require("scrollbar").setup{} end
   }
   use { "nvim-telescope/telescope-file-browser.nvim"
-    }
+  }
   use {
     'b3nj5m1n/kommentary',
     config = function() require("plugins.configs.kommentary") end
@@ -59,9 +154,9 @@ return require('packer').startup(function(use)
     config = function() require("plugins.configs.telescope") end
   }
   use {'lukas-reineke/indent-blankline.nvim',
-  config = function() require("plugins.configs.indent_blankline") end}
+    config = function() require("plugins.configs.indent_blankline") end}
   use {'neovim/nvim-lspconfig',
-  config = function() require("plugins.configs.lspconfig") end}
+    config = function() require("plugins.configs.lspconfig") end}
   --  use 'romgrk/doom-one.vim'
   --  use 'sainnhe/sonokai'
   -- use 'chuling/equinusocio-material.vim' --????
