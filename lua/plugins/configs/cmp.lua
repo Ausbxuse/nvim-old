@@ -74,7 +74,8 @@ cmp.setup({
   },
   documentation = {border = nil},
   sources = {
-    {name = 'spell'}, {name = 'nvim_lsp'}, {name = 'nvim_lua'},
+-- {name = 'spell'},
+    {name = 'nvim_lsp'}, {name = 'nvim_lua'},
     {name = 'neorg'}, {name = 'path'}, {name = 'luasnip'},
     {name = 'buffer', keyword_length = 1}, {name = 'calc'}
   },
