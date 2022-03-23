@@ -1,8 +1,10 @@
 local M = {}
 
+
 M.load_options = function()
   local opt = vim.opt
 
+  local home = vim.loop.os_homedir()
   local default_options = {
     fillchars='eob: ',
     backup = false, -- creates a backup file
@@ -31,7 +33,7 @@ M.load_options = function()
     timeoutlen = 500, -- time to wait for a mapped sequence to complete (in milliseconds)
     title = true, -- set the title of window to the value of the titlestring
     -- opt.titlestring = "%<%F%=%l/%L - nvim" -- what the title of the window will be set to
-    undodir = "/home/peter/.cache/nvim/undo", -- set an undo directory
+    undodir = home .. "/.cache/nvim/undo", -- set an undo directory
     undofile = true, -- enable persistent undo
     updatetime = 300, -- faster completion
     writebackup = false, -- if a file is being edited by another program (or was written to file while editing with another program), it is not allowed to be edited

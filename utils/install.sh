@@ -70,9 +70,20 @@ install() {
   esac
 }
 
-main() {
-  installpacker
-  # choosesystem
-  # install
+# install language servers
+installLSP() {
+  paru -S --noconfirm lua-language-server npm yarn clang
+  npm i -g bash-language-server
+  npm i -g typescript typescript-language-server
+  npm i -g vscode-langservers-extracted # jsonls, html, css
+  npm i -g pyright
+
 }
+
+main() {
+  # installpacker
+  installLSP
+}
+
+main
 

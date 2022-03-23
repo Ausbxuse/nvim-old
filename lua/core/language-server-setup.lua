@@ -196,13 +196,6 @@ lspconfig.sumneko_lua.setup {
 
 lspconfig.clangd.setup {capabilities = capabilities, on_attach = on_attach}
 
--- require'lspconfig'.zeta_note.setup{
---   cmd = {'/home/peter/zeta-note-linux'},
---   root_dir = function(fname)
---     return "./"
---   end
--- }
---
 lspconfig.jsonls.setup {
   commands = {
     Format = {
