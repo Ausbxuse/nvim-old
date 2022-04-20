@@ -72,7 +72,9 @@ cmp.setup({
       return vim_item
     end ]]
   },
-  documentation = {border = nil},
+  window = {
+    documentation = {border = nil},
+  },
   sources = {
 -- {name = 'spell'},
     {name = 'nvim_lsp'}, {name = 'nvim_lua'},
