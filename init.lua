@@ -14,6 +14,7 @@ end
 
 -- Plugins
 require('plugins')
+vim.notify = require("notify")
 
 -- Core settings
 require('core.settings').load_options()

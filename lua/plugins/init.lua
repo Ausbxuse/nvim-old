@@ -111,11 +111,6 @@ if fn.empty(fn.glob(install_path)) > 0 then
     --  cmd = 'ALEEnable',
     --  config = 'vim.cmd[[ALEEnable]]'
     -- }
-    use {
-      'iamcco/markdown-preview.nvim',
-      run = 'cd app && yarn install'
-      -- cmd = 'MarkdownPreview',
-    }
     use {'rhysd/vim-grammarous'}
     -- use {'tzachar/compe-tabnine', run = './install.sh'}
     use {'prettier/vim-prettier', run = 'yarn install'}
@@ -347,11 +342,6 @@ else
     --  cmd = 'ALEEnable',
     --  config = 'vim.cmd[[ALEEnable]]'
     -- }
-    use {
-      'iamcco/markdown-preview.nvim',
-      run = 'cd app && yarn install'
-      -- cmd = 'MarkdownPreview',
-    }
     use {'rhysd/vim-grammarous'}
     -- use {'tzachar/compe-tabnine', run = './install.sh'}
     use {'prettier/vim-prettier', run = 'yarn install'}
@@ -477,6 +467,13 @@ else
       config = function()
         require("plugins.configs.which-key")    end
     }
+
+    use({
+        "iamcco/markdown-preview.nvim",
+        run = function() vim.fn["mkdp#util#install"]() end,
+    })
+
+    use({ "iamcco/markdown-preview.nvim", run = "cd app && npm install", setup = function() vim.g.mkdp_filetypes = { "markdown" } end, ft = { "markdown" }, })
   end)
 end
 

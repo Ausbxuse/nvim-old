@@ -102,3 +102,4 @@ require("telescope").setup {
     -- your extension config goes in here
 }
 require("telescope").load_extension "file_browser"
+require("telescope").load_extension "notify"
