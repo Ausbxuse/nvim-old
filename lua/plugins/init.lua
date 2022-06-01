@@ -19,7 +19,7 @@ if fn.empty(fn.glob(install_path)) > 0 then
     use { 'michaelb/sniprun', run = 'bash ./install.sh'}
     use 'rudism/telescope-dict.nvim' -- requires dictd dict-wn dict-moby-thesaurus
     -- use 'f3fora/cmp-spell'
-    use {'jose-elias-alvarez/null-ls.nvim',
+    --[[ use {'jose-elias-alvarez/null-ls.nvim',
       config = function() require("null-ls").setup({
         sources = {
           require("null-ls").builtins.formatting.stylua,
@@ -27,7 +27,7 @@ if fn.empty(fn.glob(install_path)) > 0 then
           require("null-ls").builtins.completion.spell,
           require("null-ls").builtins.hover.dictionary
         },
-      })end}
+      })end} ]]
     --[[ use {
   "vimwiki/vimwiki"
 
@@ -250,7 +250,7 @@ else
     use { 'michaelb/sniprun', run = 'bash ./install.sh'}
     use 'rudism/telescope-dict.nvim' -- requires dictd dict-wn dict-moby-thesaurus
     -- use 'f3fora/cmp-spell'
-    use {'jose-elias-alvarez/null-ls.nvim',
+    --[[ use {'jose-elias-alvarez/null-ls.nvim',
       config = function() require("null-ls").setup({
         sources = {
           require("null-ls").builtins.formatting.stylua,
@@ -258,7 +258,7 @@ else
           require("null-ls").builtins.completion.spell,
           require("null-ls").builtins.hover.dictionary
         },
-      })end}
+      })end} ]]
     --[[ use {
   "vimwiki/vimwiki"
 
@@ -314,7 +314,7 @@ else
     use {
       'kyazdani42/nvim-tree.lua',
       requires = 'kyazdani42/nvim-web-devicons',
-      config = function() require'nvim-tree'.setup {} end
+      config = function() require("plugins.configs.nvim-tree") end
     }
     -- use 'hrsh7th/vim-vsnip'
     -- use 'hrsh7th/vim-vsnip-integ'
@@ -467,11 +467,6 @@ else
       config = function()
         require("plugins.configs.which-key")    end
     }
-
-    use({
-        "iamcco/markdown-preview.nvim",
-        run = function() vim.fn["mkdp#util#install"]() end,
-    })
 
     use({ "iamcco/markdown-preview.nvim", run = "cd app && npm install", setup = function() vim.g.mkdp_filetypes = { "markdown" } end, ft = { "markdown" }, })
   end)

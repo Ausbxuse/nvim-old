@@ -9,7 +9,7 @@ local fn = vim.fn
 local install_path = fn.stdpath('data') .. '/site/pack/packer/start/packer.nvim'
 if not (fn.empty(fn.glob(install_path)) > 0) then
   require('core.language-server-setup')
-  require'impatient'.enable_profile()
+  -- require'impatient'.enable_profile()
 end
 
 -- Plugins

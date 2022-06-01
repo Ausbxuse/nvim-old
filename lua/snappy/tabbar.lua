@@ -37,11 +37,11 @@ local highlight = {
   -- BufferInactiveMod = { fg = C.yellow, bg = C.bg_alt },
   -- BufferInactiveSign = { fg = C.gray, bg = C.bg_alt },
   -- BufferInactiveTarget = { fg = C.red, bg = C.bg_alt, style = "bold" },
-  -- StatusLine = { fg = C.bg_alt },
-  -- StatusLineNC = { fg = C.bg_alt },
-  -- StatusLineSeparator = { fg = C.bg_alt },
-  -- StatusLineTerm = { fg = C.bg_alt },
-  -- StatusLineTermNC = { fg = C.bg_alt },
+  --[[ StatusLine = { fg = C.bg_alt, bg = C.bg_statusline },
+  StatusLineNC = { fg = C.bg_alt, bg = C.bg_statusline},
+  StatusLineSeparator = { fg = C.bg_alt, bg = C.bg_statusline },
+  StatusLineTerm = { fg = C.bg_alt, bg = C.bg_statusline },
+  StatusLineTermNC = { fg = C.bg_alt, bg = C.bg_statusline }, ]]
 }
 
 return highlight

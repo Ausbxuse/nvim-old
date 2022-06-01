@@ -20,9 +20,10 @@ local LSP = require "snappy.LSP"
 local org = require "snappy.org"
 local neorg = require "snappy.neorg"
 local cmp = require "snappy.cmp"
+local nvimtree = require "snappy.nvimtree"
 
 local skeletons = {
-  highlights, tabbar, Treesitter, css, org, neorg, cmp, -- markdown,
+  highlights, tabbar, Treesitter, css, org, neorg, cmp, nvimtree, -- markdown,
   -- Whichkey,
   Git, LSP
 }
