@@ -469,6 +469,121 @@ else
     }
 
     use({ "iamcco/markdown-preview.nvim", run = "cd app && npm install", setup = function() vim.g.mkdp_filetypes = { "markdown" } end, ft = { "markdown" }, })
+    use {
+      'jakewvincent/mkdnflow.nvim',
+      config = function()
+        require('mkdnflow').setup({
+          filetypes = {md = true, rmd = true, markdown = true},
+          create_dirs = true,
+          perspective = {
+            priority = 'first',
+            fallback = 'current',
+            root_tell = false
+          },
+          wrap = false,
+          bib = {
+            default_path = nil,
+            find_in_root = true
+          },
+          silent = false,
+          use_mappings_table = true,
+          mappings = {
+            MkdnNextLink = {'n', '<Tab>'},
+            MkdnPrevLink = {'n', '<S-Tab>'},
+            MkdnNextHeading = {'n', '<leader>]'},
+            MkdnPrevHeading = {'n', '<leader>['},
+            MkdnGoBack = {'n', '<BS>'},
+            MkdnGoForward = {'n', '<Del>'},
+            MkdnFollowLink = {{'n', 'v'}, '<CR>'},
+            MkdnDestroyLink = {'n', '<M-CR>'},
+            MkdnYankAnchorLink = {'n', 'ya'},
+            MkdnYankFileAnchorLink = {'n', 'yfa'},
+            MkdnIncreaseHeading = {'n', '+'},
+            MkdnDecreaseHeading = {'n', '-'},
+            MkdnToggleToDo = {'n', '<C-Space>'},
+            MkdnNewListItem = false
+          },
+          links = {
+            style = 'markdown',
+            implicit_extension = nil,
+            transform_implicit = false,
+            transform_explicit = function(text)
+              text = text:gsub(" ", "-")
+              text = text:lower()
+              text = os.date('%Y-%m-%d_')..text
+              return(text)
+            end
+          },
+          to_do = {
+            symbols = {' ', '-', 'X'},
+            update_parents = true,
+            not_started = ' ',
+            in_progress = '-',
+            complete = 'X'
+          }
+        })
+      end,
+    }
+    use 'ekickx/clipboard-image.nvim'
+
+    -- Lua
+    use {
+      'abecodes/tabout.nvim',
+      config = function()
+        require('tabout').setup {
+          tabkey = '<Tab>', -- key to trigger tabout, set to an empty string to disable
+          backwards_tabkey = '<S-Tab>', -- key to trigger backwards tabout, set to an empty string to disable
+          act_as_tab = true, -- shift content if tab out is not possible
+          act_as_shift_tab = false, -- reverse shift content if tab out is not possible (if your keyboard/terminal supports <S-Tab>)
+          default_tab = '<C-t>', -- shift default action (only at the beginning of a line, otherwise <TAB> is used)
+          default_shift_tab = '<C-d>', -- reverse shift default action,
+          enable_backwards = true, -- well ...
+          completion = true, -- if the tabkey is used in a completion pum
+          tabouts = {
+            {open = "'", close = "'"},
+            {open = '"', close = '"'},
+            {open = '`', close = '`'},
+            {open = '(', close = ')'},
+            {open = '[', close = ']'},
+            {open = '{', close = '}'}
+          },
+          ignore_beginning = true, --[[ if the cursor is at the beginning of a filled element it will rather tab out than shift the content ]]
+          exclude = {} -- tabout will ignore these filetypes
+        }
+      end,
+      wants = {'nvim-treesitter'}, -- or require if not used so far
+      after = {'nvim-cmp'} -- if a completion plugin is using tabs load it before
+    }
+
+    use {
+      'jubnzv/mdeval.nvim',
+      config = function()
+        require 'mdeval'.setup({
+          -- Don't ask before executing code blocks
+          require_confirmation=false,
+          -- Change code blocks evaluation options.
+          eval_options = {
+            -- Set custom configuration for C++
+            cpp = {
+              command = {"clang++", "-std=c++20", "-O0"},
+              default_header = [[
+    #include <iostream>
+    #include <vector>
+    using namespace std;
+      ]]
+            },
+            -- Add new configuration for Racket
+            racket = {
+              command = {"racket"},        -- Command to run interpreter
+              language_code = "racket",    -- Markdown language code
+              exec_type = "interpreted",   -- compiled or interpreted
+              extension = "rkt",           -- File extension for temporary files
+            },
+          },
+        })
+      end
+    }
+    -- use {"ellisonleao/glow.nvim", branch = 'main'}
   end)
 end
 

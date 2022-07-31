@@ -85,7 +85,7 @@ local default_keys = {
 
   visual_mode = {
     -- Move selected line / block of text in visual mode
-    {"K", ":move '<-2<CR>gv-gv"}, {"J", ":move '>+1<CR>gv-gv"}
+    -- {"K", ":move '<-2<CR>gv-gv"}, {"J", ":move '>+1<CR>gv-gv"}
   }
 }
 
@@ -138,7 +138,7 @@ func! Compile()
   exec "w"
   "exec '!compile %'
   if &filetype == "cpp"
-    exec 'vs | vert res -10 | te g++ -Wall % && ./a.out'
+    exec 'silent vs | vert res -10 | te g++ -Wall % && ./a.out'
   elseif &filetype == 'c'
     exec 'vs | vert res -10 | te gcc -Wall % && ./a.out'
   elseif &filetype == 'python'
