@@ -7,7 +7,7 @@ require("bufferline").setup {
   highlights = {
     tab_close = {guibg = '#292b2e'},
     indicator_selected = {guifg = '#57c7ff'},
-    indicator_visible= {guibg = '#292b2e'},
+    -- indicator_visible= {guibg = '#292b2e'}, -- BUG: this option doesn't exist anymore in new version
     modified_selected = {guifg = '#abe15b'},
     separator = {
       guibg = '#292b2e',
