@@ -501,6 +501,10 @@ else
             MkdnIncreaseHeading = {'n', '+'},
             MkdnDecreaseHeading = {'n', '-'},
             MkdnToggleToDo = {'n', '<C-Space>'},
+            MkdnTableNewColBefore = {'n', '<leader>aa'},
+            MkdnTableNewColAfter = {'n', '<leader>ab'},
+            MkdnTableNewRowAbove = {'n', '<leader>ac'},
+            MkdnTableNewRowBelow = {'n', '<leader>ad'},
             MkdnNewListItem = false
           },
           links = {
@@ -582,6 +586,10 @@ else
           },
         })
       end
+    }
+    use {
+      'martineausimon/nvim-lilypond-suite',
+      requires = { 'MunifTanjim/nui.nvim' }
     }
     -- use {"ellisonleao/glow.nvim", branch = 'main'}
   end)
