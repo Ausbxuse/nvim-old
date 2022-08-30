@@ -47,7 +47,7 @@ local default_keys = {
     {"<F7>", ":setlocal spell! spell?<CR>"},
     {"<leader>n", ":NvimTreeToggle<CR>"},
     {"<leader>=", ":call ToggleZoom(v:true)<CR>"},
-    {"<leader>r", ":call Compile() &<CR>"},
+    {"<leader>r", ":call Compile() <CR>"},
     {"<leader>ff", ":Telescope find_files<cr>"},
     {"<leader>fr", ":Telescope oldfiles<cr>"},
     {"<leader>fg", "<cmd>Telescope live_grep<cr>"},
@@ -130,13 +130,12 @@ local compe_keys = {
 utils.add_keymap_insert_mode(compe_opts, compe_keys["insert"])
 
 vim.cmd([[
-" easy motion keybinds
-"  nmap s <Plug>(easymotion-overwin-f2)
-
+nnoremap S :%s//g<Left><Left>
+map <leader>c :silent w! \| silent !compile "%:p"<CR>
+map <leader>p :silent !opout "%:p"<CR>
 
 func! Compile()
-  exec "w"
-  "exec '!compile %'
+  exec 'w'
   if &filetype == "cpp"
     exec 'silent vs | vert res -10 | te g++ -Wall % && ./a.out'
   elseif &filetype == 'c'
@@ -154,7 +153,7 @@ func! Compile()
   elseif &filetype == 'java'
     exec 'vs | vert res -10 | te javac % && java %<'
   elseif &filetype == 'markdown'
-    exec 'MarkdownPreview'
+    exec 'silent !compile %&'
   elseif &filetype == 'html'
     exec 'silent !live-server &'
   endif
