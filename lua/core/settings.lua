@@ -114,6 +114,11 @@ M.load_autocmds = function()
     " for eslint
     "autocmd BufWritePre <buffer> <cmd>EslintFixAll<CR>
 
+    let g:vimtex_view_method='zathura'
+    let g:tex_flavor='latex'
+    set conceallevel=2
+    let g:vimtex_quickfix_enabled=0
+
     let g:neovide_transparency=0.8
   ]])
 end

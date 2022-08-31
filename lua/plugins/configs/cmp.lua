@@ -82,7 +82,7 @@ cmp.setup({
     {name = 'buffer', keyword_length = 1}, {name = 'calc'}
   },
   experimental = {
-    -- ghost_text = true,
+    ghost_text = true,
   }
 
 })
@@ -91,9 +91,10 @@ cmp.setup({
 local has_words_before = function()
   local line, col = unpack(vim.api.nvim_win_get_cursor(0))
   return col ~= 0 and
-           vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col)
-             :match("%s") == nil
+    vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col)
+      :match("%s") == nil
 end
+
 local luasnip = require("luasnip")
 
 cmp.setup({
@@ -102,12 +103,43 @@ cmp.setup({
     ['<C-e>'] = cmp.mapping.close(),
     ['<C-u>'] = cmp.mapping.scroll_docs(-4),
     ['<C-d>'] = cmp.mapping.scroll_docs(4),
-    ['<CR>'] = cmp.mapping.confirm({
-      behavior = cmp.ConfirmBehavior.Replace,
-      select = false
+
+    ['<C-s>'] = cmp.mapping.complete({
+      config = {
+        sources = {
+          { name = 'luasnip' }
+        }
+      }
     }),
 
-    ["<Tab>"] = cmp.mapping(function(fallback)
+    ["<C-j>"] = cmp.mapping(function(fallback)
+      if cmp.visible() then
+        cmp.select_next_item()
+      else
+        fallback()
+      end
+    end, {"i", "s"}),
+
+    ["<C-k>"] = cmp.mapping(function(fallback)
+      if cmp.visible() then
+        cmp.select_prev_item()
+      else
+        fallback()
+      end
+    end, {"i", "s"}),
+
+    --[[ ['<C-l>'] = cmp.mapping(function(fallback)
+      if cmp.visible() then
+        return cmp.complete_common_string()
+      end
+      fallback()
+    end, { 'i', 'c' }), ]]
+    ['<Tab>'] = cmp.mapping.confirm({
+      behavior = cmp.ConfirmBehavior.Replace,
+      select = true
+    }),
+
+    --[[ ["<Tab>"] = cmp.mapping(function(fallback)
       if cmp.visible() then
         cmp.select_next_item()
       elseif luasnip.expand_or_jumpable() then
@@ -117,7 +149,7 @@ cmp.setup({
       else
         fallback()
       end
-    end, {"i", "s"}),
+    end, {"i", "s"}), ]]
 
     ["<S-Tab>"] = cmp.mapping(function(fallback)
       if cmp.visible() then

@@ -50,13 +50,13 @@ require'nvim-treesitter.configs'.setup {
   -- ensure_installed = "maintained", -- one of "all", "maintained" (parsers with maintainers), or a list of languages
   ensure_installed = {
     'lua', 'python', 'cpp', 'c', 'java', 'markdown', 'javascript', 'bash',
-    'html', 'css', 'latex', 'json', 'typescript', 'kotlin'
+    'html', 'css', 'json', 'typescript', 'kotlin'
   }, -- one of "all", "maintained" (parsers with maintainers), or a list of languages
-  -- ignore_install = { "javascript" }, -- List of parsers to ignore installing
+  -- ignore_install = { "latex" }, -- List of parsers to ignore installing
   highlight = {
     enable = true, -- false will disable the whole extension
 
-    -- disable = {"org"}, -- list of language that will be disabled
+    disable = {"latex"}, -- list of language that will be disabled
 
     -- Setting this to true will run `:h syntax` and tree-sitter at the same time.
     -- Set this to `true` if you depend on 'syntax' being enabled (like for indentation).

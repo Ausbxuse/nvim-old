@@ -212,13 +212,13 @@ if fn.empty(fn.glob(install_path)) > 0 then
       end
     }
 
-    use {
+    --[[ use {
       "nvim-neorg/neorg",
       config = function()
         require("plugins.configs.neorg")
       end,
       requires = "nvim-lua/plenary.nvim"
-    }
+    } ]]
     use {
       "folke/todo-comments.nvim",
       requires = "nvim-lua/plenary.nvim",
@@ -443,13 +443,13 @@ else
       end
     }
 
-    use {
+    --[[ use {
       "nvim-neorg/neorg",
       config = function()
         require("plugins.configs.neorg")
       end,
       requires = "nvim-lua/plenary.nvim"
-    }
+    } ]]
     use {
       "folke/todo-comments.nvim",
       requires = "nvim-lua/plenary.nvim",
@@ -592,6 +592,20 @@ else
       requires = { 'MunifTanjim/nui.nvim' }
     }
     -- use {"ellisonleao/glow.nvim", branch = 'main'}
+    use { 'lervag/vimtex' }
+    use { "honza/vim-snippets" }
+    use { "hrsh7th/nvim-cmp" }
+    use { "hrsh7th/cmp-buffer" }
+    use { "hrsh7th/cmp-path" }
+    use { "hrsh7th/cmp-nvim-lsp" }
+    use { "hrsh7th/cmp-nvim-lua" }
+    use { "hrsh7th/cmp-calc" }
+    -- use { "rcarriga/cmp-dap" }
+    -- use { "tzachar/cmp-tabnine" }
+    use { "quangnguyen30192/cmp-nvim-ultisnips" }
+    use { "kdheepak/cmp-latex-symbols" }
+    use { "hrsh7th/cmp-emoji" }
+
   end)
 end
 
