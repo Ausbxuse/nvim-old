@@ -11,51 +11,15 @@ cmp.setup({
     expand = function(args) require('luasnip').lsp_expand(args.body) end
   },
   formatting = {
-    format = lspkind.cmp_format({
-      with_text = true, -- whether show text alongside icons
-      mode = 'symbol_text',
-      maxwidth = 20, -- prevent the popup from showing more than provided characters (e.g 50 will not show more than 50 characters)
-      --[[ symbol_map = {
-        Text = '',
-        Method = 'ƒ',
-        Function = '',
-        Constructor = '',
-        Variable = '',
-        Class = '',
-        Interface = 'ﰮ',
-        Module = '',
-        Property = '',
-        Unit = '',
-        Value = '',
-        Enum = '了',
-        Keyword = '',
-        Snippet = '﬌',
-        Color = '',
-        File = '',
-        Folder = '',
-        EnumMember = '',
-        Constant = '',
-        Struct = ''
-      }, ]]
+    fields = { "kind", "abbr", "menu" },
+    format = function(entry, vim_item)
+      local kind = require("lspkind").cmp_format({ mode = "symbol_text", maxwidth = 50 })(entry, vim_item)
+      local strings = vim.split(kind.kind, "%s", { trimempty = true })
+      kind.kind = " " .. strings[1] .. " "
+      kind.menu = "    (" .. strings[2] .. ")"
 
-      -- The function below will be called before any actual modifications from lspkind
-      -- so that you can provide more controls on popup customization. (See [#30](https://github.com/onsails/lspkind-nvim/pull/30))
-      before = function(entry, vim_item)
-        -- fancy icons and a name of kind
-        vim_item.kind = lspkind.presets.default[vim_item.kind]
-        vim_item.abbr = string.sub(vim_item.abbr, 1, 10)
-        -- set a name for each source
-        vim_item.menu = ({
-          buffer = "[Buff]",
-          spell = "[Spell]",
-          nvim_lsp = "[LSP]",
-          luasnip = "[LuaSnip]",
-          nvim_lua = "[Lua]",
-          latex_symbols = "[Latex]"
-        })[entry.source.name]
-        return vim_item
-      end
-    })
+      return kind
+    end,
 
     --[[ format = function(entry, vim_item)
       -- fancy icons and a name of kind
@@ -74,6 +38,11 @@ cmp.setup({
   },
   window = {
     documentation = {border = nil},
+    completion = {
+      winhighlight = "Normal:Pmenu,FloatBorder:Pmenu,Search:None",
+      col_offset = -3,
+      side_padding = 0,
+    },
   },
   sources = {
 -- {name = 'spell'},

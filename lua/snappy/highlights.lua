@@ -86,7 +86,7 @@ local highlight = {
   Visual = {fg = 'NONE', bg = C.bg_visual},
   VisualBold = {fg = 'NONE', bg = C.bg_visual, style = 'bold'},
   -- Pmenu = {fg = C.fg, bg = C.bg_popup},
-  Pmenu = {fg = C.fg, bg = "#2d2f39"},
+  Pmenu = {fg = "#b3bac7", bg = "#22252a"},
   PmenuSel = {fg = "#80bbfe", bg = "#3d4a60", style = 'bold'},
   PmenuSelBold = {fg = C.highlight_color, bg = C.highlight, style = 'bold'},
   PmenuSbar = {fg = 'NONE', bg = C.bg_alt},
@@ -117,16 +117,12 @@ local highlight = {
   --
 TelescopeBorder = {fg = C.ui_11, bg = C.ui_11},
 TelescopePromptBorder = {fg = C.ui_10, bg = C.ui_10},
-
 TelescopePromptNormal = {fg = C.white, bg = C.ui_10},
 TelescopePromptPrefix = {fg = C.red, bg = C.ui_10},
-
 TelescopeNormal = {bg = C.ui_11},
-
 TelescopePreviewTitle = {fg = C.ui_9, bg = C.green},
 TelescopePromptTitle = {fg = C.ui_11, bg = C.red},
 TelescopeResultsTitle = {fg = C.ui_11, bg = C.ui_11},
-
 TelescopeSelection = {bg =  C.ui_10},
 NotifyERRORBody = {bg = "NONE"},
 NotifyWARNBody = {bg = "NONE"},
