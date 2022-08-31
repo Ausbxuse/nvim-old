@@ -1,16 +1,21 @@
 local cmp = {
-  CmpItemAbbrMatch = {bg = "NONE", fg = "#569CD6", style = "bold"},
-  CmpItemAbbrMatchFuzzy = {bg = "NONE", fg = C.orange, style = "bold"},
-  CmpItemKindFunction = {bg = "#c586c0", fg = "#ffffff"},
-  CmpItemKindMethod = {bg = "#b5585f", fg = "#ffffff"},
-  CmpItemKindVariable = {bg = "#9cdcfe", fg = "#ffffff"},
-  CmpItemKindText = {bg = "#9fbd73", fg = "#ffffff"},
-  CmpItemKind = {fg = "#D4D4D4"},
-  CmpItemKindKeyword = {fg = "#ba8adc"},
-  CmpItemKindDefaultKeyword = {fg = "#ba8adc"},
-  CmpItemKindTypeParameter = {fg = "#ba8adc"},
-  CmpItemKindTypeParameterDefault = {fg = "#ba8adc"},
-  CmpItemMenu = {fg = "#ba8adc", style="italic"}
+  CmpItemAbbrMatch = { bg = "NONE", fg = "#569CD6", style = "bold" },
+  CmpItemAbbrMatchFuzzy = { bg = "NONE", fg = C.orange, style = "bold" },
+  CmpItemKindFunction = { bg = "#cb96ff", fg = "#ffffff" },
+  CmpItemKindMethod = { bg = "#ff9191", fg = "#ffffff" },
+  -- CmpItemKindVariable = {bg = "#9cdcfe", fg = "#ffffff"},
+  CmpItemKindVariable = { bg = "#7dbeff", fg = "#ffffff" },
+  CmpItemKindText = { bg = "#9acd68", fg = "#ffffff" },
+  CmpItemKind = { bg = "#a6b5c5", fg = "#ffffff" },
+  CmpItemKindKeyword = { bg = "#9acd68", fg = "#ffffff" },
+  -- CmpItemKindDefaultKeyword = {bg = "#eda55d", fg = "#ffffff"},
+  CmpItemKindTypeParameter = { bg = "#6ecfcf", fg = "#ffffff" },
+  CmpItemKindTypeParameterDefault = { bg = "#6ecfcf", fg = "#ffffff" },
+  CmpItemKindClass = { bg = "#ff9191", fg = "#ffffff" },
+  CmpItemKindField = { bg = "#ff9191", fg = "#ffffff" },
+  CmpItemKindSnippet = { bg = "#7dbeff", fg = "#ffffff" },
+  CmpItemKindConstant = { bg = "#9acd68", fg = "#ffffff" },
+  CmpItemMenu = { fg = "#cb96ff", style = "italic" }
 }
 
 return cmp

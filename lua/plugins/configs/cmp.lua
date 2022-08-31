@@ -1,7 +1,6 @@
 -- Set completeopt to have a better completion experience
 vim.o.completeopt = 'menuone,noselect'
 local cmp = require 'cmp'
-local lspkind = require 'lspkind'
 
 cmp.setup({
   completion = {
@@ -37,7 +36,7 @@ cmp.setup({
     end ]]
   },
   window = {
-    documentation = {border = nil},
+    documentation = { border = nil },
     completion = {
       winhighlight = "Normal:Pmenu,FloatBorder:Pmenu,Search:None",
       col_offset = -3,
@@ -45,10 +44,10 @@ cmp.setup({
     },
   },
   sources = {
--- {name = 'spell'},
-    {name = 'nvim_lsp'}, {name = 'nvim_lua'},
-    {name = 'neorg'}, {name = 'path'}, {name = 'luasnip'},
-    {name = 'buffer', keyword_length = 1}, {name = 'calc'}
+    -- {name = 'spell'},
+    { name = 'nvim_lsp' }, { name = 'nvim_lua' },
+    { name = 'neorg' }, { name = 'path' }, { name = 'luasnip' },
+    { name = 'buffer', keyword_length = 1 }, { name = 'calc' }
   },
   experimental = {
     ghost_text = true,
@@ -60,7 +59,7 @@ cmp.setup({
 local has_words_before = function()
   local line, col = unpack(vim.api.nvim_win_get_cursor(0))
   return col ~= 0 and
-    vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col)
+      vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col)
       :match("%s") == nil
 end
 
@@ -87,7 +86,7 @@ cmp.setup({
       else
         fallback()
       end
-    end, {"i", "s"}),
+    end, { "i", "s" }),
 
     ["<C-k>"] = cmp.mapping(function(fallback)
       if cmp.visible() then
@@ -95,7 +94,7 @@ cmp.setup({
       else
         fallback()
       end
-    end, {"i", "s"}),
+    end, { "i", "s" }),
 
     --[[ ['<C-l>'] = cmp.mapping(function(fallback)
       if cmp.visible() then
@@ -103,14 +102,18 @@ cmp.setup({
       end
       fallback()
     end, { 'i', 'c' }), ]]
-    ['<Tab>'] = cmp.mapping.confirm({
+    --[[ ['<Tab>'] = cmp.mapping.confirm({
       behavior = cmp.ConfirmBehavior.Replace,
       select = true
-    }),
+    }), ]]
 
-    --[[ ["<Tab>"] = cmp.mapping(function(fallback)
+    ["<Tab>"] = cmp.mapping(function(fallback)
       if cmp.visible() then
-        cmp.select_next_item()
+        cmp.confirm({
+          behavior = cmp.ConfirmBehavior.Replace,
+          select = true
+        })
+        -- cmp.select_next_item()
       elseif luasnip.expand_or_jumpable() then
         luasnip.expand_or_jump()
       elseif has_words_before() then
@@ -118,7 +121,7 @@ cmp.setup({
       else
         fallback()
       end
-    end, {"i", "s"}), ]]
+    end, { "i", "s" }),
 
     ["<S-Tab>"] = cmp.mapping(function(fallback)
       if cmp.visible() then
@@ -128,7 +131,7 @@ cmp.setup({
       else
         fallback()
       end
-    end, {"i", "s"})
+    end, { "i", "s" })
 
   }
 })
