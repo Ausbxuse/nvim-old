@@ -107,15 +107,16 @@ cmp.setup({
       select = true
     }), ]]
 
+    -- TODO: skip parens and auto multi tab with one tab
     ["<Tab>"] = cmp.mapping(function(fallback)
-      if cmp.visible() then
+      if luasnip.expand_or_jumpable() then
+        luasnip.expand_or_jump()
+      elseif cmp.visible() then
         cmp.confirm({
           behavior = cmp.ConfirmBehavior.Replace,
           select = true
         })
         -- cmp.select_next_item()
-      elseif luasnip.expand_or_jumpable() then
-        luasnip.expand_or_jump()
       elseif has_words_before() then
         cmp.complete()
       else

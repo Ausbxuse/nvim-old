@@ -30,54 +30,57 @@ end
 vim.g.mapleader = " "
 
 local opts = {
-  nnoremap = {noremap = true, silent = true},
-  inoremap = {noremap = true, silent = true},
-  vnoremap = {noremap = true, silent = true},
-  xnoremap = {noremap = true, silent = true},
-  generic = {silent = true}
+  nnoremap = { noremap = true, silent = true },
+  inoremap = { noremap = true, silent = true },
+  vnoremap = { noremap = true, silent = true },
+  xnoremap = { noremap = true, silent = true },
+  generic = { silent = true }
 }
 
 local default_keys = {
-  insert_mode = {{"<C-s>", "<Esc>:w | silent AsyncRun compile % &<CR>a"}},
+  insert_mode = {
+    { "<C-s>", "<Esc>:w | silent AsyncRun compile % &<CR>a" },
+    { "<Esc>", "<Esc>:w <CR>" }
+  },
 
   normal_mode = {
-    {"<Space>", "<Nop>"}, {"<S-h>", "<C-w>h"}, {"<S-j>", "<C-w>j"},
-    {"<S-k>", "<C-w>k"}, {"<S-l>", "<C-w>l"},
-    {"<C-s>", ":w | silent AsyncRun compile %<CR>"}, {"<Esc>", ":nohl<CR>"},
-    {"<F7>", ":setlocal spell! spell?<CR>"},
-    {"<leader>n", ":NvimTreeToggle<CR>"},
-    {"<leader>=", ":call ToggleZoom(v:true)<CR>"},
-    {"<leader>r", ":call Compile() <CR>"},
-    {"<leader>ff", ":Telescope find_files<cr>"},
-    {"<leader>fr", ":Telescope oldfiles<cr>"},
-    {"<leader>fg", "<cmd>Telescope live_grep<cr>"},
-    {"<leader>b", "<cmd>Telescope buffers<cr>"},
-    {"<leader>x", "<cmd>Telescope<cr>"},
-    {"<leader>z", "<cmd>ZenMode<cr>"},
-    {"<leader>u", "<cmd>lua require('telescope').extensions.dict.synonyms()<cr>"},
-    {"<leader>t", "<cmd>Neorg gtd capture<cr>"},
-    {"<leader>fa", ":cd ~/Documents/org/ | e Tasks.org <cr>"},
-    {"<leader>fi", ":cd ~/.config/nvim | e init.lua <cr>"},
-    {"<leader>fh", "<cmd>Telescope help_tags<cr>"}, {"<leader>j", ":bn<cr>"},
-    {"<leader>k", ":bp<cr>"}, {"gd", "<cmd>lua vim.lsp.buf.definition()<cr>"},
-    {"gb", ":BufferLinePick<CR>"},
+    { "<Space>", "<Nop>" }, { "<S-h>", "<C-w>h" }, { "<S-j>", "<C-w>j" },
+    { "<S-k>", "<C-w>k" }, { "<S-l>", "<C-w>l" },
+    { "<C-s>", ":w | silent AsyncRun compile %<CR>" }, { "<Esc>", ":nohl<CR>" },
+    { "<F7>", ":setlocal spell! spell?<CR>" },
+    { "<leader>n", ":NvimTreeToggle<CR>" },
+    { "<leader>=", ":call ToggleZoom(v:true)<CR>" },
+    { "<leader>r", ":call Compile() <CR>" },
+    { "<leader>ff", ":Telescope find_files<cr>" },
+    { "<leader>fr", ":Telescope oldfiles<cr>" },
+    { "<leader>fg", "<cmd>Telescope live_grep<cr>" },
+    { "<leader>b", "<cmd>Telescope buffers<cr>" },
+    { "<leader>x", "<cmd>Telescope<cr>" },
+    { "<leader>z", "<cmd>ZenMode<cr>" },
+    { "<leader>u", "<cmd>lua require('telescope').extensions.dict.synonyms()<cr>" },
+    { "<leader>t", "<cmd>Neorg gtd capture<cr>" },
+    { "<leader>fa", ":cd ~/Documents/org/ | e Tasks.org <cr>" },
+    { "<leader>fi", ":cd ~/.config/nvim | e init.lua <cr>" },
+    { "<leader>fh", "<cmd>Telescope help_tags<cr>" }, { "<leader>j", ":bn<cr>" },
+    { "<leader>k", ":bp<cr>" }, { "gd", "<cmd>lua vim.lsp.buf.definition()<cr>" },
+    { "gb", ":BufferLinePick<CR>" },
     --[[ {"gD", "<cmd>lua vim.lsp.buf.declaration()<cr>"},
     {"gr", "<cmd>lua vim.lsp.buf.references()<cr>"},
     {"gi", "<cmd>lua vim.lsp.buf.implementation()<cr>"},
     {"<C-k>", "<cmd>lua vim.lsp.buf.hover()<cr>"},
     {"<C-j>", "<cmd>lua vim.lsp.buf.signature_help()<cr>"}, ]]
-    {"<C-p>", "<cmd>lua vim.lsp.diagnostic.goto_prev()<cr>"},
-    {"<C-n>", "<cmd>lua vim.lsp.diagnostic.goto_next()<cr>"}
+    { "<C-p>", "<cmd>lua vim.lsp.diagnostic.goto_prev()<cr>" },
+    { "<C-n>", "<cmd>lua vim.lsp.diagnostic.goto_next()<cr>" }
   },
 
   term_mode = {
     -- Terminal window navigation
-    {"<Esc>", "<C-\\><C-n>"}
+    { "<Esc>", "<C-\\><C-n>" }
   },
 
   visual_select_mode = {
     -- Better indenting
-    {"<", "<gv"}, {">", ">gv"}
+    { "<", "<gv" }, { ">", ">gv" }
 
     -- { "p", '"0p', { silent = true } },
     -- { "P", '"0P', { silent = true } },
@@ -92,36 +95,42 @@ local default_keys = {
 -- place this in one of your configuration file(s)
 vim.api.nvim_set_keymap('n', 's', "<cmd>HopChar2<cr>", {})
 vim.api.nvim_set_keymap('n', 'f',
-                        "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR, current_line_only = true })<cr>",
-                        {})
+  "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR, current_line_only = true })<cr>"
+  ,
+  {})
 vim.api.nvim_set_keymap('n', 'F',
-                        "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR, current_line_only = true })<cr>",
-                        {})
+  "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR, current_line_only = true })<cr>"
+  ,
+  {})
 vim.api.nvim_set_keymap('o', 'f',
-                        "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR, current_line_only = true, inclusive_jump = true })<cr>",
-                        {})
+  "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR, current_line_only = true, inclusive_jump = true })<cr>"
+  ,
+  {})
 vim.api.nvim_set_keymap('o', 'F',
-                        "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR, current_line_only = true, inclusive_jump = true })<cr>",
-                        {})
+  "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR, current_line_only = true, inclusive_jump = true })<cr>"
+  ,
+  {})
 vim.api.nvim_set_keymap('', 't',
-                        "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR, current_line_only = true })<cr>",
-                        {})
+  "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR, current_line_only = true })<cr>"
+  ,
+  {})
 vim.api.nvim_set_keymap('', 'T',
-                        "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR, current_line_only = true })<cr>",
-                        {})
+  "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR, current_line_only = true })<cr>"
+  ,
+  {})
 
 utils.add_keymap_normal_mode(opts.nnoremap, default_keys["normal_mode"])
 utils.add_keymap_insert_mode(opts.inoremap, default_keys["insert_mode"])
 utils.add_keymap_visual_select_mode(opts.vnoremap,
-                                    default_keys["visual_select_mode"])
+  default_keys["visual_select_mode"])
 utils.add_keymap_visual_mode(opts.xnoremap, default_keys["visual_mode"])
 utils.add_keymap_term_mode(opts.generic, default_keys["term_mode"])
 
-local compe_opts = {noremap = true, silent = true, expr = true}
+local compe_opts = { noremap = true, silent = true, expr = true }
 local compe_keys = {
   insert = {
-    {"<C-Space>", "compe#complete()"}, {"<CR>", "compe#confirm('<CR>')"},
-    {"<C-e>", "compe#close('<C-e>')"}
+    { "<C-Space>", "compe#complete()" }, { "<CR>", "compe#confirm('<CR>')" },
+    { "<C-e>", "compe#close('<C-e>')" },
     --[[ {"<C-f>", "compe#scroll({ 'delta': +4 })"},
     {"<C-d>", "compe#scroll({ 'delta': -4 })"} ]]
   }

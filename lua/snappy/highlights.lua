@@ -105,7 +105,7 @@ local highlight = {
   -- lCursor = {fg = , bg = , style = },
   -- TermCursor = {fg = , bg = , style = },
   -- TermCursorNC = {fg = , bg = , style = },
-  -- Conceal = {fg = , bg = , style = },
+  Conceal = {fg = C.blue, bg = "NONE"},
   -- Substitute = {fg = , bg = , style = },
   -- Question = {fg = , bg = , style = },
   -- EndOfBuffer = {fg = , bg = , style = },
@@ -113,8 +113,6 @@ local highlight = {
   -- Bold = {fg = , bg = , style = },
   -- Italic = {fg = , bg = , style = },
   -- Ignore = {fg = , bg = , style = },
-  --
-  --
 TelescopeBorder = {fg = C.ui_11, bg = C.ui_11},
 TelescopePromptBorder = {fg = C.ui_10, bg = C.ui_10},
 TelescopePromptNormal = {fg = C.white, bg = C.ui_10},
