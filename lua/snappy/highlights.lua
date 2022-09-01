@@ -17,7 +17,7 @@ local highlight = {
   Directory = {fg = C.ui_8, bg = 'NONE'},
   CTagsClass = {fg = C.ui_3, bg = 'NONE'},
   Repeat = {fg = C.green, bg = 'NONE'},
-  MatchParen = {fg = C.yellow, bg = C.ui_4},
+  MatchParen = {fg = 'NONE', bg = C.ui_8},
   String = {fg = C.yellow, bg = 'NONE'},
   Tag = {fg = C.yellow, bg = 'NONE'},
   Constant = {fg = C.green, bg = 'NONE'},
