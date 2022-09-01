@@ -127,5 +127,6 @@ NotifyWARNBody = {bg = "NONE"},
 NotifyINFOBody = {bg = "NONE"},
 NotifyDEBUGBody = {bg = "NONE"},
 NotifyTRACEBody = {bg = "NONE"},
+texTitleArg = {fg = C.fg, bg = "NONE"}
 }
 return highlight

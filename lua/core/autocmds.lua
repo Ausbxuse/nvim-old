@@ -21,6 +21,8 @@ autocmd Filetype markdown,rmd setlocal spell
 "autocmd Filetype markdown,rmd nnoremap ;s y$d$i ~~<Esc>pa~~<Esc>0
 "autocmd Filetype markdown,rmd nnoremap \s 0f~xxf~xx0
 
+"autocmd Filetype tex inoremap <Esc>:w<CR><Esc>
+
 autocmd BufWritePost *.rmd AsyncRun compile %
 
 autocmd BufWritePre *.lua call LuaFormat()

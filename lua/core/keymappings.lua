@@ -40,7 +40,7 @@ local opts = {
 local default_keys = {
   insert_mode = {
     { "<C-s>", "<Esc>:w | silent AsyncRun compile % &<CR>a" },
-    { "<Esc>", "<Esc>:w <CR>" }
+    -- { "<Esc>", "<Esc>:w <CR>" }
   },
 
   normal_mode = {

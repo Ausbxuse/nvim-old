@@ -121,7 +121,6 @@ M.load_autocmds = function()
     let g:vimtex_compiler_progname = 'nvr'
     let g:neovide_transparency=0.8
     
-    setlocal spell
     set spelllang=en_us
     inoremap <C-l> <c-g>u<Esc>[s1z=`]a<c-g>u
   ]])
