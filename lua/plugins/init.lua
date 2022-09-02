@@ -110,12 +110,12 @@ local function setupPackage()
     use { 'rhysd/vim-grammarous' }
     -- use {'tzachar/compe-tabnine', run = './install.sh'}
     use { 'prettier/vim-prettier', run = 'yarn install' }
-    use { 'kevinhwang91/rnvimr', run = 'make sync' }
+    -- use { 'kevinhwang91/rnvimr', run = 'make sync' }
     -- Post-install/update hook with neovim command
     use {
       'nvim-treesitter/nvim-treesitter',
       config = function() require("plugins.configs.treesitter") end,
-      run = ':TSUpdate'
+      -- run = ':TSUpdate'
     }
     -- Post-install/update hook with call of vimscript function with argument
     --  use { 'glacambre/firenvim', run = function() vim.fn['firenvim#install'](0) end }
@@ -369,6 +369,7 @@ local function setupPackage()
     use { "hrsh7th/cmp-emoji" }
 
     use "rafamadriz/friendly-snippets"
+    use 'zane-/cder.nvim'
 
   end)
 end
