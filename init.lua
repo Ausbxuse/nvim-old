@@ -26,6 +26,7 @@ if not (fn.empty(fn.glob(install_path)) > 0) then
   vim.cmd([[colorscheme snappy]])
 else
   -- Plugins
+  vim.opt.termguicolors = true
   require('plugins')
 end
 
