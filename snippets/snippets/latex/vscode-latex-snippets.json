@@ -4,7 +4,9 @@
         "body": [
             "\\documentclass{article}", 
             "\\usepackage{geometry}", 
-              "\\usepackage{amsmath}", 
+            "\\usepackage{amsmath}", 
+
+            "\\usepackage{amsfonts}",
             "",
             "\\title{${1:Title}}", 
             "\\author{${2:Zhenyu Zhao}}", 

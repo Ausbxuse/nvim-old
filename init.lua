@@ -24,8 +24,9 @@ if not (fn.empty(fn.glob(install_path)) > 0) then
   -- Color Scheme
   vim.g.colors_name = 'snappy'
   vim.cmd([[colorscheme snappy]])
+else
+  -- Plugins
+  require('plugins')
 end
 
--- Plugins
-require('plugins')
 
