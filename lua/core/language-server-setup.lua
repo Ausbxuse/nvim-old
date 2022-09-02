@@ -205,5 +205,5 @@ lspconfig.jsonls.setup {
     }
   }
 }
-
+lspconfig.texlab.setup{}
 lspconfig.kotlin_language_server.setup{}

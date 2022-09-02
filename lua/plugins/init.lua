@@ -13,21 +13,20 @@ local function setupPackage()
     }
     use 'jbyuki/nabla.nvim'
     use { 'michaelb/sniprun', run = 'bash ./install.sh' }
-    use 'rudism/telescope-dict.nvim' -- requires dictd dict-wn dict-moby-thesaurus
-    -- use 'f3fora/cmp-spell'
-    --[[ use {'jose-elias-alvarez/null-ls.nvim',
-      config = function() require("null-ls").setup({
-        sources = {
-          require("null-ls").builtins.formatting.stylua,
-          require("null-ls").builtins.diagnostics.eslint,
-          require("null-ls").builtins.completion.spell,
-          require("null-ls").builtins.hover.dictionary
-        },
-      })end} ]]
     --[[ use {
-  "vimwiki/vimwiki"
-
-  } ]]
+      'uga-rosa/cmp-dictionary',
+      config = function()
+        require("cmp_dictionary").setup({
+          dic = {
+            -- If you always use the English dictionary, The following settings are suitable:
+            ["*"] = "~/.config/nvim/en.dict",
+          },
+          async = true,
+          -- max_items = 5,
+        })
+      end
+    } ]]
+    -- use 'f3fora/cmp-spell'
     use {
       "petertriho/nvim-scrollbar",
       config = function() require("scrollbar").setup {} end
@@ -39,9 +38,7 @@ local function setupPackage()
       config = function() require("plugins.configs.kommentary") end
     }
     -- use {'glacambre/firenvim', run = function() vim.fn['firenvim#install'](0) end}
-    -- use '9mm/vim-closer'
     use 'nvim-treesitter/playground'
-    -- use 'alvan/vim-closetag'
     use { 'akinsho/nvim-toggleterm.lua',
       config = function() require("plugins.configs.toggleterm") end
     }

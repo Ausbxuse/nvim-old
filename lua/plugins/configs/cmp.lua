@@ -44,6 +44,7 @@ cmp.setup({
     },
   },
   sources = {
+    -- { name = 'dictionary' }, 
     { name = 'spell' },
     { name = 'nvim_lsp' }, { name = 'nvim_lua' },
     { name = 'neorg' }, { name = 'path' }, { name = 'luasnip' },
@@ -102,20 +103,20 @@ cmp.setup({
       end
       fallback()
     end, { 'i', 'c' }), ]]
-    --[[ ['<Tab>'] = cmp.mapping.confirm({
+    ['<C-l>'] = cmp.mapping.confirm({
       behavior = cmp.ConfirmBehavior.Replace,
       select = true
-    }), ]]
+    }),
 
     -- TODO: skip parens and auto multi tab with one tab
     ["<Tab>"] = cmp.mapping(function(fallback)
       if luasnip.expand_or_jumpable() then
         luasnip.expand_or_jump()
-      elseif cmp.visible() then
+      --[[ elseif cmp.visible() then
         cmp.confirm({
           behavior = cmp.ConfirmBehavior.Replace,
           select = true
-        })
+        }) ]]
         -- cmp.select_next_item()
       elseif has_words_before() then
         cmp.complete()
