@@ -45,7 +45,9 @@ local function setupPackage()
     use { 'akinsho/nvim-toggleterm.lua',
       config = function() require("plugins.configs.toggleterm") end
     }
-    use 'windwp/nvim-ts-autotag'
+    use {'windwp/nvim-ts-autotag',
+      requires = { 'nvim-treesitter/nvim-treesitter' }
+    }
     -- use 'ray-x/lsp_signature.nvim'
     use 'nvim-lua/popup.nvim'
     use 'nvim-lua/plenary.nvim'
@@ -88,7 +90,9 @@ local function setupPackage()
     -- use 'metakirby5/codi.vim'
     -- use 'asvetliakov/vim-easymotion'
     -- use 'glepnir/dashboard-nvim'
-    use 'p00f/nvim-ts-rainbow'
+    use {'p00f/nvim-ts-rainbow',
+      requires = { 'nvim-treesitter/nvim-treesitter' }
+    }
     -- use 'nvim-lua/completion-nvim'
     -- use 'turbio/bracey.vim'
     -- use 'mattn/emmet-vim'
