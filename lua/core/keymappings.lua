@@ -126,17 +126,12 @@ utils.add_keymap_visual_select_mode(opts.vnoremap,
 utils.add_keymap_visual_mode(opts.xnoremap, default_keys["visual_mode"])
 utils.add_keymap_term_mode(opts.generic, default_keys["term_mode"])
 
-local compe_opts = { noremap = true, silent = true, expr = true }
-local compe_keys = {
-  insert = {
-    { "<C-Space>", "compe#complete()" }, { "<CR>", "compe#confirm('<CR>')" },
-    { "<C-e>", "compe#close('<C-e>')" },
-    --[[ {"<C-f>", "compe#scroll({ 'delta': +4 })"},
-    {"<C-d>", "compe#scroll({ 'delta': -4 })"} ]]
-  }
-}
+vim.api.nvim_set_keymap("i", "<C-n>", "<Plug>luasnip-next-choice", {})
+vim.api.nvim_set_keymap("s", "<C-n>", "<Plug>luasnip-next-choice", {})
+vim.api.nvim_set_keymap("i", "<C-p>", "<Plug>luasnip-prev-choice", {})
+vim.api.nvim_set_keymap("s", "<C-p>", "<Plug>luasnip-prev-choice", {})
 
-utils.add_keymap_insert_mode(compe_opts, compe_keys["insert"])
+vim.keymap.set('x', 'aw', function() require'align'.align_to_string(false, true, true) end, NS) -- Aligns to a string, looking left and with previews
 
 vim.cmd([[
 nnoremap S :%s//g<Left><Left>

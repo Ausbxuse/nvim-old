@@ -42,7 +42,7 @@ local function setupPackage()
     use { 'akinsho/nvim-toggleterm.lua',
       config = function() require("plugins.configs.toggleterm") end
     }
-    use {'windwp/nvim-ts-autotag',
+    use { 'windwp/nvim-ts-autotag',
       requires = { 'nvim-treesitter/nvim-treesitter' }
     }
     -- use 'ray-x/lsp_signature.nvim'
@@ -87,7 +87,7 @@ local function setupPackage()
     -- use 'metakirby5/codi.vim'
     -- use 'asvetliakov/vim-easymotion'
     -- use 'glepnir/dashboard-nvim'
-    use {'p00f/nvim-ts-rainbow',
+    use { 'p00f/nvim-ts-rainbow',
       requires = { 'nvim-treesitter/nvim-treesitter' }
     }
     -- use 'nvim-lua/completion-nvim'
@@ -239,7 +239,7 @@ local function setupPackage()
 
     use({ "iamcco/markdown-preview.nvim", run = "cd app && npm install",
       setup = function() vim.g.mkdp_filetypes = { "markdown" } end, ft = { "markdown" }, })
-    use {
+    --[[ use {
       'jakewvincent/mkdnflow.nvim',
       config = function()
         require('mkdnflow').setup({
@@ -297,9 +297,9 @@ local function setupPackage()
           }
         })
       end,
-    }
+    } ]]
     use 'ekickx/clipboard-image.nvim'
-
+    use 'Vonr/align.nvim'
     -- Lua
     use {
       'abecodes/tabout.nvim',
@@ -371,7 +371,17 @@ local function setupPackage()
 
     use "rafamadriz/friendly-snippets"
     use 'zane-/cder.nvim'
-
+    use {
+      "ausbxuse/luasnip-latex-snippets.nvim",
+      -- replace "lervag/vimtex" with "nvim-treesitter/nvim-treesitter" if you're
+      -- using treesitter.
+      requires = { "L3MON4D3/LuaSnip", "lervag/vimtex" },
+      config = function()
+        require 'luasnip-latex-snippets'.setup()
+        -- or setup({ use_treesitter = true })
+      end,
+      ft = "tex",
+    }
   end)
 end
 

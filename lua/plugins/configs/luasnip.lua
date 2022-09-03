@@ -30,34 +30,90 @@ ls.snippets = { all = {}, html = {} }
 ls.add_snippets("tex", {
   -- rec_ls is self-referencing. That makes this snippet 'infinite' eg. have as many
   -- \item as necessary by utilizing a choiceNode.
+  s("arr", {
+    t({ "\\begin{displaymath}", "\t\\begin{array}{" }),
+    i(1),
+    t({ "}",
+      "", "\\end{displaymath}" }),
+  }),
+
   s("ls", {
     t({ "\\begin{itemize}", "\t\\item " }),
     i(1),
-    d(2, rec_ls, {}),
+    -- d(2, rec_ls, {}), -- BUG: severe performance issue
     t({ "", "\\end{itemize}" }),
   }),
 
-  s("tpl", {
+  s("it", {
+    t({ "\\item "}),
+  }),
+
+  s("m", {
+    t({ "$"}),
+    i(1),
+    t({ "$"}),
+  }),
+
+  s("mm", {
+    t({ "$$"}),
+    i(1),
+    t({ "$$"}),
+  }),
+
+  s("md", {
+    t({ "\\[", "    "}),
+    i(1),
+    t({ "", "\\]"}),
+  }),
+
+  s("t", {
+    t({ "^{"}),
+    i(1),
+    t({ "}"}),
+  }),
+
+  s("sec", {
+    t({ "\\section{"}),
+    i(1),
+    t({ "}",""}),
+  }),
+
+  s("ss", {
+    t({ "\\subsection{"}),
+    i(1),
+    t({ "}",""}),
+  }),
+
+  s("sss", {
+    t({ "\\subsubsection{"}),
+    i(1),
+    t({ "}",""}),
+  }),
+
+  s("tp", {
     t({
       "\\documentclass{article}",
       "\\usepackage{geometry}",
       "\\usepackage{amsmath}",
-
       "\\usepackage{amsfonts}",
+      "\\usepackage{amssymb}",
       "",
       "\\title{",}),
     i(1),
     t({
       "}",
-      "\\author{${2:Zhenyu Zhao}}",
-      "",
+      "\\author{Zhenyu Zhao}",
       "",
       "\\begin{document}",
       "    \\maketitle",
-      "    $0",
-      "\\end{document}"
+      "    ",
     }),
-    t({ "", "\\end{itemize}" }),
+    i(2),
+    t({
+      "",
+      "\\end{document}",
+      ""
+    }),
   }),
 
 }, {

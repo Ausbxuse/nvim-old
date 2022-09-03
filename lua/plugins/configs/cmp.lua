@@ -46,6 +46,7 @@ cmp.setup({
   sources = {
     -- { name = 'dictionary' }, 
     { name = 'spell' },
+    { name = 'emoji' },
     { name = 'nvim_lsp' }, { name = 'nvim_lua' },
     { name = 'neorg' }, { name = 'path' }, { name = 'luasnip' },
     { name = 'buffer', keyword_length = 1 }, { name = 'calc' }
@@ -69,7 +70,7 @@ local luasnip = require("luasnip")
 cmp.setup({
   mapping = {
     ['<C-Space>'] = cmp.mapping.complete(),
-    ['<C-e>'] = cmp.mapping.close(),
+    ['<C-y>'] = cmp.mapping.close(),
     ['<C-u>'] = cmp.mapping.scroll_docs(-4),
     ['<C-d>'] = cmp.mapping.scroll_docs(4),
 
@@ -112,23 +113,21 @@ cmp.setup({
     ["<Tab>"] = cmp.mapping(function(fallback)
       if luasnip.expand_or_jumpable() then
         luasnip.expand_or_jump()
-      --[[ elseif cmp.visible() then
+      elseif cmp.visible() then
         cmp.confirm({
           behavior = cmp.ConfirmBehavior.Replace,
           select = true
-        }) ]]
+        })
         -- cmp.select_next_item()
-      elseif has_words_before() then
-        cmp.complete()
+      --[[ elseif has_words_before() then
+        cmp.complete() ]]
       else
         fallback()
       end
     end, { "i", "s" }),
 
     ["<S-Tab>"] = cmp.mapping(function(fallback)
-      if cmp.visible() then
-        cmp.select_prev_item()
-      elseif luasnip.jumpable(-1) then
+      if luasnip.jumpable(-1) then
         luasnip.jump(-1)
       else
         fallback()
