@@ -25,7 +25,7 @@ autocmd Filetype markdown,rmd setlocal spell
 
 autocmd BufWritePost *.rmd AsyncRun compile %
 
-autocmd BufWritePre *.lua call LuaFormat()
+"autocmd BufWritePre *.lua call LuaFormat()
 autocmd TermOpen * setlocal nonumber norelativenumber
 " autocmd BufWritePre *.html PrettierAsync
 " autocmd BufWritePre *.css PrettierAsync
