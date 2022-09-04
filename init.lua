@@ -28,6 +28,6 @@ else
   -- Plugins
   vim.opt.termguicolors = true
   require('plugins')
-  vim.notify("Installation finished. Please restart Nvim 🥰.")
+  vim.notify("After installation, please restart Nvim 🥰.")
 end
 

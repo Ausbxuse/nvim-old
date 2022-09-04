@@ -13,6 +13,11 @@ local function setupPackage()
     }
     use 'jbyuki/nabla.nvim'
     use { 'michaelb/sniprun', run = 'bash ./install.sh' }
+    use {
+      'nvim-treesitter/nvim-treesitter',
+      config = function() require("plugins.configs.treesitter") end,
+      -- run = ':TSUpdate'
+    }
     --[[ use {
       'uga-rosa/cmp-dictionary',
       config = function()
@@ -113,11 +118,6 @@ local function setupPackage()
     use { 'prettier/vim-prettier', run = 'yarn install' }
     -- use { 'kevinhwang91/rnvimr', run = 'make sync' }
     -- Post-install/update hook with neovim command
-    use {
-      'nvim-treesitter/nvim-treesitter',
-      config = function() require("plugins.configs.treesitter") end,
-      -- run = ':TSUpdate'
-    }
     -- Post-install/update hook with call of vimscript function with argument
     --  use { 'glacambre/firenvim', run = function() vim.fn['firenvim#install'](0) end }
     -- Use specific branch, dependency and run lua file after load
