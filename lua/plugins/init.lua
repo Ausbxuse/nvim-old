@@ -42,7 +42,6 @@ local function setupPackage()
       'b3nj5m1n/kommentary',
       config = function() require("plugins.configs.kommentary") end
     }
-    -- use {'glacambre/firenvim', run = function() vim.fn['firenvim#install'](0) end}
     use 'nvim-treesitter/playground'
     use { 'akinsho/nvim-toggleterm.lua',
       config = function() require("plugins.configs.toggleterm") end
@@ -61,21 +60,11 @@ local function setupPackage()
       config = function() require("plugins.configs.indent_blankline") end }
     use { 'neovim/nvim-lspconfig',
       config = function() require("plugins.configs.lspconfig") end }
-    --  use 'romgrk/doom-one.vim'
-    --  use 'sainnhe/sonokai'
-    -- use 'chuling/equinusocio-material.vim' --????
     -- use 'camspiers/animate.vim'
     -- use 'camspiers/lens.vim'
-    -- use 'romgrk/barbar.nvim'
     -- use 'wfxr/minimap.vim', {'do': ':!cargo install --locked code-minimap'}
     use 'andrejlevkovitch/vim-lua-format'
-    --  use 'sheerun/vim-polyglot'
-    -- use 'ryanoasis/vim-devicons'
-    --  use 'jiangmiao/auto-pairs'
     use 'preservim/tagbar'
-    -- use 'mhinz/vim-startify'
-    -- use 'liuchengxu/vista.vim'
-    -- use 'liuchengxu/vim-which-key'
     use {
       'norcalli/nvim-colorizer.lua',
       config = function() require("plugins.configs.colorizer") end
@@ -85,49 +74,16 @@ local function setupPackage()
       requires = 'kyazdani42/nvim-web-devicons',
       config = function() require("plugins.configs.nvim-tree") end
     }
-    -- use 'hrsh7th/vim-vsnip'
-    -- use 'hrsh7th/vim-vsnip-integ'
-    -- use 'honza/vim-snippets'
-    -- use 'https://github.com/vimwiki/vimwiki.git'
-    -- use 'metakirby5/codi.vim'
-    -- use 'asvetliakov/vim-easymotion'
-    -- use 'glepnir/dashboard-nvim'
     use { 'p00f/nvim-ts-rainbow',
       requires = { 'nvim-treesitter/nvim-treesitter' }
     }
-    -- use 'nvim-lua/completion-nvim'
-    -- use 'turbio/bracey.vim'
-    -- use 'mattn/emmet-vim'
-    -- use 'patstockwell/vim-monokai-tasty'
-    -- use 'puremourning/vimspector'
-    -- Lazy loading:
-    -- Load on specific commands
-    -- use {'tpope/vim-dispatch', opt = true, cmd = {'Dispatch', 'Make', 'Focus', 'Start'}}
-    -- Load on an autocommand event
-    --  use {'andymass/vim-matchup', event = 'VimEnter'}
-    -- Load on a combination of conditions: specific filetypes or commands
-    -- Also run code after load (see the "config" key)
-    -- use {
-    --  'w0rp/ale',
-    --  ft = {'sh', 'zsh', 'bash', 'c', 'cpp', 'cmake', 'html', 'markdown', 'racket', 'vim', 'tex'},
-    --  cmd = 'ALEEnable',
-    --  config = 'vim.cmd[[ALEEnable]]'
-    -- }
     use { 'rhysd/vim-grammarous' }
-    -- use {'tzachar/compe-tabnine', run = './install.sh'}
     use { 'prettier/vim-prettier', run = 'yarn install' }
-    -- use { 'kevinhwang91/rnvimr', run = 'make sync' }
-    -- Post-install/update hook with neovim command
-    -- Post-install/update hook with call of vimscript function with argument
-    --  use { 'glacambre/firenvim', run = function() vim.fn['firenvim#install'](0) end }
-    -- Use specific branch, dependency and run lua file after load
-    -- Use dependency and run lua function after load
     use {
       'lewis6991/gitsigns.nvim',
       config = function() require("plugins.configs.gitsigns") end,
       requires = { 'nvim-lua/plenary.nvim' }
     }
-    -- use {'skywind3000/asyncrun.vim'}
     use {
       'williamboman/nvim-lsp-installer',
       config = [[ require('plugins/configs/lsp_installer') ]]
@@ -168,14 +124,6 @@ local function setupPackage()
         require("plugins.configs.zen-mode")
       end
     }
-    --[[ use {
-    'kristijanhusak/orgmode.nvim',
-    config = function()
-      require('orgmode').setup {}
-      require('core/org')
-    end
-  } ]]
-
     use {
       'goolord/alpha-nvim',
       config = function() require('plugins/configs/dashboard').config() end
@@ -197,10 +145,6 @@ local function setupPackage()
       requires = 'nvim-lua/plenary.nvim',
       config = function() require("diffview").setup {} end
     }
-    --[[ use {
-    'glepnir/lspsaga.nvim',
-    config = function() require("lspsaga").init_lsp_saga() end
-  } ]]
     use {
       'phaazon/hop.nvim',
       branch = 'v1', -- optional but strongly recommended
@@ -229,7 +173,6 @@ local function setupPackage()
         }
       end
     }
-    -- use "Pocco81/TrueZen.nvim"
     use {
       "folke/which-key.nvim",
       config = function()
@@ -239,65 +182,6 @@ local function setupPackage()
 
     use({ "iamcco/markdown-preview.nvim", run = "cd app && npm install",
       setup = function() vim.g.mkdp_filetypes = { "markdown" } end, ft = { "markdown" }, })
-    --[[ use {
-      'jakewvincent/mkdnflow.nvim',
-      config = function()
-        require('mkdnflow').setup({
-          filetypes = { md = true, rmd = true, markdown = true },
-          create_dirs = true,
-          perspective = {
-            priority = 'first',
-            fallback = 'current',
-            root_tell = false
-          },
-          wrap = false,
-          bib = {
-            default_path = nil,
-            find_in_root = true
-          },
-          silent = false,
-          use_mappings_table = true,
-          mappings = {
-            MkdnNextLink = { 'n', '<Tab>' },
-            MkdnPrevLink = { 'n', '<S-Tab>' },
-            MkdnNextHeading = { 'n', '<leader>]' },
-            MkdnPrevHeading = { 'n', '<leader>[' },
-            MkdnGoBack = { 'n', '<BS>' },
-            MkdnGoForward = { 'n', '<Del>' },
-            MkdnFollowLink = { { 'n', 'v' }, '<CR>' },
-            MkdnDestroyLink = { 'n', '<M-CR>' },
-            MkdnYankAnchorLink = { 'n', 'ya' },
-            MkdnYankFileAnchorLink = { 'n', 'yfa' },
-            MkdnIncreaseHeading = { 'n', '+' },
-            MkdnDecreaseHeading = { 'n', '-' },
-            MkdnToggleToDo = { 'n', '<C-Space>' },
-            MkdnTableNewColBefore = { 'n', '<leader>aa' },
-            MkdnTableNewColAfter = { 'n', '<leader>ab' },
-            MkdnTableNewRowAbove = { 'n', '<leader>ac' },
-            MkdnTableNewRowBelow = { 'n', '<leader>ad' },
-            MkdnNewListItem = false
-          },
-          links = {
-            style = 'markdown',
-            implicit_extension = nil,
-            transform_implicit = false,
-            transform_explicit = function(text)
-              text = text:gsub(" ", "-")
-              text = text:lower()
-              text = os.date('%Y-%m-%d_') .. text
-              return (text)
-            end
-          },
-          to_do = {
-            symbols = { ' ', '-', 'X' },
-            update_parents = true,
-            not_started = ' ',
-            in_progress = '-',
-            complete = 'X'
-          }
-        })
-      end,
-    } ]]
     use 'ekickx/clipboard-image.nvim'
     use 'Vonr/align.nvim'
     -- Lua
@@ -364,8 +248,6 @@ local function setupPackage()
     -- use {"ellisonleao/glow.nvim", branch = 'main'}
     use { 'lervag/vimtex' }
     use { "honza/vim-snippets" }
-    -- use { "rcarriga/cmp-dap" }
-    -- use { "tzachar/cmp-tabnine" }
     use { "kdheepak/cmp-latex-symbols" }
     use { "hrsh7th/cmp-emoji" }
 

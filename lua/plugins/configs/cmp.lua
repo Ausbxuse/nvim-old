@@ -6,9 +6,11 @@ cmp.setup({
   completion = {
     -- completeopt = 'menu,menuone,noinsert',
   },
+
   snippet = {
     expand = function(args) require('luasnip').lsp_expand(args.body) end
   },
+
   formatting = {
     fields = { "kind", "abbr", "menu" },
     format = function(entry, vim_item)
@@ -35,6 +37,7 @@ cmp.setup({
       return vim_item
     end ]]
   },
+
   window = {
     documentation = { border = nil },
     completion = {
@@ -43,14 +46,20 @@ cmp.setup({
       side_padding = 0,
     },
   },
+
   sources = {
     -- { name = 'dictionary' }, 
     { name = 'spell' },
     { name = 'emoji' },
-    { name = 'nvim_lsp' }, { name = 'nvim_lua' },
-    { name = 'neorg' }, { name = 'path' }, { name = 'luasnip' },
-    { name = 'buffer', keyword_length = 1 }, { name = 'calc' }
+    { name = 'nvim_lsp' },
+    { name = 'nvim_lua' },
+    { name = 'neorg' },
+    { name = 'path' },
+    { name = 'luasnip' },
+    { name = 'buffer', keyword_length = 1 },
+    { name = 'calc' }
   },
+
   experimental = {
     ghost_text = true,
   }
@@ -58,12 +67,12 @@ cmp.setup({
 })
 
 -- Require function for tab to work with LUA-SNIP
-local has_words_before = function()
+--[[ local has_words_before = function()
   local line, col = unpack(vim.api.nvim_win_get_cursor(0))
   return col ~= 0 and
       vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col)
       :match("%s") == nil
-end
+end ]]
 
 local luasnip = require("luasnip")
 

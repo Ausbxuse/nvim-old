@@ -37,7 +37,7 @@ require'nvim-treesitter.configs'.setup {
     }
   },
 
-  rainbow = { -- TODO: looks awful, need to change color scheme
+  --[[ rainbow = { -- TODO: looks awful, need to change color scheme
     enable = false,
     extended_mode = true, -- Highlight also non-parentheses delimiters, boolean or table: lang -> boolean
     max_file_lines = 1000, -- Do not enable for files with more than 1000 lines, int
@@ -45,7 +45,7 @@ require'nvim-treesitter.configs'.setup {
       "#ff2740", "#fd971f", "#ffd242", "#a6e22e", "#66d9ef", "#61aeee",
       "#c678dd"
     }
-  },
+  }, ]]
   -- ensure_installed = {'org'} -- Or run :TSUpdate org
   -- ensure_installed = "maintained", -- one of "all", "maintained" (parsers with maintainers), or a list of languages
   ensure_installed = {
