@@ -7,11 +7,12 @@ local full_theme = {
   results_title = '',
   preview_title = '',
   borderchars = {
-    prompt = {'▀', '▐', '▄', '▌', '▛', '▜', '▟', '▙'},
-    results = {'▀', '▐', '▄', '▌', '▛', '▜', '▟', '▙'},
-    preview = {'▀', '▐', '▄', '▌', '▛', '▜', '▟', '▙'}
+    prompt = { '▀', '▐', '▄', '▌', '▛', '▜', '▟', '▙' },
+    results = { '▀', '▐', '▄', '▌', '▛', '▜', '▟', '▙' },
+    preview = { '▀', '▐', '▄', '▌', '▛', '▜', '▟', '▙' }
   }
 }
+local home = os.getenv('HOME')
 
 require("telescope").setup {
   defaults = {
@@ -28,6 +29,11 @@ require("telescope").setup {
       width = 0.87,
       height = 0.80,
       preview_cutoff = 120,
+    },
+    file_ignore_patterns = { -- % is an escape char in lua regex
+      'Media/',
+      'Music/',
+      '.git/',
     },
     -- Your defaults config goes in here
     theme = {
@@ -50,9 +56,9 @@ require("telescope").setup {
     },
     --
     borderchars = {
-      prompt = {" ", " ", " ", " ", " ", " ", " ", " "},
-      results = {" ", " ", " ", " ", " ", " ", " ", " "},
-      preview = {" ", " ", " ", " ", " ", " ", " ", " "}
+      prompt = { " ", " ", " ", " ", " ", " ", " ", " " },
+      results = { " ", " ", " ", " ", " ", " ", " ", " " },
+      preview = { " ", " ", " ", " ", " ", " ", " ", " " }
       --[[ prompt = {"─", "│", "─", "│", '┌', '┐', "┘", "└"},
       results = {"─", "│", "─", "│", "┌", "┐", "┘", "└"},
       preview = {'─', '│', '─', '│', '┌', '┐', '┘', '└'} ]]
@@ -83,12 +89,46 @@ require("telescope").setup {
         },
         n = {["<c-d>"] = require("telescope.actions").delete_buffer}
       } ]]
-    }
-    -- find_files = {theme = "ivy"},
+    },
+    find_files = {hidden = true},
     -- commands = {theme = "ivy"}
   },
   extensions = {
+    cder = {
+      dir_command = { 'fd', '--hidden',
+        '--search-path',
+        home .. '/.config',
+        '--search-path',
+        home .. '/.local/share',
+        '--search-path',
+        home .. '/.local/bin',
+        '--search-path',
+        home .. '/.local/src/public-repos',
+        '--search-path',
+        home .. '/Documents/USC',
+        '-d',
+        '2',
+        '--type=d',
+        -- '.',
+      },
+      previewer_command =
+      'exa ' ..
+          '-a ' ..
+          '--icons ' ..
+          '--color=always ' ..
+          '-T ' ..
+          '--level=3 ' ..
+          '--icons ' ..
+          '--git-ignore ' ..
+          '--long ' ..
+          '--no-permissions ' ..
+          '--no-user ' ..
+          '--no-filesize ' ..
+          '--git ' ..
+          '--ignore-glob=.git',
+    },
     file_browser = {
+      hidden = true,
       mappings = {
         ["i"] = {
           -- your custom insert mode mappings
@@ -99,7 +139,7 @@ require("telescope").setup {
       },
     },
   },
-    -- your extension config goes in here
+  -- your extension config goes in here
 }
 require("telescope").load_extension "file_browser"
 require("telescope").load_extension "notify"

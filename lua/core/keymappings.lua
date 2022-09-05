@@ -52,6 +52,7 @@ local default_keys = {
     { "<leader>=", ":call ToggleZoom(v:true)<CR>" },
     { "<leader>r", ":call Compile() <CR>" },
     { "<leader>ff", ":Telescope find_files<cr>" },
+    { "<leader>fd", ":Telescope cder hidden=true<cr>" },
     { "<leader>fr", ":Telescope oldfiles<cr>" },
     { "<leader>fg", "<cmd>Telescope live_grep<cr>" },
     { "<leader>b", "<cmd>Telescope buffers<cr>" },
@@ -131,7 +132,7 @@ vim.api.nvim_set_keymap("s", "<C-n>", "<Plug>luasnip-next-choice", {})
 vim.api.nvim_set_keymap("i", "<C-p>", "<Plug>luasnip-prev-choice", {})
 vim.api.nvim_set_keymap("s", "<C-p>", "<Plug>luasnip-prev-choice", {})
 
-vim.keymap.set('x', 'aw', function() require'align'.align_to_string(false, true, true) end, NS) -- Aligns to a string, looking left and with previews
+vim.keymap.set('x', 'aw', function() require 'align'.align_to_string(false, true, true) end, NS) -- Aligns to a string, looking left and with previews
 
 vim.cmd([[
 nnoremap S :%s//g<Left><Left>
