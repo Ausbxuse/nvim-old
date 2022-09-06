@@ -107,9 +107,9 @@ local function setupPackage()
 
     use { -- Snippet Engine for Neovim written in Lua.
       'L3MON4D3/LuaSnip',
-      requires = {
+      --[[ requires = {
         "rafamadriz/friendly-snippets" -- Snippets collection for a set of different programming languages for faster development.
-      },
+      }, ]]
       config = [[ require('plugins/configs/luasnip') ]]
     }
 
@@ -251,7 +251,7 @@ local function setupPackage()
     use { "kdheepak/cmp-latex-symbols" }
     use { "hrsh7th/cmp-emoji" }
 
-    use "rafamadriz/friendly-snippets"
+    -- use "rafamadriz/friendly-snippets"
     use 'zane-/cder.nvim'
     use {
       "ausbxuse/luasnip-latex-snippets.nvim",
