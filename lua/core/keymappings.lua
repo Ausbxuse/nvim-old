@@ -56,6 +56,7 @@ local default_keys = {
     { "<leader>fr", ":Telescope oldfiles<cr>" },
     { "<leader>fg", "<cmd>Telescope live_grep<cr>" },
     { "<leader>b", "<cmd>Telescope buffers<cr>" },
+    { "<leader>fj", "<cmd>Telescope commands<cr>" },
     { "<leader>x", "<cmd>Telescope<cr>" },
     { "<leader>z", "<cmd>ZenMode<cr>" },
     { "<leader>u", "<cmd>lua require('telescope').extensions.dict.synonyms()<cr>" },
@@ -95,7 +96,7 @@ local default_keys = {
 
 -- place this in one of your configuration file(s)
 vim.api.nvim_set_keymap('n', 's', "<cmd>HopChar2<cr>", {})
-vim.api.nvim_set_keymap('n', 'f',
+--[[ vim.api.nvim_set_keymap('n', 'f',
   "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR, current_line_only = true })<cr>"
   ,
   {})
@@ -119,7 +120,7 @@ vim.api.nvim_set_keymap('', 'T',
   "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR, current_line_only = true })<cr>"
   ,
   {})
-
+ ]]
 utils.add_keymap_normal_mode(opts.nnoremap, default_keys["normal_mode"])
 utils.add_keymap_insert_mode(opts.inoremap, default_keys["insert_mode"])
 utils.add_keymap_visual_select_mode(opts.vnoremap,
@@ -142,9 +143,9 @@ map <leader>p :silent !opout "%:p"<CR>
 func! Compile()
   exec 'w'
   if &filetype == "cpp"
-    exec 'silent vs | vert res -10 | te g++ -Wall % && ./a.out'
+    exec 'silent vs | vert res -10 | te g++ -g -Wall % && ./a.out'
   elseif &filetype == 'c'
-    exec 'vs | vert res -10 | te gcc -Wall % && ./a.out'
+    exec 'vs | vert res -10 | te gcc -g -Wall % && ./a.out'
   elseif &filetype == 'python'
     exec 'vs | vert res -10 | te python3 %'
   elseif &filetype == 'rust'
