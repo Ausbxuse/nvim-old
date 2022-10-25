@@ -33,8 +33,17 @@ local static_colors = {
   atom_purple     = "#cb96ff",
   atom_grey       = "#a6b5c5",
 
+  atom_red_fg        = "#ec5252",
+  atom_orange_fg     = "#c97016",
+  atom_green_fg      = "#5da713",
+  atom_cyan_fg       = "#13afaf",
+  atom_light_blue_fg = "#9cdcfe",
+  atom_blue_fg       = "#3890e9",
+  atom_purple_fg     = "#a359ed",
+  atom_grey_fg       = "#6b859e",
+
   pmenu_fg        = "#b3bac7",
-  pmenu_bg        = "#22252a",
+  pmenu_bg        = "#2d2f39",
   pmenusel_fg     = "#80bbfe",
   pmenusel_bg     = "#3d4a60",
   pmenu_thumb     = "#666660",

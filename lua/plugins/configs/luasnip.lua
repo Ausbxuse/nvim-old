@@ -12,7 +12,16 @@ local d = ls.dynamic_node
 ls.config.set_config({
   history = true,
   -- Update more often, :h events for more info.
-  updateevents = "TextChanged,TextChangedI"
+  updateevents = "TextChanged,TextChangedI",
+  store_selection_keys = "<Tab>"
+})
+ls.add_snippets("all", {
+  -- important! fmt does not return a snippet, it returns a table of nodes.
+  s("tpl", {
+    t({ "\\documentclass" }), i(1),
+    t({ "", "After jumping forward once, cursor is here ->" }), i(2),
+    t({ "", "After jumping once more, the snippet is exited there ->" }), i(0),
+  })
 })
 
 ls.snippets = { all = {}, html = {} }
