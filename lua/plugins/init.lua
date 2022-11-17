@@ -251,7 +251,7 @@ local function setupPackage()
     use { "kdheepak/cmp-latex-symbols" }
     use { "hrsh7th/cmp-emoji" }
 
-    -- use "rafamadriz/friendly-snippets"
+    use "rafamadriz/friendly-snippets"
     use 'zane-/cder.nvim'
     use {
       "ausbxuse/luasnip-latex-snippets.nvim",
