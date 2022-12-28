@@ -75,9 +75,9 @@ local function setupPackage(is_bootstrap)
       requires = 'kyazdani42/nvim-web-devicons',
       config = function() require("plugins.configs.nvim-tree") end
     }
-    use { 'p00f/nvim-ts-rainbow',
+    --[[ use { 'p00f/nvim-ts-rainbow',
       requires = { 'nvim-treesitter/nvim-treesitter' }
-    }
+    } ]]
     use { 'rhysd/vim-grammarous' }
     -- use { 'prettier/vim-prettier', run = 'yarn install' }
     use {
