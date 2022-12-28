@@ -1,10 +1,10 @@
+local M = {}
 -- For auto install packer when it is absent
 local execute = vim.api.nvim_command
 local fn = vim.fn
 local install_path = fn.stdpath('data') .. '/site/pack/packer/start/packer.nvim'
 -- if the path for packer is empty, meaning no plugins are installed, install packer and the plugins
-local is_bootstrap = false
-local function setupPackage()
+local function setupPackage(is_bootstrap)
   require('packer').startup(function(use)
     use 'wbthomason/packer.nvim'
     use 'lewis6991/impatient.nvim'
@@ -283,23 +283,17 @@ local function setupPackage()
   end)
 end
 
-if fn.empty(fn.glob(install_path)) > 0 then
-  is_bootstrap = true
-  fn.system({
-    'git', 'clone', 'https://github.com/wbthomason/packer.nvim', install_path
-  })
-  execute 'packadd packer.nvim'
-  setupPackage()
-  -- execute 'PackerSync'
-else
-  setupPackage()
+
+M.load_plugins = function(is_bootstrap)
+  if is_bootstrap == true then
+    fn.system({
+      'git', 'clone', 'https://github.com/wbthomason/packer.nvim', install_path
+    })
+    execute 'packadd packer.nvim'
+    -- execute 'PackerSync'
+  end
+  setupPackage(is_bootstrap)
+
 end
 
-if is_bootstrap then
-  print '=================================='
-  print '    Plugins are being installed'
-  print '    Wait until Packer completes,'
-  print '       then restart nvim'
-  print '=================================='
-  return
-end
+return M
