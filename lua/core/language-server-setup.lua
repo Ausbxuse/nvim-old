@@ -5,7 +5,7 @@ capabilities.textDocument.completion.completionItem.resolveSupport =
   {properties = {'documentation', 'detail', 'additionalTextEdits'}}
 
 local sumneko_root_path = '/usr/share/sumneko_lua/lua-language-server'
-local sumneko_binary = "/usr/bin/lua-language-server"
+-- local sumneko_binary = "/usr/bin/lua-language-server"
 
 local runtime_path = vim.split(package.path, ';')
 table.insert(runtime_path, "lua/?.lua")
@@ -158,7 +158,7 @@ lspconfig.tsserver.setup {capabilities = capabilities, on_attach = on_attach}
 lspconfig.sumneko_lua.setup {
   on_attach = on_attach,
   capabilities = capabilities,
-  cmd = {sumneko_binary, "-E", sumneko_root_path .. "/main.lua"},
+  -- cmd = {sumneko_binary, "-E", sumneko_root_path .. "/main.lua"},
   settings = {
     Lua = {
       runtime = {

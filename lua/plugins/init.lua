@@ -271,7 +271,11 @@ local function setupPackage()
         require("mason").setup()
       end
     }
-    use {"williamboman/mason-lspconfig.nvim"}
+    use {"williamboman/mason-lspconfig.nvim",
+      config = function()
+        require("mason-lspconfig").setup()
+      end
+    }
 
     if is_bootstrap then
       require('packer').sync()
