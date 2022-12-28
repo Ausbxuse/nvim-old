@@ -3,6 +3,7 @@ local execute = vim.api.nvim_command
 local fn = vim.fn
 local install_path = fn.stdpath('data') .. '/site/pack/packer/start/packer.nvim'
 -- if the path for packer is empty, meaning no plugins are installed, install packer and the plugins
+local is_bootstrap = false
 local function setupPackage()
   require('packer').startup(function(use)
     use 'wbthomason/packer.nvim'
@@ -264,16 +265,36 @@ local function setupPackage()
       end,
       ft = "tex",
     }
+
+    use { "williamboman/mason.nvim",
+      config = function()
+        require("mason").setup()
+      end
+    }
+    use {"williamboman/mason-lspconfig.nvim"}
+
+    if is_bootstrap then
+      require('packer').sync()
+    end
   end)
 end
 
-if fn.empty(fn.glob(install_path)) > 0 then
-  fn.system({
+if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
+  vim.fn.system({
     'git', 'clone', 'https://github.com/wbthomason/packer.nvim', install_path
   })
   execute 'packadd packer.nvim'
   setupPackage()
-  execute 'PackerSync'
+  -- execute 'PackerSync'
 else
   setupPackage()
+end
+
+if is_bootstrap then
+  print '=================================='
+  print '    Plugins are being installed'
+  print '    Wait until Packer completes,'
+  print '       then restart nvim'
+  print '=================================='
+  return
 end
