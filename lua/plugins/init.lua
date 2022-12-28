@@ -277,6 +277,8 @@ local function setupPackage(is_bootstrap)
       end
     }
 
+    use {"mbbill/undotree"}
+
     if is_bootstrap then
       require('packer').sync()
     end
@@ -290,7 +292,6 @@ M.load_plugins = function(is_bootstrap)
       'git', 'clone', 'https://github.com/wbthomason/packer.nvim', install_path
     })
     execute 'packadd packer.nvim'
-    -- execute 'PackerSync'
   end
   setupPackage(is_bootstrap)
 

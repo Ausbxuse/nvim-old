@@ -47,7 +47,11 @@ local default_keys = {
     { "<Space>", "<Nop>" }, { "<S-h>", "<C-w>h" }, { "<S-j>", "<C-w>j" },
     { "<S-k>", "<C-w>k" }, { "<S-l>", "<C-w>l" },
     { "<C-s>", ":w | silent AsyncRun compile %<CR>" }, { "<Esc>", ":nohl<CR>" },
+  {"n", "nzzzv"},
+  {"N", "Nzzzv"},
     { "<F7>", ":setlocal spell! spell?<CR>" },
+    { "<leader>y", "\"+y" },
+    { "<leader>Y", "\"+Y" },
     { "<leader>n", ":NvimTreeToggle<CR>" },
     { "<leader>=", ":call ToggleZoom(v:true)<CR>" },
     { "<leader>r", ":call Compile() <CR>" },
@@ -71,8 +75,11 @@ local default_keys = {
     {"gi", "<cmd>lua vim.lsp.buf.implementation()<cr>"},
     {"<C-k>", "<cmd>lua vim.lsp.buf.hover()<cr>"},
     {"<C-j>", "<cmd>lua vim.lsp.buf.signature_help()<cr>"}, ]]
-    { "<C-p>", "<cmd>lua vim.lsp.diagnostic.goto_prev()<cr>" },
-    { "<C-n>", "<cmd>lua vim.lsp.diagnostic.goto_next()<cr>" }
+    { "<leader>ga", "<cmd>lua vim.lsp.buf.code_action()<cr>" },
+    { "<C-p>", "<cmd>cprev<cr>" },
+    { "<C-n>", "<cmd>cnext<cr>" },
+    -- { "<leader>p", "<cmd>lprev<cr>" },
+    -- { "<leader>n", "<cmd>lnext<cr>" }
   },
 
   term_mode = {
@@ -90,7 +97,8 @@ local default_keys = {
 
   visual_mode = {
     -- Move selected line / block of text in visual mode
-    -- {"K", ":move '<-2<CR>gv-gv"}, {"J", ":move '>+1<CR>gv-gv"}
+    { "<leader>y", "\"+y" },
+    {"K", ":move '<-2<CR>gv=gv"}, {"J", ":move '>+1<CR>gv=gv"}
   }
 }
 
@@ -136,7 +144,7 @@ vim.api.nvim_set_keymap("s", "<C-p>", "<Plug>luasnip-prev-choice", {}) ]]
 vim.keymap.set('x', 'aw', function() require 'align'.align_to_string(false, true, true) end, NS) -- Aligns to a string, looking left and with previews
 
 vim.cmd([[
-nnoremap S :%s//g<Left><Left>
+nnoremap S :%s/\\<<C-r><C-w>\\>/<C-r><C-w>/gI<Left><Left>
 map <leader>c :silent w! \| silent !compile "%:p"<CR>
 map <leader>p :silent !opout "%:p"<CR>
 
