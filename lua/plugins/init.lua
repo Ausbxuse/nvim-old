@@ -284,6 +284,7 @@ local function setupPackage()
 end
 
 if fn.empty(fn.glob(install_path)) > 0 then
+  is_bootstrap = true
   fn.system({
     'git', 'clone', 'https://github.com/wbthomason/packer.nvim', install_path
   })
