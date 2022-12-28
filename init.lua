@@ -5,8 +5,9 @@
 -- /___/_/ /_/_/\__(_)_/\__,_/\__,_/
 
 
--- Plugins
+-- require'impatient'.enable_profile()
 
+-- Plugins
 local is_bootstrap = false
 
 local install_path = vim.fn.stdpath('data') .. '/site/pack/packer/start/packer.nvim'
@@ -16,7 +17,31 @@ end
 
 require('plugins').load_plugins(is_bootstrap)
 
-if is_bootstrap then
+if not is_bootstrap then
+  vim.notify = require("notify")
+
+  -- Core settings
+  require('core.settings').load_options()
+  require('core.settings').load_autocmds()
+  require('core.keymappings')
+  require('core.autocmds')
+
+  -- Color Scheme
+  vim.g.colors_name = 'snappy'
+  vim.cmd([[colorscheme snappy]])
+  -- vim.opt.termguicolors = true
+
+  -- LSP
+  require('core.language-server-setup')
+
+  -- Automatically source and re-compile packer whenever you save this init.lua
+  local packer_group = vim.api.nvim_create_augroup('Packer', { clear = true })
+  vim.api.nvim_create_autocmd('BufWritePost', {
+    command = 'source <afile> | PackerCompile',
+    group = packer_group,
+    pattern = vim.fn.expand '$MYVIMRC',
+  })
+else
   print '=================================='
   print '    Plugins are being installed'
   print '    Wait until Packer completes,'
@@ -25,25 +50,3 @@ if is_bootstrap then
   return
 end
 
-
-vim.notify = require("notify")
-
--- Core settings
-require('core.settings').load_options()
-require('core.settings').load_autocmds()
-require('core.keymappings')
-require('core.autocmds')
-
--- Color Scheme
-vim.g.colors_name = 'snappy'
-vim.cmd([[colorscheme snappy]])
-
--- LSP
-require('core.language-server-setup')
-require'impatient'.enable_profile()
-
-
-
--- vim.opt.termguicolors = true
--- require('plugins')
--- vim.notify("After installation, please restart Nvim 🥰.")
