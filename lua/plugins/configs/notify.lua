@@ -12,7 +12,7 @@ require("notify").setup({
   render = "default",
 
   -- Default timeout for notifications
-  timeout = 5000,
+  timeout = 3000,
 
   -- Max number of columns for messages
   max_width = nil,
@@ -34,4 +34,7 @@ require("notify").setup({
     DEBUG = "",
     TRACE = "✎",
   },
+
 })
+
+-- require("notify").Highlights.body = "NONE"

@@ -278,6 +278,25 @@ local function setupPackage(is_bootstrap)
     }
 
     use {"mbbill/undotree"}
+    use {"lukas-reineke/headlines.nvim",
+      config = function()
+        require('headlines').setup()
+      end
+    }
+    use {"stevearc/dressing.nvim",
+      config = function()
+        require('dressing').setup()
+      end
+    }
+    use {"gen740/SmoothCursor.nvim",
+      config = function()
+        require('smoothcursor').setup({
+          fancy = {
+            enable = true
+          }
+        })
+      end
+    }
 
     if is_bootstrap then
       require('packer').sync()
@@ -296,5 +315,6 @@ M.load_plugins = function(is_bootstrap)
   setupPackage(is_bootstrap)
 
 end
+
 
 return M

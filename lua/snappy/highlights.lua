@@ -121,6 +121,7 @@ local highlight = {
   NotifyINFOBody        = {                        bg = "NONE"},
   NotifyDEBUGBody       = {                        bg = "NONE"},
   NotifyTRACEBody       = {                        bg = "NONE"},
+  NotifyBackground       = { fg = "NONE",                       bg = "NONE"},
   texTitleArg           = {fg = C.fg,              bg = "NONE"}
 }
 return highlight

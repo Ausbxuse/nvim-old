@@ -50,6 +50,7 @@ local default_keys = {
   {"n", "nzzzv"},
   {"N", "Nzzzv"},
     { "<F7>", ":setlocal spell! spell?<CR>" },
+    { "<leader>/", ":Telescope current_buffer_fuzzy_find<cr>" },
     { "<leader>y", "\"+y" },
     { "<leader>Y", "\"+Y" },
     { "<leader>n", ":NvimTreeToggle<CR>" },
@@ -69,6 +70,7 @@ local default_keys = {
     { "<leader>fi", ":cd ~/.config/nvim | e init.lua <cr>" },
     { "<leader>fh", "<cmd>Telescope help_tags<cr>" }, { "<leader>j", ":bn<cr>" },
     { "<leader>k", ":bp<cr>" }, { "gd", "<cmd>lua vim.lsp.buf.definition()<cr>" },
+    { "<leader>s", "<cmd> lua require('telescope.builtin').spell_suggest(require('telescope.themes').get_cursor({}))<cr>"},
     { "gb", ":BufferLinePick<CR>" },
     --[[ {"gD", "<cmd>lua vim.lsp.buf.declaration()<cr>"},
     {"gr", "<cmd>lua vim.lsp.buf.references()<cr>"},
@@ -78,9 +80,16 @@ local default_keys = {
     { "<leader>ga", "<cmd>lua vim.lsp.buf.code_action()<cr>" },
     { "<C-p>", "<cmd>cprev<cr>" },
     { "<C-n>", "<cmd>cnext<cr>" },
+
+    { "<leader>1", "1<C-W>w" },
+    { "<leader>2", "2<C-W>w" },
+    { "<leader>3", "3<C-W>w" },
+    { "<leader>4", "4<C-W>w" },
+    { "<leader>5", "5<C-W>w" },
     -- { "<leader>p", "<cmd>lprev<cr>" },
     -- { "<leader>n", "<cmd>lnext<cr>" }
   },
+
 
   term_mode = {
     -- Terminal window navigation
