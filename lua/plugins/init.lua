@@ -47,9 +47,9 @@ local function setupPackage(is_bootstrap)
     use { 'akinsho/nvim-toggleterm.lua',
       config = function() require("plugins.configs.toggleterm") end
     }
-    --[[ use { 'windwp/nvim-ts-autotag',
+    use { 'windwp/nvim-ts-autotag',
       requires = { 'nvim-treesitter/nvim-treesitter' }
-    } ]]
+    }
     -- use 'ray-x/lsp_signature.nvim'
     use 'nvim-lua/popup.nvim'
     use 'nvim-lua/plenary.nvim'
