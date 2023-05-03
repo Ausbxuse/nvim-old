@@ -5,7 +5,7 @@
 -- /___/_/ /_/_/\__(_)_/\__,_/\__,_/
 
 
--- require'impatient'.enable_profile()
+require'impatient'.enable_profile()
 
 -- Plugins
 local is_bootstrap = false

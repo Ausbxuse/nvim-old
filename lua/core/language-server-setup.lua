@@ -155,7 +155,7 @@ lspconfig.bashls.setup {capabilities = capabilities}
 
 lspconfig.tsserver.setup {capabilities = capabilities, on_attach = on_attach}
 
-lspconfig.sumneko_lua.setup {
+lspconfig.lua_ls.setup {
   on_attach = on_attach,
   capabilities = capabilities,
   -- cmd = {sumneko_binary, "-E", sumneko_root_path .. "/main.lua"},

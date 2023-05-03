@@ -1,6 +1,7 @@
 -- Set completeopt to have a better completion experience
 vim.o.completeopt = 'menuone,noselect'
 local cmp = require 'cmp'
+local lspkind = require 'lspkind'
 
 cmp.setup({
   completion = {
@@ -14,10 +15,50 @@ cmp.setup({
   formatting = {
     fields = { "kind", "abbr", "menu" },
     format = function(entry, vim_item)
-      local kind = require("lspkind").cmp_format({ mode = "symbol_text", maxwidth = 50 })(entry, vim_item)
+
+      lspkind.init({
+        -- enables text annotations (default: true)
+        -- with_text = true,
+        mode = 'text_symbol',
+
+        -- enables text annotations (default: 'default')
+        -- default symbol map can be either 'default' or 'codicons' for codicon preset (requires vscode-codicons font installed)
+        preset = 'codicons',
+
+        -- override preset symbols (default: {})
+        symbol_map = {
+          Text = '',
+          Method = 'ƒ',
+          Function = '',
+          Constructor = '',
+          Variable = '',
+          Class = '',
+          Interface = 'ﰮ',
+          Module = '',
+          Property = '',
+          Unit = '',
+          Value = '',
+          Enum = '了',
+          Keyword = '',
+          Snippet = '﬌',
+          Color = '',
+          File = '',
+          Folder = '',
+          EnumMember = '',
+          Constant = '',
+          Struct = '',
+          Default = " ",
+          Event = " ",
+          Field = "ﰠ ",
+          Operator = " ",
+          Reference = "",
+          TypeParameter = "  ",
+        }
+      })
+      local kind = lspkind.cmp_format({ mode = "symbol_text", maxwidth = 50 })(entry, vim_item)
       local strings = vim.split(kind.kind, "%s", { trimempty = true })
       kind.kind = " " .. strings[1] .. " "
-      kind.menu = "    (" .. strings[2] .. ")"
+      kind.menu = "   " .. (strings[2] == nil and "?" or strings[2]) .. ""
 
       return kind
     end,

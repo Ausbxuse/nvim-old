@@ -121,7 +121,7 @@ local highlight = {
   NotifyINFOBody        = {                        bg = "NONE"},
   NotifyDEBUGBody       = {                        bg = "NONE"},
   NotifyTRACEBody       = {                        bg = "NONE"},
-  NotifyBackground       = { fg = "NONE",                       bg = "NONE"},
+  NotifyBackground       = { fg = "NONE",                       bg = "#000000"},
   texTitleArg           = {fg = C.fg,              bg = "NONE"},
   markdownH1            = {fg = C.cyan    , style = "bold"         },
   markdownH2            = {fg = C.magenta , style = "bold"         },
