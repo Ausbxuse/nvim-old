@@ -78,8 +78,8 @@ local default_keys = {
     {"<C-k>", "<cmd>lua vim.lsp.buf.hover()<cr>"},
     {"<C-j>", "<cmd>lua vim.lsp.buf.signature_help()<cr>"}, ]]
     { "<leader>ga", "<cmd>lua vim.lsp.buf.code_action()<cr>" },
-    { "<C-p>", "<cmd>cprev<cr>" },
-    { "<C-n>", "<cmd>cnext<cr>" },
+    { "<C-p>", "<cmd>lua vim.diagnostic.goto_prev()<cr>" },
+    { "<C-n>", "<cmd>lua vim.diagnostic.goto_next()<cr>" },
 
     { "<leader>1", "1<C-W>w" },
     { "<leader>2", "2<C-W>w" },
@@ -150,7 +150,14 @@ vim.api.nvim_set_keymap("s", "<C-n>", "<Plug>luasnip-next-choice", {})
 vim.api.nvim_set_keymap("i", "<C-p>", "<Plug>luasnip-prev-choice", {})
 vim.api.nvim_set_keymap("s", "<C-p>", "<Plug>luasnip-prev-choice", {}) ]]
 
-vim.keymap.set('x', 'aw', function() require 'align'.align_to_string(false, true, true) end, NS) -- Aligns to a string, looking left and with previews
+vim.keymap.set('x', 'al', function() require 'align'.align_to_string(false, true, true) end, NS) -- Aligns to a string, looking left and with previews
+
+
+if vim.bo.filetype == 'NvimTree' then
+  local api = require('nvim-tree.api') vim.keymap.del('n', '<CR>') vim.keymap.set('n', '<CR>', function() api.tree.change_root_to_node()  end, NS) vim.keymap.set('n', 'l', function()api.node.open.edit() end,          NS)
+else
+  vim.cmd('map l l')
+end
 
 vim.cmd([[
 nnoremap S :%s/\\<<C-r><C-w>\\>/<C-r><C-w>/gI<Left><Left>

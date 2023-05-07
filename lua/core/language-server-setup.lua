@@ -1,17 +1,41 @@
+-- Show line diagnostics automatically in hover window
+vim.o.updatetime = 0
+vim.cmd [[autocmd CursorHold * lua vim.diagnostic.open_float({border="single", width=40, focusable=false}) ]]
+
 local lspconfig = require 'lspconfig'
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities.textDocument.completion.completionItem.snippetSupport = true
 capabilities.textDocument.completion.completionItem.resolveSupport =
   {properties = {'documentation', 'detail', 'additionalTextEdits'}}
 
-local sumneko_root_path = '/usr/share/sumneko_lua/lua-language-server'
--- local sumneko_binary = "/usr/bin/lua-language-server"
-
 local runtime_path = vim.split(package.path, ';')
 table.insert(runtime_path, "lua/?.lua")
 table.insert(runtime_path, "lua/?/init.lua")
 
 local on_attach = function(client, bufnr)
+  vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
+    vim.lsp.diagnostic.on_publish_diagnostics, {
+      -- disable virtual text
+      virtual_text = false,
+
+      -- show signs
+      signs = true,
+
+      -- delay update diagnostics
+      update_in_insert = false,
+    }
+  )
+
+
+
+  vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(
+    vim.lsp.handlers.hover, {border = "single"}
+  )
+
+  vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(
+    vim.lsp.handlers.signature_help, {border = "single"}
+  )
+
 
   local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
   local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
@@ -207,3 +231,12 @@ lspconfig.jsonls.setup {
 }
 lspconfig.texlab.setup{}
 lspconfig.kotlin_language_server.setup{}
+
+require('lspconfig.ui.windows').default_options.border = 'single'
+
+vim.cmd([[
+sign define DiagnosticSignError text= texthl=DiagnosticSignError linehl= numhl=DiagnosticSignError
+sign define DiagnosticSignWarning text=  texthl=DiagnosticSignWarning linehl= numhl=DiagnosticSignWarning
+sign define DiagnosticSignInformation text= texthl=DiagnosticSignInformation linehl= numhl=DiagnosticSignInformation
+sign define DiagnosticSignHint text=  texthl=DiagnosticSignHint linehl= numhl=DiagnosticSignHint
+]])

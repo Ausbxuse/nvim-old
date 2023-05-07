@@ -62,7 +62,8 @@ local function setupPackage(is_bootstrap)
     use { 'lukas-reineke/indent-blankline.nvim',
       config = function() require("plugins.configs.indent_blankline") end }
     use { 'neovim/nvim-lspconfig',
-      config = function() require("plugins.configs.lspconfig") end }
+      -- config = function() require("plugins.configs.lspconfig") end 
+    }
     -- use 'camspiers/animate.vim'
     -- use 'camspiers/lens.vim'
     -- use 'wfxr/minimap.vim', {'do': ':!cargo install --locked code-minimap'}
@@ -306,7 +307,7 @@ local function setupPackage(is_bootstrap)
         dap.adapters.cppdbg = {
           id = 'cppdbg',
           type = 'executable',
-          command = '/home/peter/Downloads/extension/debugAdapters/bin/OpenDebugAD7',
+          command = '/home/zhenyu/extension/debugAdapters/bin/OpenDebugAD7',
           setupCommands = {
             {
               text = '-enable-pretty-printing',

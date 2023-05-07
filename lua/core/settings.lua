@@ -51,8 +51,8 @@ M.load_options = function()
     spelllang          = "en",
     scrolloff          = 8, -- is one of my fav
     sidescrolloff      = 8,
-    pumblend           = 10,
-    winblend           = 0,
+    pumblend           = 20,
+    winblend           = 00, -- keep notify transparent
     inccommand         = "nosplit"
   } ---  VIM ONLY COMMANDS  ---cmd "filetype plugin on"cmd('let &titleold="' .. TERMINAL .. '"')cmd "set inccommand=split"cmd "set iskeyword+=-"
 
