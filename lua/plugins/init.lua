@@ -247,7 +247,12 @@ local function setupPackage(is_bootstrap)
     }
     use {
       'martineausimon/nvim-lilypond-suite',
-      requires = { 'MunifTanjim/nui.nvim' }
+      dependencies = 'MunifTanjim/nui.nvim',
+      config = function()
+        require('nvls').setup({
+          -- edit config here (see "Customize default settings" in wiki)
+        })
+      end
     }
     -- use {"ellisonleao/glow.nvim", branch = 'main'}
     use { 'lervag/vimtex' }
