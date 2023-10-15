@@ -262,7 +262,7 @@ local function setupPackage(is_bootstrap)
 
     use "rafamadriz/friendly-snippets"
     use 'zane-/cder.nvim'
-    use {
+    --[[ use {
       "ausbxuse/luasnip-latex-snippets.nvim",
       -- replace "lervag/vimtex" with "nvim-treesitter/nvim-treesitter" if you're
       -- using treesitter.
@@ -272,8 +272,8 @@ local function setupPackage(is_bootstrap)
         -- or setup({ use_treesitter = true })
       end,
       ft = "tex",
-    }
-
+    } ]]
+    use {'mfussenegger/nvim-jdtls'}
     use { "williamboman/mason.nvim",
       config = function()
         require("mason").setup()

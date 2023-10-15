@@ -178,6 +178,13 @@ lspconfig.cssls.setup {capabilities = capabilities, on_attach = on_attach}
 lspconfig.bashls.setup {capabilities = capabilities}
 
 lspconfig.tsserver.setup {capabilities = capabilities, on_attach = on_attach}
+--[[ lspconfig.jdtls.setup {
+  capabilities = capabilities,
+  on_attach = on_attach,
+
+  root_dir = function() return vim.fn.getcwd()
+  end
+} ]]
 
 lspconfig.lua_ls.setup {
   on_attach = on_attach,
@@ -202,11 +209,11 @@ lspconfig.lua_ls.setup {
           ['/usr/share/lua/5.3'] = true,
           ['/usr/share/awesome/lib'] = true
         }
-      }
+      },
       -- Do not send telemetry data containing a randomized but unique identifier
-      -- telemetry = {
-      --   enable = false,
-      -- },
+      telemetry = {
+        enable = false
+      }
     }
   }
   -- root_dir = function(fname)
