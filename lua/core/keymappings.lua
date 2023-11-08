@@ -185,7 +185,7 @@ func! Compile()
   elseif &filetype == 'bash'
     exec 'vs | vert res -10 | te ./%'
   elseif &filetype == 'java'
-    exec 'vs | vert res -10 | te javac -d . *.java && java %:h.%:r'
+    exec 'vs | vert res -10 | te javac -classpath *.jar --module-path deps -d bin src/main/*.java'
   elseif &filetype == 'markdown'
     exec 'silent !compile %&'
   elseif &filetype == 'html'
