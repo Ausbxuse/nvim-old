@@ -13,6 +13,8 @@ autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 
 
 
+
 ]])
+
 -- local acmd = vim.api.nvim_create_autocmd
 -- local agrp = vim.api.nvim_create_augroup

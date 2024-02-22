@@ -11,6 +11,10 @@ local static_colors = {
   white           = "#efefef",
   info            = "#Deebfe",
 
+  cyan_bg         = "#002c40",
+  magenta_bg      = "#",
+  purple_bg       = "#",
+
   doom_magenta    = "#fc1a70",
   doom_red        = "#ec5f67",
   doom_orange     = "#fd971f",
